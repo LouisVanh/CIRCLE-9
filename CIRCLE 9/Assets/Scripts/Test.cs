@@ -20,6 +20,7 @@ public class Test : MonoBehaviour
         if(bram == 1)
         {
             Debug.Log("Bram is a gaylord and likes edging to kids");
+            Debug.Log("kakapipi");
         }
     }
 
