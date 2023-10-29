@@ -5,7 +5,9 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
     private string Szilard = "yes";
-    private string Gay = "yes";
+    private string Gay = "no";
+    private int bram = 1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -15,11 +17,16 @@ public class Test : MonoBehaviour
         {
             Debug.Log("Real");
         }
+        if(bram == 0)
+        {
+            Debug.Log("Bram is a gaylord and likes edging to kids");
+            Debug.Log("kakapipi");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("anal");
     }
 }
