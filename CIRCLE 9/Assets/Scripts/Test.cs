@@ -6,6 +6,8 @@ public class Test : MonoBehaviour
 {
     private string Szilard = "yes";
     private string Gay = "yes";
+    private int bram = 1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +16,10 @@ public class Test : MonoBehaviour
         if (Szilard == Gay)
         {
             Debug.Log("Real");
+        }
+        if(bram == 1)
+        {
+            Debug.Log("Bram is a gaylord and likes edging to kids");
         }
     }
 
