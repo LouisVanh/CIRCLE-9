@@ -27,6 +27,16 @@ public class Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //NoYouFuckingODnt
+        Debug.Log("DICKFACE");
+        if (Szilard == Gay)
+        {
+            Debug.Log("Real");
+        }
+        if (bram == 0)
+        {
+            Debug.Log("Bram is a gaylord and likes edging to kids");
+        }
         Debug.Log("anal");
         Debug.Log("kak");
     }
