@@ -5,7 +5,7 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
     private string Szilard = "yes";
-    private string Gay = "yes";
+    private string Gay = "no";
     private int bram = 1;
 
 
@@ -17,7 +17,7 @@ public class Test : MonoBehaviour
         {
             Debug.Log("Real");
         }
-        if(bram == 1)
+        if(bram == 0)
         {
             Debug.Log("Bram is a gaylord and likes edging to kids");
         }
