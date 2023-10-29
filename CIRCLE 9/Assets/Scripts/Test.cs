@@ -5,7 +5,7 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
     private string Szilard = "yes";
-    private string Gay = "yes";
+    private string Gay = "No";
 
     // Start is called before the first frame update
     void Start()
