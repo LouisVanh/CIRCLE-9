@@ -12,7 +12,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float _speed = 10f;
     private Vector3 _movement;
     private Vector3 _movementDirection;
-    private Vector3 moveDirection;
+    private Vector3 _moveDirection;
     public bool _isMoving = false;
 
     private float _horizontalInput;
@@ -35,10 +35,26 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Camera();
         Jumping();
+        Debug.Log(_camera.fieldOfView);
 
         _horizontalInput = Input.GetAxis("Horizontal");
         _verticalInput = Input.GetAxis("Vertical");
-
+        if(Input.GetKey(KeyCode.LeftShift)&& _isMoving)
+        {
+            _speed = 20f;
+            if(_camera.fieldOfView <=100)
+            {
+                _camera.fieldOfView += 40 * Time.deltaTime;
+            }
+        }
+        else
+        {
+            if(_camera.fieldOfView >= 80)
+            {
+                _camera.fieldOfView -= 40 * Time.deltaTime;
+            }
+            _speed = 10f;
+        }
     }
 
 
@@ -48,7 +64,7 @@ public class PlayerBehaviour : MonoBehaviour
         ApplyGravity();
         
 
-        if (moveDirection.sqrMagnitude > 0.5f) _isMoving = true;
+        if (_moveDirection.sqrMagnitude > 0.5f) _isMoving = true;
         else { _isMoving = false; }
     }
     private void Camera()
