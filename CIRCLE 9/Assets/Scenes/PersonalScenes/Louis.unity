@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: b5ccdc00d3229f244b626b2bd15c4093, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: f8fc68fde055d3f4cbc1a25a41833392, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &440911462
 GameObject:
@@ -471,7 +471,7 @@ MonoBehaviour:
   _footstep3: {fileID: 8300000, guid: 2bd9b66ea53e8c8408db79a9d2b8c188, type: 3}
   _footstep4: {fileID: 8300000, guid: 06e49e5be9c2b6349945b25b35046337, type: 3}
   _footstep5: {fileID: 8300000, guid: fc3cc8e0e6eca5d439573d7960822885, type: 3}
-  _player: {fileID: 0}
+  _player: {fileID: 699230469}
   _delayBetweenSteps: 0.3
 --- !u!4 &440911465
 Transform:
@@ -621,6 +621,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &699230469 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6606868679460038939, guid: 4e17ddeb51d121c489a766b4825070be, type: 3}
+  m_PrefabInstance: {fileID: 316412224}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42adeaa11b296764b9a7737cd8166360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +862,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.235
   m_Pitch: 1
   Loop: 0
   Mute: 0

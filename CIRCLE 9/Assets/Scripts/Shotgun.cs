@@ -6,9 +6,11 @@ using UnityEngine;
 public class Shotgun : MonoBehaviour
 {
     private Animator m_Animator;
-    private bool _pickup = true;
+    //private bool _pickup = true;
     [SerializeField] private Transform PlayerHandPos;
     [SerializeField] private ParticleSystem m_MuzzleFire;
+    [SerializeField] private AudioSource _gunAudioSource;
+    [SerializeField] private AudioClip _gunShot;
     private void Start()
     {
         m_Animator = GetComponent<Animator>();
@@ -28,6 +30,6 @@ public class Shotgun : MonoBehaviour
 
     private void Shoot()
     {
-        
+        _gunAudioSource.PlayOneShot(_gunShot);
     }
 }
