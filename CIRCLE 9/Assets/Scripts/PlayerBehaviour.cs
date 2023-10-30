@@ -49,6 +49,8 @@ public class PlayerBehaviour : MonoBehaviour
         moveDirection = transform.forward * _verticalInput + transform.right * _horizontalInput;
         _controller.Move(moveDirection * _speed * Time.deltaTime);
 
+        if (moveDirection.sqrMagnitude > 0.5f) _isMoving = true;
+        else { _isMoving = false; }
     }
     private void Camera()
     {
