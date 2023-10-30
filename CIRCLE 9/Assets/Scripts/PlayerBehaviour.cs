@@ -14,7 +14,7 @@ public class PlayerBehaviour : MonoBehaviour
     private Vector3 _movement;
     private Vector3 _movementDirection;
     private Vector3 moveDirection;
-    private bool _isMoving = false;
+    public bool _isMoving = false;
 
     private float _horizontalInput;
     private float _verticalInput;
