@@ -39,6 +39,9 @@ public class PlayerBehaviour : MonoBehaviour
 
         _horizontalInput = Input.GetAxis("Horizontal");
         _verticalInput = Input.GetAxis("Vertical");
+
+        //_controller.SimpleMove(moveDirection * _speed);
+    }
         if(Input.GetKey(KeyCode.LeftShift)&& _isMoving)
         {
             _speed = 20f;
