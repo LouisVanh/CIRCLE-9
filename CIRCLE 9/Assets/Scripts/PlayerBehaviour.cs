@@ -6,25 +6,23 @@ using UnityEngine.EventSystems;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    private Rigidbody _rb;
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _orientation;
     private CharacterController _controller;
-    private float _speed = 10f;
-    private Vector3 _movement;
-    private Vector3 _movementDirection;
-    private Vector3 moveDirection;
-    private bool _isMoving = false;
+    private float _speed = 15f;
+    private Vector3 _moveDirection;
 
     private float _horizontalInput;
     private float _verticalInput;
 
     private float _mouseSensitivity = 2f;
     private float _cameraVerticalRotation = 0f;
+    private float _gravity = -1f;
+    private float _velocity;
+    private float _jumpSpeed = 0.3f;
 
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
         _controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible= false;
@@ -32,22 +30,20 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(_isMoving);
-        //Locomotion();
         Camera();
+        Jumping();
 
         _horizontalInput = Input.GetAxis("Horizontal");
         _verticalInput = Input.GetAxis("Vertical");
 
-        Debug.Log(moveDirection);
-        //_controller.SimpleMove(moveDirection * _speed);
     }
 
 
     private void FixedUpdate()
     {
-        moveDirection = transform.forward * _verticalInput + transform.right * _horizontalInput;
-        _controller.Move(moveDirection * _speed * Time.deltaTime);
+        Movement();
+        ApplyGravity();
+        
 
     }
     private void Camera()
@@ -60,10 +56,31 @@ public class PlayerBehaviour : MonoBehaviour
         _camera.transform.localEulerAngles = Vector3.right * _cameraVerticalRotation;
         transform.Rotate(Vector3.up * xInput);
     }
-    //private void MovePlayer()
-    //{
-    //    _movementDirection = _orientation.forward * _verticalInput + _orientation.right* _horizontalInput;
-    //    _rb.AddForce(_movementDirection.normalized * _speed, ForceMode.Force);
-    //}
+
+    private void ApplyGravity()
+    {
+        if(!_controller.isGrounded)
+        {
+            _velocity += _gravity * Time.fixedDeltaTime;
+        }
+        else
+        {
+            _velocity = -0.1f;
+        }
+    }
+    private void Movement()
+    {
+        _moveDirection = transform.forward * _verticalInput + transform.right * _horizontalInput;
+        Vector3 generalMovement = _moveDirection * _speed * Time.fixedDeltaTime;
+        generalMovement.y = _velocity;
+        _controller.Move(generalMovement);
+    }
+    private void Jumping()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && _controller.isGrounded)
+        {
+            _velocity = _jumpSpeed;
+        }
+    }
     
 }
