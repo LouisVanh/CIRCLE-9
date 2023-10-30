@@ -28,7 +28,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible= false;
+        Cursor.visible = false;
     }
 
     void Update()
@@ -41,23 +41,23 @@ public class PlayerBehaviour : MonoBehaviour
         _verticalInput = Input.GetAxis("Vertical");
 
         //_controller.SimpleMove(moveDirection * _speed);
-    }
-        if(Input.GetKey(KeyCode.LeftShift)&& _isMoving)
+        if (Input.GetKey(KeyCode.LeftShift) && _isMoving)
         {
             _speed = 20f;
-            if(_camera.fieldOfView <=100)
+            if (_camera.fieldOfView <= 100)
             {
                 _camera.fieldOfView += 40 * Time.deltaTime;
             }
         }
         else
         {
-            if(_camera.fieldOfView >= 80)
+            if (_camera.fieldOfView >= 80)
             {
                 _camera.fieldOfView -= 40 * Time.deltaTime;
             }
             _speed = 10f;
         }
+
     }
 
 
@@ -65,7 +65,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Movement();
         ApplyGravity();
-        
+
 
         if (_moveDirection.sqrMagnitude > 0.5f) _isMoving = true;
         else { _isMoving = false; }
@@ -83,7 +83,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void ApplyGravity()
     {
-        if(!_controller.isGrounded)
+        if (!_controller.isGrounded)
         {
             _velocity += _gravity * Time.fixedDeltaTime;
         }
@@ -106,5 +106,5 @@ public class PlayerBehaviour : MonoBehaviour
             _velocity = _jumpSpeed;
         }
     }
-    
+
 }
