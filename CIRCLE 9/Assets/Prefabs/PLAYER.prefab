@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6860971490768713430}
   - component: {fileID: 6576967217473258186}
   - component: {fileID: 8051165372802586712}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -167,9 +167,9 @@ GameObject:
   - component: {fileID: 4334507333372978057}
   - component: {fileID: 6606868679460038939}
   - component: {fileID: -605100087457807093}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PLAYER
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -290,7 +290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4598598636271444243}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ObjectHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
