@@ -14,7 +14,7 @@ public class PlayerBehaviour : MonoBehaviour
     private Vector3 _movement;
     private Vector3 _movementDirection;
     private Vector3 moveDirection;
-    private bool _isMoving = false;
+    public bool _isMoving = false;
 
     private float _horizontalInput;
     private float _verticalInput;
@@ -48,6 +48,8 @@ public class PlayerBehaviour : MonoBehaviour
         moveDirection = transform.forward * _verticalInput + transform.right * _horizontalInput;
         _controller.Move(moveDirection * _speed * Time.deltaTime);
 
+        if (moveDirection.sqrMagnitude > 0.5f) _isMoving = true;
+        else { _isMoving = false; }
     }
     private void Camera()
     {
