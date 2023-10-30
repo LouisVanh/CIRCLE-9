@@ -23,7 +23,7 @@ public class Shotgun : MonoBehaviour
             Shoot();
         }
 
-        transform.parent = PlayerHandPos;
+        //transform.parent = PlayerHandPos;
     }
 
     private void Shoot()
