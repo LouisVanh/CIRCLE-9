@@ -39,7 +39,6 @@ public class PlayerBehaviour : MonoBehaviour
         _horizontalInput = Input.GetAxis("Horizontal");
         _verticalInput = Input.GetAxis("Vertical");
 
-        Debug.Log(moveDirection);
         //_controller.SimpleMove(moveDirection * _speed);
     }
 
