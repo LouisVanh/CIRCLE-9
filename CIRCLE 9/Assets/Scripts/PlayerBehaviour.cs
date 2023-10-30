@@ -9,8 +9,11 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _orientation;
     private CharacterController _controller;
-    private float _speed = 15f;
-    private Vector3 _moveDirection;
+    private float _speed = 10f;
+    private Vector3 _movement;
+    private Vector3 _movementDirection;
+    private Vector3 moveDirection;
+    public bool _isMoving = false;
 
     private float _horizontalInput;
     private float _verticalInput;
@@ -45,6 +48,8 @@ public class PlayerBehaviour : MonoBehaviour
         ApplyGravity();
         
 
+        if (moveDirection.sqrMagnitude > 0.5f) _isMoving = true;
+        else { _isMoving = false; }
     }
     private void Camera()
     {
