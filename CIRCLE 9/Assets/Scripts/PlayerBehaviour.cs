@@ -6,8 +6,10 @@ using UnityEngine.EventSystems;
 
 public class PlayerBehaviour : MonoBehaviour
 {
+    
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _orientation;
+    [SerializeField] private HealthBarUI _healthBar;
     private CharacterController _controller;
     private float _speed = 10f;
     private Vector3 _movement;
@@ -17,6 +19,8 @@ public class PlayerBehaviour : MonoBehaviour
     public bool _isSprinting= false;
     private float _horizontalInput;
     private float _verticalInput;
+    public float _health;
+    public float _maxHealth;
 
     [SerializeField] private float _mouseSensitivity = 2f;
     private float _cameraVerticalRotation = 0f;
@@ -28,6 +32,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Start()
     {
+        _healthBar.SetMaxHealth(_maxHealth);
         _headBob = GetComponentInChildren<CameraHeadBob>();
         _controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -42,6 +47,22 @@ public class PlayerBehaviour : MonoBehaviour
         _verticalInput = Input.GetAxis("Vertical");
         Sprinting();
 
+        Debug.Log(_health);
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            SetHealth(-20f);
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            SetHealth(+20f);
+        }
+
+    }
+    public void SetHealth(float healthChange)
+    {
+        _health += healthChange;
+        _health = Mathf.Clamp(_health, 0, _maxHealth);
+        _healthBar.SetHealth(_health);
     }
 
     private void Sprinting()
