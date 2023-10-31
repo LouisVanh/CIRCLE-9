@@ -14,7 +14,7 @@ public class PlayerBehaviour : MonoBehaviour
     private Vector3 _movementDirection;
     private Vector3 _moveDirection;
     public bool _isMoving = false;
-
+    public bool _isSprinting= false;
     private float _horizontalInput;
     private float _verticalInput;
 
@@ -44,6 +44,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) && _isMoving)
         {
             _speed = 20f;
+            _isSprinting= true;
             if (_camera.fieldOfView <= 100)
             {
                 _camera.fieldOfView += 40 * Time.deltaTime;
@@ -55,8 +56,11 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 _camera.fieldOfView -= 40 * Time.deltaTime;
             }
+            _isSprinting= false;
             _speed = 10f;
         }
+
+        
 
     }
 
@@ -67,7 +71,7 @@ public class PlayerBehaviour : MonoBehaviour
         ApplyGravity();
 
 
-        if (_moveDirection.sqrMagnitude > 0.5f) _isMoving = true;
+        if (_moveDirection.sqrMagnitude > 0.5f && _controller.isGrounded) _isMoving = true;
         else { _isMoving = false; }
     }
     private void Camera()
