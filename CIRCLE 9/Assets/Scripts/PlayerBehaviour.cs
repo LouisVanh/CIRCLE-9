@@ -21,7 +21,9 @@ public class PlayerBehaviour : MonoBehaviour
     private float _verticalInput;
     public float _health;
     public float _maxHealth;
-
+    public float _jumpGraceperiod;
+    private float? _lastGroundedTime;
+    private float? _jumpButtonPressedTime;
     [SerializeField] private float _mouseSensitivity = 2f;
     private float _cameraVerticalRotation = 0f;
     private float _gravity = -1f;
@@ -47,7 +49,7 @@ public class PlayerBehaviour : MonoBehaviour
         _verticalInput = Input.GetAxis("Vertical");
         Sprinting();
 
-        Debug.Log(_health);
+        Debug.Log(_health); 
         if(Input.GetKeyDown(KeyCode.K))
         {
             SetHealth(-20f);
@@ -55,6 +57,16 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.H))
         {
             SetHealth(+20f);
+        }
+
+        if(_controller.isGrounded)
+        {
+            _lastGroundedTime= Time.time;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            _jumpButtonPressedTime= Time.time;
         }
 
     }
@@ -133,9 +145,15 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void Jumping()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && _controller.isGrounded)
+
+        if(Time.time - _lastGroundedTime <= _jumpGraceperiod)
         {
-            _velocity = _jumpSpeed;
+            if(Time.time - _jumpButtonPressedTime <= _jumpGraceperiod)
+            {
+                _velocity = _jumpSpeed;
+                _jumpButtonPressedTime = null;
+                _lastGroundedTime = null;
+            }
         }
     }
 
