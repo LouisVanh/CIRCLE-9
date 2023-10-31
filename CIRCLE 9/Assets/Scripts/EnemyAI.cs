@@ -22,7 +22,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float sightRange, attackRange;
     [SerializeField] private bool playerInSightRange, playerInAttackRange;
 
-    private void Awake()
+    private void Start()
     {
         player = GameObject.Find("PLAYER").transform;
         agent = GetComponent<NavMeshAgent>();

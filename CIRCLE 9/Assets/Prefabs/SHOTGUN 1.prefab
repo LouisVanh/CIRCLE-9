@@ -221,6 +221,10 @@ PrefabInstance:
       propertyPath: _gunAudioSource
       value: 
       objectReference: {fileID: 8964975369258333129}
+    - target: {fileID: 6929412520811941578, guid: 5b325312d5b442c4fb87a9068d32482d, type: 3}
+      propertyPath: _particleSystemBrains
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
