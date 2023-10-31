@@ -336,7 +336,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: b5ccdc00d3229f244b626b2bd15c4093, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: b11dd68ca026a484c8bb7fc936ef7bc1, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &440911462
 GameObject:
@@ -355,7 +355,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &440911463
 AudioSource:
   m_ObjectHideFlags: 0
@@ -469,8 +469,6 @@ MonoBehaviour:
   _footstep1: {fileID: 8300000, guid: 5915fa5b6c4095149a791f1bb4181248, type: 3}
   _footstep2: {fileID: 8300000, guid: 70b0fb910ed464742ba904b23316d197, type: 3}
   _footstep3: {fileID: 8300000, guid: 2bd9b66ea53e8c8408db79a9d2b8c188, type: 3}
-  _footstep4: {fileID: 8300000, guid: 06e49e5be9c2b6349945b25b35046337, type: 3}
-  _footstep5: {fileID: 8300000, guid: fc3cc8e0e6eca5d439573d7960822885, type: 3}
   _player: {fileID: 0}
   _delayBetweenSteps: 0.3
 --- !u!4 &440911465
@@ -851,7 +849,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.017
   m_Pitch: 1
   Loop: 0
   Mute: 0

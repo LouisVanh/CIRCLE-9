@@ -290,6 +290,7 @@ MonoBehaviour:
   _camera: {fileID: 6860971490768713430}
   _orientation: {fileID: 4141394691773592538}
   _isMoving: 0
+  _isSprinting: 0
 --- !u!143 &-605100087457807093
 CharacterController:
   m_ObjectHideFlags: 0
@@ -330,11 +331,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _footstepsAudioSource: {fileID: 1188673648345872800}
   _footsteps: []
-  _footstep1: {fileID: 8300000, guid: 5915fa5b6c4095149a791f1bb4181248, type: 3}
-  _footstep2: {fileID: 8300000, guid: 70b0fb910ed464742ba904b23316d197, type: 3}
-  _footstep3: {fileID: 8300000, guid: 2bd9b66ea53e8c8408db79a9d2b8c188, type: 3}
-  _footstep4: {fileID: 8300000, guid: 06e49e5be9c2b6349945b25b35046337, type: 3}
-  _footstep5: {fileID: 8300000, guid: fc3cc8e0e6eca5d439573d7960822885, type: 3}
+  _footstep1: {fileID: 8300000, guid: 862a7f4c187610940b82e7fabe828d89, type: 3}
+  _footstep2: {fileID: 8300000, guid: 4c2ac3cc0959f8d4e8ba3ddbdad7730c, type: 3}
+  _footstep3: {fileID: 8300000, guid: cb994c58b84648740a5cc3b67db3a504, type: 3}
   _player: {fileID: 6606868679460038939}
   _delayBetweenSteps: 0.5
 --- !u!82 &1188673648345872800
@@ -349,7 +348,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.244
   m_Pitch: 1
   Loop: 0
   Mute: 0

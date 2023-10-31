@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Footsteps : MonoBehaviour
@@ -9,8 +10,8 @@ public class Footsteps : MonoBehaviour
     [SerializeField] private AudioClip _footstep1;
     [SerializeField] private AudioClip _footstep2;
     [SerializeField] private AudioClip _footstep3;
-    [SerializeField] private AudioClip _footstep4;
-    [SerializeField] private AudioClip _footstep5;
+    //[SerializeField] private AudioClip _footstep4;
+    //[SerializeField] private AudioClip _footstep5;
     [SerializeField] private PlayerBehaviour _player;
     [SerializeField] private float _delayBetweenSteps;
 
@@ -19,8 +20,8 @@ public class Footsteps : MonoBehaviour
         _footsteps.Add(_footstep1);
         _footsteps.Add(_footstep2);
         _footsteps.Add(_footstep3);
-        _footsteps.Add(_footstep4);
-        _footsteps.Add(_footstep5);
+        //_footsteps.Add(_footstep4);
+        //_footsteps.Add(_footstep5);
         InvokeRepeating(nameof(PlayFootsteps), 1, _delayBetweenSteps);
     }
 
