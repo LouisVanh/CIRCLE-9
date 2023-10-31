@@ -13,6 +13,9 @@ public class Shotgun : MonoBehaviour
     [SerializeField] private ParticleSystem m_MuzzleFire;
     [SerializeField] private AudioSource _gunAudioSource;
     [SerializeField] private AudioClip _gunShot;
+    [SerializeField] private ParticleSystem _particleSystemBrains;
+    [SerializeField] private ParticleSystem _particleSystemBlood;
+
     private void Start()
     {
         m_Animator = GetComponent<Animator>();
@@ -61,21 +64,22 @@ public class Shotgun : MonoBehaviour
             Debug.Log("Raycasting");
             if (hit.transform.gameObject.layer == 7) // Enemy : 7
             {
-                Debug.Log("Enemy detected");
 
-                if (hit.transform.gameObject.GetComponent<Animator>())
+                if (hit.transform.gameObject.GetComponent<Animator>()) // turn off animations
                 {
                     Debug.Log("Animator component detected");
-
                     hit.transform.gameObject.GetComponent<Animator>().enabled = false;
                 }
-                if (hit.transform.gameObject.GetComponent<Rigidbody>() == null)
+
+                if (hit.transform.gameObject.GetComponent<Rigidbody>() == null) // add ragdoll
                 {
                     var rb = hit.transform.gameObject.AddComponent<Rigidbody>();
                     hit.transform.gameObject.GetComponent<NavMeshAgent>().enabled = false;
                     rb.AddForce(Camera.main.transform.forward.normalized * _bulletKnockback);
                 }
-
+                //hit.transform.gameObject.GetComponent<ParticleSystem>();
+                //_particleSystemBrains.transform.position = hit.point;
+                //_particleSystemBrains.Play(true);
             }
         }
     }
