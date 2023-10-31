@@ -24,9 +24,11 @@ public class PlayerBehaviour : MonoBehaviour
     private float _velocity;
     private float _horizontalSpeedMultiplier = 0.8f;
     [SerializeField] private float _jumpSpeed = 0.3f;
+    private Footsteps _footsteps;
 
     void Start()
     {
+        _footsteps = GetComponent<Footsteps>();
         _controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -36,15 +38,18 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Camera();
         Jumping();
-        //Debug.Log(_camera.fieldOfView);
         _horizontalInput = (Input.GetAxis("Horizontal") * _horizontalSpeedMultiplier);
         _verticalInput = Input.GetAxis("Vertical");
+        Sprinting();
 
-        //_controller.SimpleMove(moveDirection * _speed);
+    }
+
+    private void Sprinting()
+    {
         if (Input.GetKey(KeyCode.LeftShift) && _isMoving)
         {
             _speed = 20f;
-            _isSprinting= true;
+            _isSprinting = true;
             if (_camera.fieldOfView <= 100)
             {
                 _camera.fieldOfView += 40 * Time.deltaTime;
@@ -56,22 +61,17 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 _camera.fieldOfView -= 40 * Time.deltaTime;
             }
-            _isSprinting= false;
+            _isSprinting = false;
             _speed = 10f;
         }
-
-        
-
     }
-
-
     private void FixedUpdate()
     {
         Movement();
         ApplyGravity();
 
 
-        if (_moveDirection.sqrMagnitude > 0.5f && _controller.isGrounded) _isMoving = true;
+        if (_moveDirection.sqrMagnitude > 0.2f && _controller.isGrounded) _isMoving = true;
         else { _isMoving = false; }
     }
     private void Camera()
