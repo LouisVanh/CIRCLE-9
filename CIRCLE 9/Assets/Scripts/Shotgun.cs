@@ -9,7 +9,6 @@ public class Shotgun : MonoBehaviour
     [SerializeField] private int _bulletKnockback = 100000;
     private Animator m_Animator;
     //private bool _pickup = true;
-    [SerializeField] private Transform PlayerHandPos;
     [SerializeField] private ParticleSystem m_MuzzleFire;
     [SerializeField] private AudioSource _gunAudioSource;
     [SerializeField] private AudioClip _gunShot;

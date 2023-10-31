@@ -32,8 +32,8 @@ public class EnemyAI : MonoBehaviour
     {
         player = GameObject.Find("PLAYER").transform;
         agent = GetComponent<NavMeshAgent>();
-        _enabled = false;
-        agent.enabled = false;
+        _enabled = true;
+        agent.enabled = true;
     }
     IEnumerator LerpValue(float start, float end)
     {
@@ -67,7 +67,7 @@ public class EnemyAI : MonoBehaviour
         } else
         {
             //lerp above the ice
-            this.transform.position = new Vector3(this.transform.position.x, lerpedValue, this.transform.position.z);
+            //this.transform.position = new Vector3(this.transform.position.x, lerpedValue, this.transform.position.z);
         }
     }
     private void EnableWhenNeeded()
