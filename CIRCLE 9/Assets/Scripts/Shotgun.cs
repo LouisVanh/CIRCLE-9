@@ -43,13 +43,21 @@ public class Shotgun : MonoBehaviour
         ShootAlongThisRay(ray4);
         Ray ray5 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - 0.5f* Camera.main.transform.right);
         ShootAlongThisRay(ray5);
+        Ray ray6 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.25f * Camera.main.transform.right);
+        ShootAlongThisRay(ray6);
+        Ray ray7 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - 0.25f * Camera.main.transform.right);
+        ShootAlongThisRay(ray7);
+        Ray ray8 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.125f * Camera.main.transform.right);
+        ShootAlongThisRay(ray8);
+        Ray ray9 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - 0.125f * Camera.main.transform.right);
+        ShootAlongThisRay(ray9);
     }
 
     private void ShootAlongThisRay(Ray ray)
     {
         if (Physics.Raycast(ray, out RaycastHit hit, 10))
         {
-            Debug.DrawRay(Camera.main.transform.position, ray.direction, Color.red, 10);
+            //Debug.DrawRay(Camera.main.transform.position, ray.direction, Color.red, 10);
             Debug.Log("Raycasting");
             if (hit.transform.gameObject.layer == 7) // Enemy : 7
             {
