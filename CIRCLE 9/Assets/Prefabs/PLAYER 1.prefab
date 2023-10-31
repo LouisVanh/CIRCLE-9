@@ -311,6 +311,7 @@ MonoBehaviour:
   _isSprinting: 0
   _health: 100
   _maxHealth: 100
+  _jumpGraceperiod: 0.2
   _mouseSensitivity: 2
   _jumpSpeed: 0.3
 --- !u!143 &-605100087457807093

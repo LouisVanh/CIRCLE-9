@@ -11,15 +11,30 @@ public class Audio : MonoBehaviour
     [SerializeField] private AudioClip _clipGame;
     [SerializeField] private AudioClip _clipMenu;
     [SerializeField] private Slider _volumeSlider;
-    // Start is called before the first frame update
+    public static Audio instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+
+    }
     void Start()
     {
+        
         if (!PlayerPrefs.HasKey("volume"))
         {
             PlayerPrefs.SetFloat("volume", 0.9f);
         }
         Load();
-
 
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
@@ -30,12 +45,12 @@ public class Audio : MonoBehaviour
             audioSource.clip = _clipGame;
         }
         audioSource.Play();
-    }
 
-    // Update is called once per frame
+        
+    }
     public void ChangeVolume()
     {
-        AudioListener.volume = _volumeSlider.value;
+        audioSource.volume = _volumeSlider.value;
         Save();
     }
     public void Load()
@@ -46,5 +61,10 @@ public class Audio : MonoBehaviour
     public void Save()
     {
         PlayerPrefs.SetFloat("volume", _volumeSlider.value);
+    }
+    public void StartPlayingGameMusic()
+    {
+        audioSource.clip = _clipGame;
+        audioSource.Play();
     }
 }
