@@ -18,11 +18,12 @@ public class PlayerBehaviour : MonoBehaviour
     private float _horizontalInput;
     private float _verticalInput;
 
-    private float _mouseSensitivity = 2f;
+    [SerializeField] private float _mouseSensitivity = 2f;
     private float _cameraVerticalRotation = 0f;
     private float _gravity = -1f;
     private float _velocity;
-    private float _jumpSpeed = 0.3f;
+    private float _horizontalSpeedMultiplier = 0.8f;
+    [SerializeField] private float _jumpSpeed = 0.3f;
 
     void Start()
     {
@@ -35,9 +36,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Camera();
         Jumping();
-        Debug.Log(_camera.fieldOfView);
-
-        _horizontalInput = Input.GetAxis("Horizontal");
+        //Debug.Log(_camera.fieldOfView);
+        _horizontalInput = (Input.GetAxis("Horizontal") * _horizontalSpeedMultiplier);
         _verticalInput = Input.GetAxis("Vertical");
 
         //_controller.SimpleMove(moveDirection * _speed);
@@ -85,7 +85,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (!_controller.isGrounded)
         {
-            _velocity += _gravity * Time.fixedDeltaTime;
+            _velocity += _gravity / 2 * Time.fixedDeltaTime;
         }
         else
         {
@@ -94,6 +94,7 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void Movement()
     {
+
         _moveDirection = transform.forward * _verticalInput + transform.right * _horizontalInput;
         Vector3 generalMovement = _moveDirection * _speed * Time.fixedDeltaTime;
         generalMovement.y = _velocity;

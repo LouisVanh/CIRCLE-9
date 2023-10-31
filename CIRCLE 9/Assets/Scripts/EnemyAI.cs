@@ -76,7 +76,7 @@ public class EnemyAI : MonoBehaviour
     {
         //agent.isStopped = true;
         agent.velocity = Vector3.zero;
-        Debug.Log("attack animation");
+        //Debug.Log("attack animation");
     }
 
     public void TakeDamage(int damage)
