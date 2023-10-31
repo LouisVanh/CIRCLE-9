@@ -12,7 +12,6 @@ public class Audio : MonoBehaviour
     [SerializeField] private AudioClip _clipMenu;
     [SerializeField] private Slider _volumeSlider;
     public static Audio instance;
-    private bool _startedPlaying = true;
 
     private void Awake()
     {
@@ -47,12 +46,6 @@ public class Audio : MonoBehaviour
         }
         audioSource.Play();
 
-        
-    }
-    private void Update()
-    {
-        Debug.Log(_volumeSlider.value);
-        //audioSource.volume = _volumeSlider.value;
         
     }
     public void ChangeVolume()
