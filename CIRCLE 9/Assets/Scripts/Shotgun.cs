@@ -77,9 +77,9 @@ public class Shotgun : MonoBehaviour
                     hit.transform.gameObject.GetComponent<NavMeshAgent>().enabled = false;
                     rb.AddForce(Camera.main.transform.forward.normalized * _bulletKnockback);
                 }
-                //hit.transform.gameObject.GetComponent<ParticleSystem>();
-                //_particleSystemBrains.transform.position = hit.point;
-                //_particleSystemBrains.Play(true);
+                _particleSystemBrains = hit.transform.gameObject.GetComponentInChildren<ParticleSystem>();
+                _particleSystemBrains.transform.position = hit.point;
+                _particleSystemBrains.Play(true);
             }
         }
     }
