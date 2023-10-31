@@ -24,11 +24,11 @@ public class PlayerBehaviour : MonoBehaviour
     private float _velocity;
     private float _horizontalSpeedMultiplier = 0.8f;
     [SerializeField] private float _jumpSpeed = 0.3f;
-    private Footsteps _footsteps;
+    private CameraHeadBob _headBob;
 
     void Start()
     {
-        _footsteps = GetComponent<Footsteps>();
+        _headBob = GetComponentInChildren<CameraHeadBob>();
         _controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -48,15 +48,21 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift) && _isMoving)
         {
+            _headBob.bobSpeed = 8;
+            _headBob.bobAmount = 0.3f;
+
             _speed = 20f;
             _isSprinting = true;
-            if (_camera.fieldOfView <= 100)
+            if (_camera.fieldOfView <= 90)
             {
                 _camera.fieldOfView += 40 * Time.deltaTime;
             }
         }
         else
         {
+            _headBob.bobSpeed = 6;
+            _headBob.bobAmount = 0.15f;
+
             if (_camera.fieldOfView >= 80)
             {
                 _camera.fieldOfView -= 40 * Time.deltaTime;

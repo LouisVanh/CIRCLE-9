@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 6860971490768713430}
   - component: {fileID: 6576967217473258186}
   - component: {fileID: 8051165372802586712}
+  - component: {fileID: 817021372308044983}
   m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -188,6 +189,21 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &817021372308044983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3212076319611057308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e881c117dd98634dadfeb2d6d78db67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _restPosition: {x: 0, y: 0.587, z: 0}
+  bobSpeed: 4.8
+  bobAmount: 0.05
 --- !u!1 &3450934397934265006
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +307,9 @@ MonoBehaviour:
   _camera: {fileID: 6860971490768713430}
   _orientation: {fileID: 4141394691773592538}
   _isMoving: 0
+  _isSprinting: 0
+  _mouseSensitivity: 2
+  _jumpSpeed: 0.3
 --- !u!143 &-605100087457807093
 CharacterController:
   m_ObjectHideFlags: 0
@@ -334,8 +353,6 @@ MonoBehaviour:
   _footstep1: {fileID: 8300000, guid: 5915fa5b6c4095149a791f1bb4181248, type: 3}
   _footstep2: {fileID: 8300000, guid: 70b0fb910ed464742ba904b23316d197, type: 3}
   _footstep3: {fileID: 8300000, guid: 2bd9b66ea53e8c8408db79a9d2b8c188, type: 3}
-  _footstep4: {fileID: 8300000, guid: 06e49e5be9c2b6349945b25b35046337, type: 3}
-  _footstep5: {fileID: 8300000, guid: fc3cc8e0e6eca5d439573d7960822885, type: 3}
   _player: {fileID: 6606868679460038939}
   _delayBetweenSteps: 0.5
 --- !u!82 &1188673648345872800

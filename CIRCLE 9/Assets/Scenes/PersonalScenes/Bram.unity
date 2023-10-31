@@ -739,6 +739,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1755027308 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5655270772233968158, guid: 61c2c2816c3b6de489e144e2e966d63d, type: 3}
+  m_PrefabInstance: {fileID: 1869434933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1869434933
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -747,6 +752,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 817021372308044983, guid: 61c2c2816c3b6de489e144e2e966d63d, type: 3}
+      propertyPath: _camera
+      value: 
+      objectReference: {fileID: 1755027308}
+    - target: {fileID: 817021372308044983, guid: 61c2c2816c3b6de489e144e2e966d63d, type: 3}
+      propertyPath: bobSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 817021372308044983, guid: 61c2c2816c3b6de489e144e2e966d63d, type: 3}
+      propertyPath: bobAmount
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 3450934397934265006, guid: 61c2c2816c3b6de489e144e2e966d63d, type: 3}
       propertyPath: m_Name
       value: PLAYER
@@ -817,7 +834,7 @@ PrefabInstance:
       objectReference: {fileID: 2123130644}
     - target: {fileID: 6081981016802698515, guid: 61c2c2816c3b6de489e144e2e966d63d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6606868679460038939, guid: 61c2c2816c3b6de489e144e2e966d63d, type: 3}
       propertyPath: _jumpSpeed
