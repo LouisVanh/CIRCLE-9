@@ -9741,11 +9741,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac94e089d0e3b9c46ac6fd973cefb747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletKnockback: 5000
+  _bulletKnockback: 3000
   PlayerHandPos: {fileID: 0}
   m_MuzzleFire: {fileID: 7309659633060578802}
   _gunAudioSource: {fileID: 0}
   _gunShot: {fileID: 0}
+  _particleSystemBrains: {fileID: 0}
+  _particleSystemBlood: {fileID: 0}
 --- !u!1 &5345361261055059766
 GameObject:
   m_ObjectHideFlags: 0

@@ -75,7 +75,8 @@ public class Shotgun : MonoBehaviour
                 {
                     var rb = hit.transform.gameObject.AddComponent<Rigidbody>();
                     hit.transform.gameObject.GetComponent<NavMeshAgent>().enabled = false;
-                    rb.AddForce(Camera.main.transform.forward.normalized * _bulletKnockback);
+                    var distanceBetweenEnemyAndPlayer = Vector3.Distance(Camera.main.transform.position, hit.point);
+                    rb.AddForce(Camera.main.transform.forward.normalized * _bulletKnockback / distanceBetweenEnemyAndPlayer);
                 }
                 _particleSystemBrains = hit.transform.gameObject.GetComponentInChildren<ParticleSystem>();
                 _particleSystemBrains.transform.position = hit.point;
