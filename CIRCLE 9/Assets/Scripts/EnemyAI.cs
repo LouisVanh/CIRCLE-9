@@ -17,30 +17,68 @@ public class EnemyAI : MonoBehaviour
     private bool walkPointSet;
     [SerializeField] private float walkPointRange;
 
+    private bool _enabled;
+    private bool _shouldEnable;
 
     //States
     [SerializeField] private float sightRange, attackRange;
     [SerializeField] private bool playerInSightRange, playerInAttackRange;
 
+    //Lerp when starting
+    private float lerpedValue;
+    private float duration = 3;
+    private float totalScale = 1;
     private void Start()
     {
         player = GameObject.Find("PLAYER").transform;
         agent = GetComponent<NavMeshAgent>();
+        _enabled = false;
+        agent.enabled = false;
     }
+    IEnumerator LerpValue(float start, float end)
+    {
+        float timeElapsed = 0;
+        float reducedRange = Mathf.Abs(start - end);
+        float reducedDuration = duration * (reducedRange / totalScale);
 
+        while (timeElapsed < reducedDuration)
+        {
+            float t = timeElapsed / reducedDuration;
+
+            lerpedValue = Mathf.Lerp(start, end, t);
+            timeElapsed += Time.deltaTime;
+
+            yield return null;
+        }
+        lerpedValue = end;
+        _shouldEnable = true;
+    }
     private void Update()
     {
+        EnableWhenNeeded();
         //Check for sight and attack range
-        if (this.gameObject.GetComponent<NavMeshAgent>().enabled)
+        if (agent.enabled)
         {
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
             if (!playerInSightRange && !playerInAttackRange) Patroling();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInAttackRange) AttackPlayer();
+        } else
+        {
+            //lerp above the ice
+            this.transform.position = new Vector3(this.transform.position.x, lerpedValue, this.transform.position.z);
         }
     }
-
+    private void EnableWhenNeeded()
+    {
+        if (!_enabled &&  _shouldEnable)
+        {
+            this.gameObject.GetComponent<NavMeshAgent>().enabled = true;
+            _enabled = true;
+            StartCoroutine(LerpValue(lerpedValue, 1));
+        }
+    }
     private void Patroling()
     {
         if (!walkPointSet) SearchWalkPoint();
