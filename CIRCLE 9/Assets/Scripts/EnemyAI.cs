@@ -89,7 +89,7 @@ public class EnemyAI : MonoBehaviour
         } else if (!agent.enabled & isLerping)
         {
             //lerp above the ice
-            //this.transform.position = new Vector3(this.transform.position.x, lerpedValue, this.transform.position.z);
+            this.transform.position = new Vector3(this.transform.position.x, lerpedValue, this.transform.position.z);
         }
     }
     private void Patroling()

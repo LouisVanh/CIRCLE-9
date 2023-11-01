@@ -443,7 +443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac94e089d0e3b9c46ac6fd973cefb747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletKnockback: 100000
+  _bulletKnockback: 4000
   m_MuzzleFire: {fileID: 1307971148757060334}
   _gunAudioSource: {fileID: 296758800841167079}
   _gunShot: {fileID: 8300000, guid: 862a7f4c187610940b82e7fabe828d89, type: 3}
@@ -15652,7 +15652,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5206898012562200646}
   m_Layer: 0
-  m_Name: SHOTGUN
+  m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
