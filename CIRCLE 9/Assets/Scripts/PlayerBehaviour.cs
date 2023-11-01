@@ -66,22 +66,28 @@ public class PlayerBehaviour : MonoBehaviour
             _jumpButtonPressedTime = Time.time;
             _hasJumped = true;
         }
+        Damage();
+    }
+
+    private void Damage()
+    {
         RaycastHit hit;
         Vector3 p1 = transform.position - Vector3.up * 0.5f;
         Vector3 p2 = p1 + Vector3.up * _controller.height;
         for (int i = 0; i < 360; i += 36)
         {
             Debug.DrawRay(p1, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)));
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, 1, 1 <<7))
+            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, 1, 1 << 7))
             {
                 if (hit.transform.gameObject.GetComponent<EnemyAI>().isDead != true)
                 {
-                  SetHealth(-0.25f);  
+                    SetHealth(-0.25f);
 
                 }
             }
         }
     }
+
     public void SetHealth(float healthChange)
     {
         _health += healthChange;

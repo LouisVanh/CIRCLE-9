@@ -840,6 +840,10 @@ PrefabInstance:
       propertyPath: VelocityModule.orbitalOffsetZ.scalar
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5694008862923951182, guid: b0dbeb80793f7c140b49841c5e17b730, type: 3}
+      propertyPath: _smashKnockBack
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7423423493669320686, guid: b0dbeb80793f7c140b49841c5e17b730, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.17
@@ -884,6 +888,10 @@ PrefabInstance:
       propertyPath: _gunShotSound
       value: 
       objectReference: {fileID: 8300000, guid: 862a7f4c187610940b82e7fabe828d89, type: 3}
+    - target: {fileID: 7593237795231374407, guid: b0dbeb80793f7c140b49841c5e17b730, type: 3}
+      propertyPath: _maxShootDistance
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7593237795231374407, guid: b0dbeb80793f7c140b49841c5e17b730, type: 3}
       propertyPath: _gunShotAudioSource
       value: 
@@ -1242,6 +1250,8 @@ MonoBehaviour:
   _clipGame: {fileID: 8300000, guid: 5413a39695fe74a4e9de05a38fd50efe, type: 3}
   _clipMenu: {fileID: 8300000, guid: 810a6d3383c83df46b74196fd620cdc7, type: 3}
   _volumeSlider: {fileID: 0}
+  _sfxSlider: {fileID: 0}
+  _sfxVolume: 0.025
 --- !u!4 &1342467446
 Transform:
   m_ObjectHideFlags: 0
