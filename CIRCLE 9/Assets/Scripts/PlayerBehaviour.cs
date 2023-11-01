@@ -17,6 +17,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float _jumpGraceperiod;
     [SerializeField] private float _health;
     [SerializeField] private float _maxHealth;
+    public bool _Grounded => _controller.isGrounded;
 
     private CharacterController _controller;
     private float _speed = 10f;
@@ -171,5 +172,6 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
     }
+    
 
 }
