@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Shotgun : MonoBehaviour
 {
@@ -13,10 +14,14 @@ public class Shotgun : MonoBehaviour
     public Audio _sfxSettings;   
     [Header("Settings")]
     [SerializeField] private int _bulletKnockback = 100000;
+    [SerializeField] private int _maxShootDistance = 15;
+
     //private bool _pickup = true;
     private ParticleSystem _vfx;
     private Animator m_Animator;
     private float _shotGunSoundAmplify = 2f;
+    [SerializeField] private int _maxShots = 2;
+    private int _amountOfBulletsShot = 1;
 
     private void Start()
     {
@@ -26,16 +31,51 @@ public class Shotgun : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        RunningAnimation();
+        if (Input.GetMouseButtonDown(0) && m_Animator.GetBool("Shoot") == false && _amountOfBulletsShot <= _maxShots)
         {
+            _amountOfBulletsShot++;
             PlayAnimation();
             Shoot();
         }
+        if (_amountOfBulletsShot > _maxShots || Input.GetKeyDown(KeyCode.R) && _amountOfBulletsShot > 1)
+        {
+            ReloadAnimationTrue();
+        }
+    }
+
+    private void ReloadAnimationTrue()
+    {
+        m_Animator.SetBool("Reload", true);
+        //m_Animator.SetBool("Shoot", false);
+        _amountOfBulletsShot = 1;
+    }
+
+    private void RunningAnimation()
+    {
+        if (GetComponentInParent<PlayerBehaviour>()._isSprinting)
+        {
+            m_Animator.SetBool("Run", true);
+
+        }
+        else
+        {
+            m_Animator.SetBool("Run", false);
+
+        }
+    }
+    private void ReloadAnimationFalse()
+    {
+        m_Animator.SetBool("Reload", false);
+    }
+    private void ShootAnimationFalse()
+    {
+        m_Animator.SetBool("Shoot", false);
     }
 
     private void PlayAnimation()
     {
-        m_Animator.SetTrigger("Shoot");
+        m_Animator.SetBool("Shoot", true);
         m_MuzzleFlashParticle.Play();
     }
 
@@ -64,7 +104,7 @@ public class Shotgun : MonoBehaviour
 
     private void ShootAlongThisRay(Ray ray)
     {
-        if (Physics.Raycast(ray, out RaycastHit hit, 10))
+        if (Physics.Raycast(ray, out RaycastHit hit, _maxShootDistance))
         {
             //Debug.DrawRay(Camera.main.transform.position, ray.direction, Color.red, 10);
             if (hit.transform.gameObject.layer == 7) // Enemy : 7
