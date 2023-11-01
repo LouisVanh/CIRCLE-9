@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyWave : MonoBehaviour
 {
@@ -36,9 +37,17 @@ public class EnemyWave : MonoBehaviour
             int randomZ = Random.Range(LeftTopZ, RightTopZ);
 
             Vector3 spawnPos = new Vector3(randomX, -1, randomZ);
+            NavMeshHit hit;
+            while (!NavMesh.SamplePosition(new Vector3(spawnPos.x, 0, spawnPos.z), out hit, 2f, NavMesh.AllAreas))  // find a position on the navmesh
+            {
+                randomX = Random.Range(LeftBottomX, RightBottomX);
+                randomZ = Random.Range(LeftTopZ, RightTopZ);
+
+                spawnPos = new Vector3(randomX, -1, randomZ);
+            }
+            spawnPos = new Vector3(hit.position.x, -1, hit.position.z);
             var enemy = Instantiate(_enemy, spawnPos, Quaternion.identity);
-            //_enemy.GetComponent<EnemyAI>().SubmergeOutIce();
-            enemy.GetComponent<EnemyAI>().SubmergeOutIce();
+            enemy.GetComponent<EnemyAI>().SubmergeOutIce(hit.position.y + 0.8f); // O.8f = enemy offset to spawn on feet
         }
     }
 }

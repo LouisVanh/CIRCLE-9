@@ -67,11 +67,11 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    public void SubmergeOutIce()
+    public void SubmergeOutIce(float endY)
     {
-        //StartCoroutine(LerpValue(transform.position.y, 1.05f));
+        StartCoroutine(LerpValue(transform.position.y, endY));
         // massive band-aid fix, let's hope nobody sees this code lol
-        StartCoroutine(LerpValue(-1f, 1.05f));
+        //StartCoroutine(LerpValue(-1f, 1.05f));
 
     }
 
