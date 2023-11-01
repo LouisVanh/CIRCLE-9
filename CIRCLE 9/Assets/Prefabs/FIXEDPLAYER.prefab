@@ -307,13 +307,11 @@ MonoBehaviour:
   _camera: {fileID: 2305064153545800528}
   _orientation: {fileID: 7423423493669320686}
   _healthBar: {fileID: 0}
-  _isMoving: 0
-  _isSprinting: 0
-  _health: 100
-  _maxHealth: 100
-  _jumpGraceperiod: 0.2
   _mouseSensitivity: 2
   _jumpSpeed: 0.15
+  _jumpGraceperiod: 0.2
+  _health: 100
+  _maxHealth: 100
 --- !u!143 &527878090908419380
 CharacterController:
   m_ObjectHideFlags: 0
@@ -353,7 +351,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _footstepsAudioSource: {fileID: 1779556508368785520}
-  _footsteps: []
   _footstep1: {fileID: 8300000, guid: 862a7f4c187610940b82e7fabe828d89, type: 3}
   _footstep2: {fileID: 8300000, guid: 4c2ac3cc0959f8d4e8ba3ddbdad7730c, type: 3}
   _footstep3: {fileID: 8300000, guid: cb994c58b84648740a5cc3b67db3a504, type: 3}
@@ -506,6 +503,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 111526789863429524, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 677084882061094384, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5206898012562200646, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.52
@@ -550,11 +555,39 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotgunFinal
       objectReference: {fileID: 0}
+    - target: {fileID: 8510664249965832425, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.729
+      objectReference: {fileID: 0}
+    - target: {fileID: 8665696998107396517, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: _gunShotSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 862a7f4c187610940b82e7fabe828d89, type: 3}
+    - target: {fileID: 8665696998107396517, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: _gunShotAudioSource
+      value: 
+      objectReference: {fileID: 1530212890023425285}
+    - target: {fileID: 8665696998107396517, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: m_MuzzleFlashParticle
+      value: 
+      objectReference: {fileID: 217576716503478028}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 111526789863429524, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+    - {fileID: 677084882079741074, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+--- !u!198 &217576716503478028 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1307971148757060334, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+  m_PrefabInstance: {fileID: 1234588875377747426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1530212890023425285 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 296758800841167079, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+  m_PrefabInstance: {fileID: 1234588875377747426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6440352170465246628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5206898012562200646, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}

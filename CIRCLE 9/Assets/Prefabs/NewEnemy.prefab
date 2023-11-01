@@ -150,15 +150,15 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  health: 1
+  _maxHealth: 0
   _chaseSpeed: 10
   _patrolSpeed: 3
-  walkPointRange: 10
+  _patrolRange: 10
   sightRange: 20
   attackRange: 1
   playerInSightRange: 0
   playerInAttackRange: 0
-  isDead: 0
+  _ragDollTime: 10
 --- !u!1001 &6146000984793285596
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,28 +9,38 @@ public class EnemyAI : MonoBehaviour
     private NavMeshAgent agent;
     private Transform player;
 
-    [SerializeField] private LayerMask whatIsGround, whatIsPlayer;
+    [Header("Layers")]
 
-    [SerializeField] private float health;
+    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private LayerMask whatIsPlayer;
+
+    [Header("Settings")]
+    [SerializeField] private float _maxHealth;
     [SerializeField] private float _chaseSpeed, _patrolSpeed;
     //Patroling
     private Vector3 walkPoint;
     private bool walkPointSet;
-    [SerializeField] private float walkPointRange;
+
+    [SerializeField] private float _patrolRange;
 
     private bool _enabled;
     private bool _shouldEnable;
 
     //States
     [SerializeField] private float sightRange, attackRange;
-    [SerializeField] private bool playerInSightRange, playerInAttackRange;
+    [SerializeField] private float _ragDollTime = 10;
+    [Header("Debug")]
+    [SerializeField] private bool playerInSightRange;
+    [SerializeField] private bool playerInAttackRange;
 
     //Lerp when starting
     private float lerpedValue;
     private float duration = 3;
     private float totalScale = 1;
     private bool isLerping;
-    public bool isDead;
+    [NonSerialized] public bool isDead;
+    private float _timer;
+
     private void Start()
     {
         player = GameObject.Find("PLAYER").transform;
@@ -43,7 +54,7 @@ public class EnemyAI : MonoBehaviour
         float timeElapsed = 0;
         float reducedRange = Mathf.Abs(start - end);
         float reducedDuration = duration * (reducedRange / totalScale);
-        reducedDuration += Random.Range(0, 5);
+        reducedDuration += UnityEngine.Random.Range(0, 5);
         while (timeElapsed < reducedDuration && !isDead)
         {
             isLerping = true;
@@ -60,7 +71,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void EnableWhenNeeded()
     {
-        if (!_enabled &&  _shouldEnable && !isDead)
+        if (!_enabled && _shouldEnable && !isDead)
         {
             this.gameObject.GetComponent<NavMeshAgent>().enabled = true;
             _enabled = true;
@@ -86,10 +97,15 @@ public class EnemyAI : MonoBehaviour
             if (!playerInSightRange && !playerInAttackRange) Patroling();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInAttackRange) AttackPlayer();
-        } else if (!agent.enabled & isLerping)
+        }
+        else if (!agent.enabled & isLerping)
         {
             //lerp above the ice
             this.transform.position = new Vector3(this.transform.position.x, lerpedValue, this.transform.position.z);
+        }
+        if (isDead)
+        {
+            TakeDamage();
         }
     }
     private void Patroling()
@@ -110,8 +126,8 @@ public class EnemyAI : MonoBehaviour
     private void SearchWalkPoint()
     {
         //Calculate random point in range
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
+        float randomZ = UnityEngine.Random.Range(-_patrolRange, _patrolRange);
+        float randomX = UnityEngine.Random.Range(-_patrolRange, _patrolRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
@@ -133,11 +149,12 @@ public class EnemyAI : MonoBehaviour
         //Debug.Log("attack animation");
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage()
     {
-        health -= damage;
+        if (_timer <= _ragDollTime)
+            _timer += Time.deltaTime;
 
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
+        if (_timer > _ragDollTime) Invoke(nameof(DestroyEnemy), 0.5f);
     }
     private void DestroyEnemy()
     {
