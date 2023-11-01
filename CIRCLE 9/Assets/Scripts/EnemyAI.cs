@@ -60,15 +60,21 @@ public class EnemyAI : MonoBehaviour
     }
     private void EnableWhenNeeded()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-            StartCoroutine(LerpValue(this.transform.position.y, 1.05f));
-
         if (!_enabled &&  _shouldEnable && !isDead)
         {
             this.gameObject.GetComponent<NavMeshAgent>().enabled = true;
             _enabled = true;
         }
     }
+
+    public void SubmergeOutIce()
+    {
+        //StartCoroutine(LerpValue(transform.position.y, 1.05f));
+        // massive band-aid fix, let's hope nobody sees this code lol
+        StartCoroutine(LerpValue(-1f, 1.05f));
+
+    }
+
     private void Update()
     {
         EnableWhenNeeded();

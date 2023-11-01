@@ -49,7 +49,7 @@ public class PlayerBehaviour : MonoBehaviour
         _verticalInput = Input.GetAxis("Vertical");
         Sprinting();
 
-        Debug.Log(_health); 
+
         if(Input.GetKeyDown(KeyCode.K))
         {
             SetHealth(-20f);
