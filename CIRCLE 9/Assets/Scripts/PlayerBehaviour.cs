@@ -42,6 +42,7 @@ public class PlayerBehaviour : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
     }
 
     void Update()
@@ -51,15 +52,6 @@ public class PlayerBehaviour : MonoBehaviour
         _verticalInput = Input.GetAxis("Vertical");
         Sprinting();
 
-
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            SetHealth(-20f);
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            SetHealth(+20f);
-        }
 
         if(_controller.isGrounded)
         {
@@ -71,7 +63,6 @@ public class PlayerBehaviour : MonoBehaviour
             _jumpButtonPressedTime = Time.time;
             _hasJumped = true;
         }
-
     }
     public void SetHealth(float healthChange)
     {
@@ -164,5 +155,19 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 7)
+        {
+            SetHealth(-1);
+        }
+    }
+    //private void OnControllerColliderHit(ControllerColliderHit hit)
+    //{
+    //    if (hit.gameObject.layer == 7)
+    //    {
+    //        SetHealth(-1);
+    //    }
+    //}
+    
 }
