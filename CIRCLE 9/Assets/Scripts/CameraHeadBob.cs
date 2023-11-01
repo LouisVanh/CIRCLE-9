@@ -20,6 +20,7 @@ public class CameraHeadBob : MonoBehaviour
     }
     void Update()
     {
+
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
             timer += bobSpeed * Time.deltaTime;

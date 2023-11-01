@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 527878090908419380}
   - component: {fileID: 228430318201200147}
   - component: {fileID: 1779556508368785520}
+  - component: {fileID: 1625896591780392515}
   m_Layer: 6
   m_Name: FIXEDPLAYER
   m_TagString: Player
@@ -307,13 +308,11 @@ MonoBehaviour:
   _camera: {fileID: 2305064153545800528}
   _orientation: {fileID: 7423423493669320686}
   _healthBar: {fileID: 0}
-  _isMoving: 0
-  _isSprinting: 0
-  _health: 100
-  _maxHealth: 100
-  _jumpGraceperiod: 0.2
   _mouseSensitivity: 2
   _jumpSpeed: 0.15
+  _jumpGraceperiod: 0.2
+  _health: 100
+  _maxHealth: 100
 --- !u!143 &527878090908419380
 CharacterController:
   m_ObjectHideFlags: 0
@@ -353,7 +352,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _footstepsAudioSource: {fileID: 1779556508368785520}
-  _footsteps: []
   _footstep1: {fileID: 8300000, guid: 862a7f4c187610940b82e7fabe828d89, type: 3}
   _footstep2: {fileID: 8300000, guid: 4c2ac3cc0959f8d4e8ba3ddbdad7730c, type: 3}
   _footstep3: {fileID: 8300000, guid: cb994c58b84648740a5cc3b67db3a504, type: 3}
@@ -455,6 +453,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!54 &1625896591780392515
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4635790385441494555}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &8216412199204859846
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,11 +575,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotgunFinal
       objectReference: {fileID: 0}
+    - target: {fileID: 8665696998107396517, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: _gunShotSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 862a7f4c187610940b82e7fabe828d89, type: 3}
+    - target: {fileID: 8665696998107396517, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: _gunShotAudioSource
+      value: 
+      objectReference: {fileID: 1530212890023425285}
+    - target: {fileID: 8665696998107396517, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: m_MuzzleFlashParticle
+      value: 
+      objectReference: {fileID: 217576716503478028}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+--- !u!198 &217576716503478028 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1307971148757060334, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+  m_PrefabInstance: {fileID: 1234588875377747426}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1530212890023425285 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 296758800841167079, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+  m_PrefabInstance: {fileID: 1234588875377747426}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6440352170465246628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5206898012562200646, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
