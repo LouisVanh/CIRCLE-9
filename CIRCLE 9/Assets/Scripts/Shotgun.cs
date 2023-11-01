@@ -6,13 +6,15 @@ using UnityEngine.AI;
 
 public class Shotgun : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private ParticleSystem m_MuzzleFlashParticle;
+    [SerializeField] private AudioSource _gunShotAudioSource;
+    [SerializeField] private AudioClip _gunShotSound;
+    [Header("Settings")]
     [SerializeField] private int _bulletKnockback = 100000;
-    private Animator m_Animator;
     //private bool _pickup = true;
-    [SerializeField] private ParticleSystem m_MuzzleFire;
-    [SerializeField] private AudioSource _gunAudioSource;
-    [SerializeField] private AudioClip _gunShot;
     private ParticleSystem _vfx;
+    private Animator m_Animator;
 
     private void Start()
     {
@@ -30,12 +32,12 @@ public class Shotgun : MonoBehaviour
     private void PlayAnimation()
     {
         m_Animator.SetTrigger("Shoot");
-        m_MuzzleFire.Play();
+        m_MuzzleFlashParticle.Play();
     }
 
     private void Shoot()
     {
-        _gunAudioSource.PlayOneShot(_gunShot);
+        _gunShotAudioSource.PlayOneShot(_gunShotSound);
         Ray ray1 = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         Ray ray2 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + Camera.main.transform.right);
         Ray ray3 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - Camera.main.transform.right);

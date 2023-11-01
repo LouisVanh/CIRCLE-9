@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,31 +7,33 @@ using UnityEngine.EventSystems;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    
+    [Header("References")]
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _orientation;
     [SerializeField] private HealthBarUI _healthBar;
+
+    [Header("Settings")]
+    [SerializeField] private float _mouseSensitivity = 2f;
+    [SerializeField] private float _jumpSpeed = 0.3f;
+    [SerializeField] private float _jumpGraceperiod;
+    [SerializeField] private float _health;
+    [SerializeField] private float _maxHealth;
+
     private CharacterController _controller;
     private float _speed = 10f;
-    private Vector3 _movement;
-    private Vector3 _movementDirection;
     private Vector3 _moveDirection;
-    public bool _isMoving = false;
-    public bool _isSprinting= false;
+    [NonSerialized] public bool _isMoving = false;
+    [NonSerialized] public bool _isSprinting= false;
     private float _horizontalInput;
     private float _verticalInput;
-    public float _health;
-    public float _maxHealth;
-    public float _jumpGraceperiod;
     private float? _lastGroundedTime;
     private float? _jumpButtonPressedTime;
-    [SerializeField] private float _mouseSensitivity = 2f;
     private float _cameraVerticalRotation = 0f;
     private float _gravity = -1f;
     private float _velocity;
     private float _horizontalSpeedMultiplier = 0.8f;
-    [SerializeField] private float _jumpSpeed = 0.3f;
     private CameraHeadBob _headBob;
+    private bool _hasJumped;
 
     void Start()
     {
@@ -44,7 +47,6 @@ public class PlayerBehaviour : MonoBehaviour
     void Update()
     {
         Camera();
-        Jumping();
         _horizontalInput = (Input.GetAxis("Horizontal") * _horizontalSpeedMultiplier);
         _verticalInput = Input.GetAxis("Vertical");
         Sprinting();
@@ -66,7 +68,8 @@ public class PlayerBehaviour : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            _jumpButtonPressedTime= Time.time;
+            _jumpButtonPressedTime = Time.time;
+            _hasJumped = true;
         }
 
     }
@@ -108,9 +111,14 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Movement();
         ApplyGravity();
+        if (_hasJumped == true && _controller.isGrounded)
+        {
+            Jumping();
+            _hasJumped = false;
+        }
 
 
-        if (_moveDirection.sqrMagnitude > 0.2f && _controller.isGrounded) _isMoving = true;
+        if (_moveDirection.sqrMagnitude > 0.2f/* && _controller.isGrounded*/) _isMoving = true;
         else { _isMoving = false; }
     }
     private void Camera()

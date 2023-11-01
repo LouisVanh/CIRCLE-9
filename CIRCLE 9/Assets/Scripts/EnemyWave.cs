@@ -5,12 +5,21 @@ using UnityEngine.AI;
 
 public class EnemyWave : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] private float _timeBetweenWaves = 30;
+    [SerializeField] private float _maxAmountOfWaves = 5;
+
+    [Header("Debug")]
     [SerializeField] private float _timer;
     [SerializeField] private int _waveCount;
+
+    [Header("MapSize")]
     [SerializeField] private int LeftBottomX;
     [SerializeField] private int RightBottomX;
     [SerializeField] private int LeftTopZ;
     [SerializeField] private int RightTopZ;
+
+    [Header("EnemyPrefab")]
     [SerializeField] private GameObject _enemy;
 
     private void Start()
@@ -21,7 +30,7 @@ public class EnemyWave : MonoBehaviour
     private void Update()
     {
         _timer += Time.deltaTime;
-        if (_timer > 30)
+        if (_timer > _timeBetweenWaves && _waveCount < _maxAmountOfWaves)
         {
             SpawnWave(_waveCount * 100);
             _waveCount++;

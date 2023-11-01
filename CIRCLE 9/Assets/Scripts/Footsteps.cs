@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -5,18 +6,26 @@ using UnityEngine;
 
 public class Footsteps : MonoBehaviour
 {
+    [Header("Audio Source On Player")]
     [SerializeField] private AudioSource _footstepsAudioSource;
-    [SerializeField] private List<AudioClip> _footsteps;
+
+    [Header("Footstep Sounds")]
     [SerializeField] private AudioClip _footstep1;
     [SerializeField] private AudioClip _footstep2;
     [SerializeField] private AudioClip _footstep3;
     //[SerializeField] private AudioClip _footstep4;
     //[SerializeField] private AudioClip _footstep5;
+
+    [Header("Player Reference")]
     [SerializeField] private PlayerBehaviour _player;
+
+    [Header("Settings")]
     [SerializeField] private float _delayBetweenSteps;
+    private List<AudioClip> _footsteps;
 
     void Start()
     {
+        _footsteps = new List<AudioClip>();
         _footsteps.Add(_footstep1);
         _footsteps.Add(_footstep2);
         _footsteps.Add(_footstep3);
@@ -30,7 +39,7 @@ public class Footsteps : MonoBehaviour
     {
         if (_player._isMoving)
         {
-            var soundToBePlayed = _footsteps[Random.Range(0, _footsteps.Count)];
+            var soundToBePlayed = _footsteps[UnityEngine.Random.Range(0, _footsteps.Count)];
             //Debug.Log(soundToBePlayed);
             _footstepsAudioSource.PlayOneShot(soundToBePlayed);
         }
