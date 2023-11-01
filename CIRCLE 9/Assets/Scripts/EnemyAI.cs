@@ -60,15 +60,21 @@ public class EnemyAI : MonoBehaviour
     }
     private void EnableWhenNeeded()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-            StartCoroutine(LerpValue(this.transform.position.y, 1.05f));
-
         if (!_enabled &&  _shouldEnable && !isDead)
         {
             this.gameObject.GetComponent<NavMeshAgent>().enabled = true;
             _enabled = true;
         }
     }
+
+    public void SubmergeOutIce(float endY)
+    {
+        StartCoroutine(LerpValue(transform.position.y, endY));
+        // massive band-aid fix, let's hope nobody sees this code lol
+        //StartCoroutine(LerpValue(-1f, 1.05f));
+
+    }
+
     private void Update()
     {
         EnableWhenNeeded();
@@ -83,7 +89,7 @@ public class EnemyAI : MonoBehaviour
         } else if (!agent.enabled & isLerping)
         {
             //lerp above the ice
-            //this.transform.position = new Vector3(this.transform.position.x, lerpedValue, this.transform.position.z);
+            this.transform.position = new Vector3(this.transform.position.x, lerpedValue, this.transform.position.z);
         }
     }
     private void Patroling()

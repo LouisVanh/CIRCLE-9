@@ -158,6 +158,7 @@ MonoBehaviour:
   attackRange: 1
   playerInSightRange: 0
   playerInAttackRange: 0
+  isDead: 0
 --- !u!1001 &6146000984793285596
 PrefabInstance:
   m_ObjectHideFlags: 0
