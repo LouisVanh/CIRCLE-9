@@ -18,6 +18,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float _jumpGraceperiod;
     [SerializeField] private float _health;
     [SerializeField] private float _maxHealth;
+    public bool _Grounded => _controller.isGrounded;
 
     private CharacterController _controller;
     private float _speed = 10f;
@@ -183,12 +184,6 @@ public class PlayerBehaviour : MonoBehaviour
             SetHealth(-1);
         }
     }
-    //private void OnControllerColliderHit(ControllerColliderHit hit)
-    //{
-    //    if (hit.gameObject.layer == 7)
-    //    {
-    //        SetHealth(-1);
-    //    }
-    //}
     
+
 }
