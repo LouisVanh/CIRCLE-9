@@ -8,6 +8,7 @@ public class Footsteps : MonoBehaviour
 {
     [Header("Audio Source On Player")]
     [SerializeField] private AudioSource _footstepsAudioSource;
+    public Audio _sfxSettings;
 
     [Header("Footstep Sounds")]
     [SerializeField] private AudioClip _footstep1;
@@ -25,6 +26,8 @@ public class Footsteps : MonoBehaviour
 
     void Start()
     {
+        _sfxSettings = GameObject.Find("Music").GetComponent<Audio>();
+        _footstepsAudioSource.volume = _sfxSettings._sfxVolume;
         _footsteps = new List<AudioClip>();
         _footsteps.Add(_footstep1);
         _footsteps.Add(_footstep2);

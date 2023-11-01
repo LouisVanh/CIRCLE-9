@@ -11,7 +11,6 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private Transform _orientation;
     [SerializeField] private HealthBarUI _healthBar;
-
     [Header("Settings")]
     [SerializeField] private float _mouseSensitivity = 2f;
     [SerializeField] private float _jumpSpeed = 0.3f;
@@ -34,6 +33,8 @@ public class PlayerBehaviour : MonoBehaviour
     private float _horizontalSpeedMultiplier = 0.8f;
     private CameraHeadBob _headBob;
     private bool _hasJumped;
+    
+    private float _slideSpeed;
 
     void Start()
     {
@@ -63,12 +64,18 @@ public class PlayerBehaviour : MonoBehaviour
             _jumpButtonPressedTime = Time.time;
             _hasJumped = true;
         }
+
     }
+    
     public void SetHealth(float healthChange)
     {
         _health += healthChange;
         _health = Mathf.Clamp(_health, 0, _maxHealth);
         _healthBar.SetHealth(_health);
+    }
+    private void Sliding()
+    {
+
     }
 
     private void Sprinting()

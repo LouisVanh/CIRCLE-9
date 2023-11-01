@@ -10,15 +10,19 @@ public class Shotgun : MonoBehaviour
     [SerializeField] private ParticleSystem m_MuzzleFlashParticle;
     [SerializeField] private AudioSource _gunShotAudioSource;
     [SerializeField] private AudioClip _gunShotSound;
+    public Audio _sfxSettings;   
     [Header("Settings")]
     [SerializeField] private int _bulletKnockback = 100000;
     //private bool _pickup = true;
     private ParticleSystem _vfx;
     private Animator m_Animator;
+    private float _shotGunSoundAmplify = 2f;
 
     private void Start()
     {
         m_Animator = GetComponent<Animator>();
+        _sfxSettings = GameObject.Find("Music").GetComponent<Audio>();
+        _gunShotAudioSource.volume = _sfxSettings._sfxVolume * _shotGunSoundAmplify;
     }
     private void Update()
     {

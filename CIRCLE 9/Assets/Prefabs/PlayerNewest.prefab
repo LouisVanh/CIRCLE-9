@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 1779556508368785520}
   - component: {fileID: 1625896591780392515}
   m_Layer: 6
-  m_Name: FIXEDPLAYER
+  m_Name: PlayerNewest
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
