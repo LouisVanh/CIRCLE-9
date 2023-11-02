@@ -17,10 +17,6 @@ public class EnemyAI : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _chaseSpeed, _patrolSpeed;
-    //Patroling
-    private Vector3 walkPoint;
-    private bool walkPointSet;
-
     [SerializeField] private float _patrolRange;
 
     private bool _enabled;
@@ -32,6 +28,9 @@ public class EnemyAI : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private bool playerInSightRange;
     [SerializeField] private bool playerInAttackRange;
+    //Patroling
+    [SerializeField] private Vector3 walkPoint;
+    [SerializeField] private bool walkPointSet;
 
     //Lerp when starting
     private float lerpedValue;
@@ -114,10 +113,10 @@ public class EnemyAI : MonoBehaviour
             agent.speed = _patrolSpeed;
             agent.SetDestination(walkPoint);
         }
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+        Vector2 distanceToWalkPoint = new(transform.position.x - walkPoint.x, transform.position.z - walkPoint.z);
 
         //Walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f)
+        if (distanceToWalkPoint.magnitude < 1.5f)
             walkPointSet = false;
     }
     private void SearchWalkPoint()
@@ -126,9 +125,18 @@ public class EnemyAI : MonoBehaviour
         float randomZ = UnityEngine.Random.Range(-_patrolRange, _patrolRange);
         float randomX = UnityEngine.Random.Range(-_patrolRange, _patrolRange);
 
+        NavMeshHit hit;
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        while (!NavMesh.SamplePosition(walkPoint, out hit, 2f, NavMesh.AllAreas))  // find a position on the navmesh
+        {
+            randomX = UnityEngine.Random.Range(-_patrolRange, _patrolRange);
+            randomZ = UnityEngine.Random.Range(-_patrolRange, _patrolRange);
+            walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        }
+        walkPoint = hit.position;
+
+        if (Physics.Raycast(walkPoint + new Vector3(0, 0.1f, 0), -transform.up, 2f, whatIsGround))
             walkPointSet = true;
     }
 
