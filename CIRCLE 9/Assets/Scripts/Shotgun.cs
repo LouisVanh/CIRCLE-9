@@ -50,7 +50,6 @@ public class Shotgun : MonoBehaviour
                 {
 
                 }
-                
             }
             if (_amountOfBulletsShot > _maxShots || Input.GetKeyDown(KeyCode.R) && _amountOfBulletsShot > 1)
             {
@@ -142,6 +141,7 @@ public class Shotgun : MonoBehaviour
                 if (hit.transform.gameObject.GetComponent<Rigidbody>() == null) // add ragdoll
                 {
                     var rb = hit.transform.gameObject.AddComponent<Rigidbody>();
+                    rb.freezeRotation = true;
                     hit.transform.gameObject.GetComponent<NavMeshAgent>().enabled = false;
                     hit.transform.gameObject.GetComponent<EnemyAI>().isDead = true;
                     var distanceBetweenEnemyAndPlayer = Vector3.Distance(Camera.main.transform.position, hit.point);

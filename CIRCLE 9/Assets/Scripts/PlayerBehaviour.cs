@@ -124,16 +124,11 @@ public class PlayerBehaviour : MonoBehaviour
 
             }
         }
-
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _jumpButtonPressedTime = Time.time;
             _hasJumped = true;
         }
-        Damage();
-
-
 
     }
 
@@ -149,7 +144,7 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 if (hit.transform.gameObject.GetComponent<EnemyAI>().isDead != true)
                 {
-                    SetHealth(-0.25f);
+                    SetHealth(-0f);
 
                 }
             }

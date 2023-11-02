@@ -45,6 +45,7 @@ public class EnemyAI : MonoBehaviour
     [NonSerialized] public bool isDead;
     private float _timer;
     private bool _itemDropped = false;
+    private Animator _animator;
 
     private void Start()
     {
@@ -54,7 +55,7 @@ public class EnemyAI : MonoBehaviour
         agent.enabled = false;
         lerpedValue = this.transform.position.y;
         _randomNumber = UnityEngine.Random.Range(0, 2);
-
+        _animator = GetComponentInChildren<Animator>();
     }
     IEnumerator LerpValue(float start, float end)
     {
@@ -101,8 +102,15 @@ public class EnemyAI : MonoBehaviour
 
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
             if (!playerInSightRange && !playerInAttackRange && playerNotWayOutOfSightRange) Patroling();
+            if (agent.velocity.magnitude > 0 && !playerInSightRange && !isDead) _animator.SetBool("Walk", true);
+            if (agent.velocity.magnitude == 0 && !playerInSightRange && !isDead) _animator.SetBool("Walk", false);
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+            if (playerInSightRange && !isDead) _animator.SetBool("Run", true);
+            if (!playerInSightRange && !isDead) _animator.SetBool("Run", false);
+
             if (playerInAttackRange) AttackPlayer();
+            //if (playerInAttackRange && !isDead) _animator.SetBool("Atack", true);
+
         }
         else if (!agent.enabled & isLerping)
         {
@@ -112,6 +120,7 @@ public class EnemyAI : MonoBehaviour
 
         if (isDead)
         {
+            _animator.SetBool("Die", true);
             DropItem();
             DespawnAfterSeconds();
         }
