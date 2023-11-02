@@ -30,6 +30,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float _ragDollTime = 10;
     [Header("Debug")]
     [SerializeField] private bool playerInSightRange;
+    private bool playerNotWayOutOfSightRange;
     [SerializeField] private bool playerInAttackRange;
     //Patroling
     [SerializeField] private Vector3 walkPoint;
@@ -96,8 +97,10 @@ public class EnemyAI : MonoBehaviour
         if (agent.enabled)
         {
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerNotWayOutOfSightRange = Physics.CheckSphere(transform.position, sightRange*2, whatIsPlayer);
+
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-            if (!playerInSightRange && !playerInAttackRange) Patroling();
+            if (!playerInSightRange && !playerInAttackRange && playerNotWayOutOfSightRange) Patroling();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInAttackRange) AttackPlayer();
         }
