@@ -38,7 +38,7 @@ public class PlayerBehaviour : MonoBehaviour
     private Transform _skull;
     private Transform _shotgun;
     private int _scrollIndex;
-    public int SkullAmount;
+    [NonSerialized] public int SkullAmount;
 
     public bool _hasDied = false;
 

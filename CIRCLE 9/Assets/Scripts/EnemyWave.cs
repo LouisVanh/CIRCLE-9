@@ -59,7 +59,7 @@ public class EnemyWave : MonoBehaviour
                 }
 
                 spawnPos = new Vector3(hit.position.x, -1, hit.position.z);
-                if (Physics.CheckBox(spawnPos, Vector3.up * 5, Quaternion.identity, 1 << 8)) // check if it collides with objects above (inside a model: 8)
+                if (Physics.CheckBox(spawnPos, Vector3.up * 20, Quaternion.identity, 1 << 8)) // check if it collides with objects above (inside a model: 8)
                 {
                     continue;
                 }
