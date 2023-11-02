@@ -35,7 +35,10 @@ public class PlayerBehaviour : MonoBehaviour
     private float _horizontalSpeedMultiplier = 0.8f;
     private CameraHeadBob _headBob;
     private bool _hasJumped;
-    
+    private Transform _skull;
+    private Transform _shotgun;
+    private int _scrollIndex;
+
     private float _slideSpeed;
 
     void Start()
@@ -45,16 +48,18 @@ public class PlayerBehaviour : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
+        _skull = this.transform.Find("MainCamera/SkullHolder").transform;
+        _shotgun = this.transform.Find("MainCamera/ShotgunFinal").transform;
     }
 
     void Update()
     {
+        //Debug.Log(_skull);
+        Debug.Log(_shotgun);
         Camera();
         _horizontalInput = (Input.GetAxis("Horizontal") * _horizontalSpeedMultiplier);
         _verticalInput = Input.GetAxis("Vertical");
         Sprinting();
-
 
         if (_controller.isGrounded)
         {
@@ -67,6 +72,51 @@ public class PlayerBehaviour : MonoBehaviour
             _hasJumped = true;
         }
         Damage();
+        WeaponCycle();
+        
+    }
+
+    private void WeaponCycle()
+    {
+        if (_skull != null || _shotgun != null)
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                _scrollIndex = 0;
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                _scrollIndex = 1;
+            }
+            if (_scrollIndex == 0)
+            {
+                _skull.gameObject.SetActive(false);
+                _shotgun.gameObject.SetActive(true);
+            }
+            else
+            {
+                _skull.gameObject.SetActive(true);
+                _shotgun.gameObject.SetActive(false);
+            }
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                _scrollIndex++;
+            }
+            if (Input.mouseScrollDelta.y < 0)
+            {
+                _scrollIndex--;
+            }
+            if (_scrollIndex > 1)
+            {
+                _scrollIndex = 0;
+            }
+            if (_scrollIndex < 0)
+            {
+                _scrollIndex = 1;
+
+            }
+        }
+        
     }
 
     private void Damage()
@@ -94,14 +144,10 @@ public class PlayerBehaviour : MonoBehaviour
         _health = Mathf.Clamp(_health, 0, _maxHealth);
         _healthBar.SetHealth(_health);
     }
-    private void Sliding()
-    {
-
-    }
 
     private void Sprinting()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && _isMoving)
+        if (Input.GetKey(KeyCode.LeftShift) && _isMoving && Input.GetAxis("Vertical") > 0)
         {
             _headBob.bobSpeed = 8;
             _headBob.bobAmount = 0.3f;
