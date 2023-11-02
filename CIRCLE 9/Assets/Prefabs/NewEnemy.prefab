@@ -159,6 +159,8 @@ MonoBehaviour:
   _ragDollTime: 10
   playerInSightRange: 0
   playerInAttackRange: 0
+  walkPoint: {x: 0, y: 0, z: 0}
+  walkPointSet: 0
 --- !u!1001 &6146000984793285596
 PrefabInstance:
   m_ObjectHideFlags: 0
