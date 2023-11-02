@@ -46,10 +46,11 @@ public class Shotgun : MonoBehaviour
                 _amountOfBulletsShot++;
                 PlayAnimation();
                 Shoot();
-                if (Physics.CheckSphere(transform.position, 50, 1 << 7))
-                {
-
-                }
+                //if (Physics.CheckSphere(transform.position, 50, 1 << 7))
+                //{
+                //        // performance heavy, skip for now
+                //}
+                
             }
             if (_amountOfBulletsShot > _maxShots || Input.GetKeyDown(KeyCode.R) && _amountOfBulletsShot > 1)
             {
@@ -104,8 +105,8 @@ public class Shotgun : MonoBehaviour
     {
         _gunShotAudioSource.PlayOneShot(_gunShotSound);
         Ray ray1 = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-        Ray ray2 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + Camera.main.transform.right);
-        Ray ray3 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - Camera.main.transform.right);
+        Ray ray2 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.75f * Camera.main.transform.right);
+        Ray ray3 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - 0.75f * Camera.main.transform.right);
         Ray ray4 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.5f* Camera.main.transform.right);
         Ray ray5 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - 0.5f* Camera.main.transform.right);
         Ray ray6 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.25f * Camera.main.transform.right);
@@ -132,10 +133,10 @@ public class Shotgun : MonoBehaviour
             {
                 PlayVFXAtPoint(hit);
 
-                if (hit.transform.gameObject.GetComponent<Animator>()) // turn off animations
+                if (hit.transform.gameObject.GetComponentInChildren<Animator>()) // turn off animations
                 {
                     Debug.Log("Animator component detected");
-                    hit.transform.gameObject.GetComponent<Animator>().enabled = false;
+                    hit.transform.gameObject.GetComponentInChildren<Animator>().enabled = false;
                 }
 
                 if (hit.transform.gameObject.GetComponent<Rigidbody>() == null) // add ragdoll
@@ -146,6 +147,8 @@ public class Shotgun : MonoBehaviour
                     hit.transform.gameObject.GetComponent<EnemyAI>().isDead = true;
                     var distanceBetweenEnemyAndPlayer = Vector3.Distance(Camera.main.transform.position, hit.point);
                     rb.AddForce(Camera.main.transform.forward.normalized * _bulletKnockback / distanceBetweenEnemyAndPlayer);
+                    rb.AddTorque(transform.up * 10, ForceMode.Impulse);
+                    _player.AddHealth(5);
                 }
 
             }

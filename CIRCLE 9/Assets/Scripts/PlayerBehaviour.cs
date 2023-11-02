@@ -144,7 +144,7 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 if (hit.transform.gameObject.GetComponent<EnemyAI>().isDead != true)
                 {
-                    SetHealth(-0f);
+                    AddHealth(-0.25f);
 
                 }
             }
@@ -158,7 +158,7 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
-    public void SetHealth(float healthChange)
+    public void AddHealth(float healthChange)
     {
         _health += healthChange;
         _health = Mathf.Clamp(_health, 0, _maxHealth);
@@ -252,7 +252,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            SetHealth(-1);
+            AddHealth(-1);
         }
     }
 
