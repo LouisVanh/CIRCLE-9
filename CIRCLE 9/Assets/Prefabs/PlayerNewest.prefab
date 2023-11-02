@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _footstepsAudioSource: {fileID: 1779556508368785520}
+  _sfxSettings: {fileID: 0}
   _footstep1: {fileID: 8300000, guid: 862a7f4c187610940b82e7fabe828d89, type: 3}
   _footstep2: {fileID: 8300000, guid: 4c2ac3cc0959f8d4e8ba3ddbdad7730c, type: 3}
   _footstep3: {fileID: 8300000, guid: cb994c58b84648740a5cc3b67db3a504, type: 3}
@@ -575,10 +576,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotgunFinal
       objectReference: {fileID: 0}
-    - target: {fileID: 8665696998107396517, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
-      propertyPath: _gunShotSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 862a7f4c187610940b82e7fabe828d89, type: 3}
     - target: {fileID: 8665696998107396517, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
       propertyPath: _gunShotAudioSource
       value: 
