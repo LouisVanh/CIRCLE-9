@@ -2240,6 +2240,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PLAYER
       objectReference: {fileID: 0}
+    - target: {fileID: 5694008862923951182, guid: 53eaf463fedd37c40ab9a84dbe9464e3, type: 3}
+      propertyPath: _smashKnockBack
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7423423493669320686, guid: 53eaf463fedd37c40ab9a84dbe9464e3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.62

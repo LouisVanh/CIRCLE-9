@@ -75,9 +75,13 @@ public class Shotgun : MonoBehaviour
     }
     private void ReloadAnimationFalse()
     {
-        _gunShotAudioSource.PlayOneShot(_shellIceSound);
         _amountOfBulletsShot = 1;
         m_Animator.SetBool("Reload", false);
+    }
+    private void PlayShellSound()
+    {
+        _gunShotAudioSource.PlayOneShot(_shellIceSound);
+
     }
     private void ShootAnimationFalse()
     {

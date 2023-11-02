@@ -164,11 +164,6 @@ public class PlayerBehaviour : MonoBehaviour
             _health = Mathf.Clamp(_health, 0, _maxHealth);
             _healthBar.SetHealth(_health);
         }
-        private void Sliding()
-        {
-
-        }
-
         private void Sprinting()
         {
             if (Input.GetKey(KeyCode.LeftShift) && _isMoving && Input.GetAxis("Vertical") > 0)

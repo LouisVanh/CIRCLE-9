@@ -23,7 +23,6 @@ public class Skull : MonoBehaviour
         {
             Debug.Log("smashing");
             m_Animator.SetBool("Smash", true);
-            Smash();
         }
 
     }
