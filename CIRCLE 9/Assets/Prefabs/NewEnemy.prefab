@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba07391d68d3eec4ba8aeb789ae19b74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dropItem: {fileID: 411106111980856062, guid: d9c147e828c35a545a78bb72f06b6b57, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8

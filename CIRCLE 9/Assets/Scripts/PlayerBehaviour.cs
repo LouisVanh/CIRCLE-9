@@ -38,6 +38,7 @@ public class PlayerBehaviour : MonoBehaviour
     private Transform _skull;
     private Transform _shotgun;
     private int _scrollIndex;
+    public int SkullAmount;
 
     public bool _hasDied = false;
 
@@ -79,181 +80,185 @@ public class PlayerBehaviour : MonoBehaviour
 
         }
     }
-        private void WeaponCycle()
+    public void SkullCount()
+    {
+        SkullAmount++;
+    }
+    private void WeaponCycle()
+    {
+        if (_skull != null || _shotgun != null)
         {
-            if (_skull != null || _shotgun != null)
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                if (Input.GetKeyDown(KeyCode.Alpha1))
-                {
-                    _scrollIndex = 0;
-                }
-                if (Input.GetKeyDown(KeyCode.Alpha2))
-                {
-                    _scrollIndex = 1;
-                }
-                if (_scrollIndex == 0)
-                {
-                    _skull.gameObject.SetActive(false);
-                    _shotgun.gameObject.SetActive(true);
-                }
-                else
-                {
-                    _skull.gameObject.SetActive(true);
-                    _shotgun.gameObject.SetActive(false);
-                }
-                if (Input.mouseScrollDelta.y > 0)
-                {
-                    _scrollIndex++;
-                }
-                if (Input.mouseScrollDelta.y < 0)
-                {
-                    _scrollIndex--;
-                }
-                if (_scrollIndex > 1)
-                {
-                    _scrollIndex = 0;
-                }
-                if (_scrollIndex < 0)
-                {
-                    _scrollIndex = 1;
-
-                }
+                _scrollIndex = 0;
             }
-
-
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Alpha2))
             {
-                _jumpButtonPressedTime = Time.time;
-                _hasJumped = true;
+                _scrollIndex = 1;
             }
-            Damage();
-
-
-
-        }
-
-        private void Damage()
-        {
-            RaycastHit hit;
-            Vector3 p1 = transform.position - Vector3.up * 0.5f;
-            Vector3 p2 = p1 + Vector3.up * _controller.height;
-            for (int i = 0; i < 360; i += 36)
+            if (_scrollIndex == 0)
             {
-                Debug.DrawRay(p1, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)));
-                if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, 1, 1 << 7))
-                {
-                    if (hit.transform.gameObject.GetComponent<EnemyAI>().isDead != true)
-                    {
-                        SetHealth(-0.25f);
-
-                    }
-                }
-            }
-        }
-        private void CheckDeath(float health)
-        {
-            if (health <= 0)
-            {
-                _hasDied = true;
-            }
-        }
-
-        public void SetHealth(float healthChange)
-        {
-            _health += healthChange;
-            _health = Mathf.Clamp(_health, 0, _maxHealth);
-            _healthBar.SetHealth(_health);
-        }
-        private void Sprinting()
-        {
-            if (Input.GetKey(KeyCode.LeftShift) && _isMoving && Input.GetAxis("Vertical") > 0)
-            {
-                _headBob.bobSpeed = 8;
-                _headBob.bobAmount = 0.3f;
-
-                _speed = 20f;
-                _isSprinting = true;
-                if (_camera.fieldOfView <= 90)
-                {
-                    _camera.fieldOfView += 40 * Time.deltaTime;
-                }
+                _skull.gameObject.SetActive(false);
+                _shotgun.gameObject.SetActive(true);
             }
             else
             {
-                _headBob.bobSpeed = 6;
-                _headBob.bobAmount = 0.15f;
-
-                if (_camera.fieldOfView >= 80)
-                {
-                    _camera.fieldOfView -= 40 * Time.deltaTime;
-                }
-                _isSprinting = false;
-                _speed = 10f;
+                _skull.gameObject.SetActive(true);
+                _shotgun.gameObject.SetActive(false);
             }
-        }
-        private void FixedUpdate()
-        {
-            Movement();
-            ApplyGravity();
-            if (_hasJumped == true && _controller.isGrounded)
+            if (Input.mouseScrollDelta.y > 0)
             {
-                Jumping();
-                _hasJumped = false;
+                _scrollIndex++;
             }
-
-
-            if (_moveDirection.sqrMagnitude > 0.2f/* && _controller.isGrounded*/) _isMoving = true;
-            else { _isMoving = false; }
-        }
-        private void Camera()
-        {
-            float xInput = Input.GetAxis("Mouse X") * _mouseSensitivity;
-            float yInput = Input.GetAxis("Mouse Y") * _mouseSensitivity;
-
-            _cameraVerticalRotation -= yInput;
-            _cameraVerticalRotation = Mathf.Clamp(_cameraVerticalRotation, -90f, 90f);
-            _camera.transform.localEulerAngles = Vector3.right * _cameraVerticalRotation;
-            transform.Rotate(Vector3.up * xInput);
-        }
-
-        private void ApplyGravity()
-        {
-            if (!_controller.isGrounded)
+            if (Input.mouseScrollDelta.y < 0)
             {
-                _velocity += _gravity / 2 * Time.fixedDeltaTime;
+                _scrollIndex--;
             }
-            else
+            if (_scrollIndex > 1)
             {
-                _velocity = -0.1f;
+                _scrollIndex = 0;
             }
-        }
-        private void Movement()
-        {
+            if (_scrollIndex < 0)
+            {
+                _scrollIndex = 1;
 
-            _moveDirection = transform.forward * _verticalInput + transform.right * _horizontalInput;
-            Vector3 generalMovement = _moveDirection * _speed * Time.fixedDeltaTime;
-            generalMovement.y = _velocity;
-            _controller.Move(generalMovement);
+            }
         }
-        private void Jumping()
-        {
 
-            if (Time.time - _lastGroundedTime <= _jumpGraceperiod)
-            {
-                if (Time.time - _jumpButtonPressedTime <= _jumpGraceperiod)
-                {
-                    _velocity = _jumpSpeed;
-                    _jumpButtonPressedTime = null;
-                    _lastGroundedTime = null;
-                }
-            }
-        }
-        private void OnTriggerEnter(Collider other)
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (other.gameObject.layer == 7)
-            {
-                SetHealth(-1);
-            }
+            _jumpButtonPressedTime = Time.time;
+            _hasJumped = true;
         }
+        Damage();
+
+
 
     }
+
+    private void Damage()
+    {
+        RaycastHit hit;
+        Vector3 p1 = transform.position - Vector3.up * 0.5f;
+        Vector3 p2 = p1 + Vector3.up * _controller.height;
+        for (int i = 0; i < 360; i += 36)
+        {
+            Debug.DrawRay(p1, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)));
+            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, 1, 1 << 7))
+            {
+                if (hit.transform.gameObject.GetComponent<EnemyAI>().isDead != true)
+                {
+                    SetHealth(-0.25f);
+
+                }
+            }
+        }
+    }
+    private void CheckDeath(float health)
+    {
+        if (health <= 0)
+        {
+            _hasDied = true;
+        }
+    }
+
+    public void SetHealth(float healthChange)
+    {
+        _health += healthChange;
+        _health = Mathf.Clamp(_health, 0, _maxHealth);
+        _healthBar.SetHealth(_health);
+    }
+    private void Sprinting()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && _isMoving && Input.GetAxis("Vertical") > 0)
+        {
+            _headBob.bobSpeed = 8;
+            _headBob.bobAmount = 0.3f;
+
+            _speed = 20f;
+            _isSprinting = true;
+            if (_camera.fieldOfView <= 90)
+            {
+                _camera.fieldOfView += 40 * Time.deltaTime;
+            }
+        }
+        else
+        {
+            _headBob.bobSpeed = 6;
+            _headBob.bobAmount = 0.15f;
+
+            if (_camera.fieldOfView >= 80)
+            {
+                _camera.fieldOfView -= 40 * Time.deltaTime;
+            }
+            _isSprinting = false;
+            _speed = 10f;
+        }
+    }
+    private void FixedUpdate()
+    {
+        Movement();
+        ApplyGravity();
+        if (_hasJumped == true && _controller.isGrounded)
+        {
+            Jumping();
+            _hasJumped = false;
+        }
+
+
+        if (_moveDirection.sqrMagnitude > 0.2f/* && _controller.isGrounded*/) _isMoving = true;
+        else { _isMoving = false; }
+    }
+    private void Camera()
+    {
+        float xInput = Input.GetAxis("Mouse X") * _mouseSensitivity;
+        float yInput = Input.GetAxis("Mouse Y") * _mouseSensitivity;
+
+        _cameraVerticalRotation -= yInput;
+        _cameraVerticalRotation = Mathf.Clamp(_cameraVerticalRotation, -90f, 90f);
+        _camera.transform.localEulerAngles = Vector3.right * _cameraVerticalRotation;
+        transform.Rotate(Vector3.up * xInput);
+    }
+
+    private void ApplyGravity()
+    {
+        if (!_controller.isGrounded)
+        {
+            _velocity += _gravity / 2 * Time.fixedDeltaTime;
+        }
+        else
+        {
+            _velocity = -0.1f;
+        }
+    }
+    private void Movement()
+    {
+
+        _moveDirection = transform.forward * _verticalInput + transform.right * _horizontalInput;
+        Vector3 generalMovement = _moveDirection * _speed * Time.fixedDeltaTime;
+        generalMovement.y = _velocity;
+        _controller.Move(generalMovement);
+    }
+    private void Jumping()
+    {
+
+        if (Time.time - _lastGroundedTime <= _jumpGraceperiod)
+        {
+            if (Time.time - _jumpButtonPressedTime <= _jumpGraceperiod)
+            {
+                _velocity = _jumpSpeed;
+                _jumpButtonPressedTime = null;
+                _lastGroundedTime = null;
+            }
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 7)
+        {
+            SetHealth(-1);
+        }
+    }
+
+}

@@ -2232,6 +2232,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 944157786434621065, guid: 53eaf463fedd37c40ab9a84dbe9464e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2230996645224139261, guid: 53eaf463fedd37c40ab9a84dbe9464e3, type: 3}
       propertyPath: _healthBar
       value: 
@@ -2242,7 +2246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5694008862923951182, guid: 53eaf463fedd37c40ab9a84dbe9464e3, type: 3}
       propertyPath: _smashKnockBack
-      value: 100
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 7423423493669320686, guid: 53eaf463fedd37c40ab9a84dbe9464e3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2283,6 +2287,10 @@ PrefabInstance:
     - target: {fileID: 7423423493669320686, guid: 53eaf463fedd37c40ab9a84dbe9464e3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7593237795231374407, guid: 53eaf463fedd37c40ab9a84dbe9464e3, type: 3}
+      propertyPath: _bulletKnockback
+      value: 10000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

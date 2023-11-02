@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Shotgun : MonoBehaviour
 {
@@ -44,6 +46,11 @@ public class Shotgun : MonoBehaviour
                 _amountOfBulletsShot++;
                 PlayAnimation();
                 Shoot();
+                if (Physics.CheckSphere(transform.position, 50, 1 << 7))
+                {
+
+                }
+                
             }
             if (_amountOfBulletsShot > _maxShots || Input.GetKeyDown(KeyCode.R) && _amountOfBulletsShot > 1)
             {

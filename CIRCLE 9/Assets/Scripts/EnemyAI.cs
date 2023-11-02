@@ -9,6 +9,9 @@ public class EnemyAI : MonoBehaviour
     private NavMeshAgent agent;
     private Transform player;
 
+    [Header("Prefab")]
+    [SerializeField] private GameObject _dropItem;
+
     [Header("Layers")]
 
     [SerializeField] private LayerMask whatIsGround;
@@ -31,6 +34,7 @@ public class EnemyAI : MonoBehaviour
     //Patroling
     [SerializeField] private Vector3 walkPoint;
     [SerializeField] private bool walkPointSet;
+    private int _randomNumber;
 
     //Lerp when starting
     private float lerpedValue;
@@ -39,6 +43,7 @@ public class EnemyAI : MonoBehaviour
     private bool isLerping;
     [NonSerialized] public bool isDead;
     private float _timer;
+    private bool _itemDropped = false;
 
     private void Start()
     {
@@ -47,6 +52,8 @@ public class EnemyAI : MonoBehaviour
         _enabled = false;
         agent.enabled = false;
         lerpedValue = this.transform.position.y;
+        _randomNumber = UnityEngine.Random.Range(0, 2);
+
     }
     IEnumerator LerpValue(float start, float end)
     {
@@ -99,11 +106,26 @@ public class EnemyAI : MonoBehaviour
             //lerp above the ice
             this.transform.position = new Vector3(this.transform.position.x, lerpedValue, this.transform.position.z);
         }
+
         if (isDead)
         {
+            DropItem();
             DespawnAfterSeconds();
         }
     }
+
+    private void DropItem()
+    {
+        if (_itemDropped == false)
+        {
+            if (_randomNumber == 1)
+            {
+                GameObject pickup = Instantiate(_dropItem, this.transform.position, Quaternion.identity);
+            }
+            _itemDropped = true;
+        }
+    }
+
     private void Patroling()
     {
         if (!walkPointSet) SearchWalkPoint();
