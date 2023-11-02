@@ -441,10 +441,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MuzzleFlashParticle: {fileID: 0}
   _gunShotAudioSource: {fileID: 0}
-  _gunShotSound: {fileID: 0}
+  _gunShotSound: {fileID: 8300000, guid: 415c8b337fc2cda40afded650635dabb, type: 3}
   _sfxSettings: {fileID: 0}
   _bulletKnockback: 16760
   _maxShootDistance: 15
+  _shotGunSoundAmplify: 10
 --- !u!1 &5726357265553962385
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,16 +574,16 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.9
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 13
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: 0
+  Pan2D: 0.05
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0

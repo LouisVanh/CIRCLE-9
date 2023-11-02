@@ -19,8 +19,8 @@ public class Shotgun : MonoBehaviour
     //private bool _pickup = true;
     private ParticleSystem _vfx;
     private Animator m_Animator;
-    private float _shotGunSoundAmplify = 2f;
-    [SerializeField] private int _maxShots = 2;
+    [SerializeField] private float _shotGunSoundAmplify = 2f;
+    private int _maxShots = 2;
     private int _amountOfBulletsShot = 1;
 
     private void Start()
