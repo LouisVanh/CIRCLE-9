@@ -2757,6 +2757,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 4393770176073983676, guid: 6d1c4331f45eea94a9466daebb6497ce, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4557526652573274008, guid: 6d1c4331f45eea94a9466daebb6497ce, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -2775,6 +2779,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5254525875829612556, guid: 6d1c4331f45eea94a9466daebb6497ce, type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575478474702500708, guid: 6d1c4331f45eea94a9466daebb6497ce, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5823189044814197600, guid: 6d1c4331f45eea94a9466daebb6497ce, type: 3}
@@ -2817,10 +2825,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 6526482492212835166, guid: 6d1c4331f45eea94a9466daebb6497ce, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6578167749922727599, guid: 6d1c4331f45eea94a9466daebb6497ce, type: 3}
       propertyPath: m_NavMeshData
       value: 
-      objectReference: {fileID: 23800000, guid: 77026a74a1792c747bc5b889cd03cd02, type: 2}
+      objectReference: {fileID: 23800000, guid: c866b5832655b3a428b16b8af182cc01, type: 2}
     - target: {fileID: 6578167749922727599, guid: 6d1c4331f45eea94a9466daebb6497ce, type: 3}
       propertyPath: m_UseGeometry
       value: 1
@@ -2923,6 +2935,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8408100394817931124, guid: 6d1c4331f45eea94a9466daebb6497ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9063042315970291106, guid: 6d1c4331f45eea94a9466daebb6497ce, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
