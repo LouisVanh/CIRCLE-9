@@ -13,6 +13,7 @@ public class Shotgun : MonoBehaviour
     [SerializeField] private AudioClip _gunShotSound;
     [SerializeField] private AudioClip _shellIceSound;
     [SerializeField] private AudioClip _shellRockSound;
+    [SerializeField] private PlayerBehaviour _player;
 
     public Audio _sfxSettings;   
     [Header("Settings")]
@@ -28,23 +29,28 @@ public class Shotgun : MonoBehaviour
 
     private void Start()
     {
+        _player = GetComponentInParent<PlayerBehaviour>();
         m_Animator = GetComponent<Animator>();
         _sfxSettings = GameObject.Find("Music").GetComponent<Audio>();
         _gunShotAudioSource.volume = _sfxSettings._sfxVolume * _shotGunSoundAmplify;
     }
     private void Update()
     {
-        RunningAnimation();
-        if (Input.GetMouseButtonDown(0) && m_Animator.GetBool("Shoot") == false && _amountOfBulletsShot <= _maxShots)
+        if(!_player._hasDied) 
         {
-            _amountOfBulletsShot++;
-            PlayAnimation();
-            Shoot();
+            RunningAnimation();
+            if (Input.GetMouseButtonDown(0) && m_Animator.GetBool("Shoot") == false && _amountOfBulletsShot <= _maxShots)
+            {
+                _amountOfBulletsShot++;
+                PlayAnimation();
+                Shoot();
+            }
+            if (_amountOfBulletsShot > _maxShots || Input.GetKeyDown(KeyCode.R) && _amountOfBulletsShot > 1)
+            {
+                ReloadAnimationTrue();
+            }
         }
-        if (_amountOfBulletsShot > _maxShots || Input.GetKeyDown(KeyCode.R) && _amountOfBulletsShot > 1)
-        {
-            ReloadAnimationTrue();
-        }
+        
     }
 
     private void ReloadAnimationTrue()
@@ -56,7 +62,7 @@ public class Shotgun : MonoBehaviour
 
     private void RunningAnimation()
     {
-        if (GetComponentInParent<PlayerBehaviour>()._isSprinting)
+        if (_player._isSprinting)
         {
             m_Animator.SetBool("Run", true);
 

@@ -35,6 +35,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float _horizontalSpeedMultiplier = 0.8f;
     private CameraHeadBob _headBob;
     private bool _hasJumped;
+    public bool _hasDied = false;
     
     private float _slideSpeed;
 
@@ -50,23 +51,28 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
-        Camera();
-        _horizontalInput = (Input.GetAxis("Horizontal") * _horizontalSpeedMultiplier);
-        _verticalInput = Input.GetAxis("Vertical");
-        Sprinting();
-
-
-        if (_controller.isGrounded)
+        if(!_hasDied)
         {
-            _lastGroundedTime = Time.time;
-        }
+            CheckDeath(_health);
+            Camera();
+            _horizontalInput = (Input.GetAxis("Horizontal") * _horizontalSpeedMultiplier);
+            _verticalInput = Input.GetAxis("Vertical");
+            Sprinting();
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _jumpButtonPressedTime = Time.time;
-            _hasJumped = true;
+
+            if (_controller.isGrounded)
+            {
+                _lastGroundedTime = Time.time;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _jumpButtonPressedTime = Time.time;
+                _hasJumped = true;
+            }
+            Damage();
         }
-        Damage();
+        
     }
 
     private void Damage()
@@ -87,16 +93,19 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
     }
+    private void CheckDeath(float health)
+    {
+        if(health <=0)
+        {
+            _hasDied= true;
+        }
+    }
 
     public void SetHealth(float healthChange)
     {
         _health += healthChange;
         _health = Mathf.Clamp(_health, 0, _maxHealth);
         _healthBar.SetHealth(_health);
-    }
-    private void Sliding()
-    {
-
     }
 
     private void Sprinting()

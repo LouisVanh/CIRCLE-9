@@ -30,7 +30,8 @@ public class Audio : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        //_volumeSlider = GameObject.Find("MusicS").GetComponent<Slider>();
+        //_sfxSlider = GameObject.Find("SFX").GetComponent<Slider>();
 
     }
     void Start()
