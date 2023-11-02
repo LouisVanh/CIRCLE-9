@@ -146,6 +146,8 @@ public class Shotgun : MonoBehaviour
                     hit.transform.gameObject.GetComponent<EnemyAI>().isDead = true;
                     var distanceBetweenEnemyAndPlayer = Vector3.Distance(Camera.main.transform.position, hit.point);
                     rb.AddForce(Camera.main.transform.forward.normalized * _bulletKnockback / distanceBetweenEnemyAndPlayer);
+                    rb.AddTorque(transform.up * 10, ForceMode.Impulse);
+                    _player.AddHealth(5);
                 }
 
             }
