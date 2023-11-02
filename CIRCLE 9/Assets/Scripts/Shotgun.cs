@@ -11,6 +11,9 @@ public class Shotgun : MonoBehaviour
     [SerializeField] private ParticleSystem m_MuzzleFlashParticle;
     [SerializeField] private AudioSource _gunShotAudioSource;
     [SerializeField] private AudioClip _gunShotSound;
+    [SerializeField] private AudioClip _shellIceSound;
+    [SerializeField] private AudioClip _shellRockSound;
+
     public Audio _sfxSettings;   
     [Header("Settings")]
     [SerializeField] private int _bulletKnockback = 100000;
@@ -49,6 +52,8 @@ public class Shotgun : MonoBehaviour
         m_Animator.SetBool("Reload", true);
         //m_Animator.SetBool("Shoot", false);
         _amountOfBulletsShot = 1;
+        //TODO: check if ground is ice / rock and play according shell sound, but model has to be done first
+        _gunShotAudioSource.PlayOneShot(_shellIceSound);
     }
 
     private void RunningAnimation()
