@@ -678,7 +678,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 944157786434621065, guid: b0dbeb80793f7c140b49841c5e17b730, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1201930091222953046, guid: b0dbeb80793f7c140b49841c5e17b730, type: 3}
       propertyPath: m_LocalPosition.x
@@ -719,6 +719,10 @@ PrefabInstance:
     - target: {fileID: 1749464933020225904, guid: b0dbeb80793f7c140b49841c5e17b730, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061468749849830433, guid: b0dbeb80793f7c140b49841c5e17b730, type: 3}
+      propertyPath: m_Name
+      value: MainCamera
       objectReference: {fileID: 0}
     - target: {fileID: 2230996645224139261, guid: b0dbeb80793f7c140b49841c5e17b730, type: 3}
       propertyPath: _healthBar
@@ -930,7 +934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8827385140915749794, guid: b0dbeb80793f7c140b49841c5e17b730, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
