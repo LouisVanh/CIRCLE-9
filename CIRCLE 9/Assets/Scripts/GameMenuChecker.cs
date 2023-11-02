@@ -11,6 +11,7 @@ public class GameMenuChecker : MonoBehaviour
     void Start()
     {
         _deathMenu.SetActive(false);
+        Time.timeScale= 1.0f;
     }
 
     // Update is called once per frame
@@ -41,6 +42,12 @@ public class GameMenuChecker : MonoBehaviour
     public void ReturnToMainMenu()
     {
         Time.timeScale = 1f;
+        _player._hasDied= false;
+        Destroy(GameObject.Find("Music"));
         SceneManager.LoadScene(0);
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
