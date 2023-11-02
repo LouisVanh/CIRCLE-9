@@ -10,17 +10,17 @@ public class HealthBarUI : MonoBehaviour
     public float _maxHealth;
     public float _width;
     public float _height;
-    
+
     public void SetMaxHealth(float maxHealth)
     {
-        _maxHealth= maxHealth;
+        _maxHealth = maxHealth;
     }
 
     public void SetHealth(float health)
     {
-        _health= health;
+        _health = health;
         float newWidth = (_health / _maxHealth) * _width;
 
-        _healthBar.sizeDelta = new Vector2 (newWidth, _height);
+        _healthBar.sizeDelta = new Vector2(newWidth, _height);
     }
 }
