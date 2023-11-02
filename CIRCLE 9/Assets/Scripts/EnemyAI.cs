@@ -136,11 +136,14 @@ public class EnemyAI : MonoBehaviour
                 randomZ = UnityEngine.Random.Range(-_patrolRange, _patrolRange);
                 walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
                 continue;
-            } 
-            if(!NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, new NavMeshPath()))
-            {
-                continue;
             }
+            NavMeshPath navpath = new NavMeshPath();
+            if (NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, navpath)) // if theres a path
+            {
+                if (navpath.status == NavMeshPathStatus.PathPartial || navpath.status == NavMeshPathStatus.PathInvalid) //if its fucked
+                    continue; // redo
+            }
+            
             walkPoint = hit.position;
             break;
     }  // find a position on the navmesh

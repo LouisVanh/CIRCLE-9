@@ -59,11 +59,11 @@ public class EnemyWave : MonoBehaviour
                 }
 
                 spawnPos = new Vector3(hit.position.x, -1, hit.position.z);
-                //if (Physics.CheckBox(spawnPos, Vector3.up * 2, Quaternion.identity, 8)) // check if it collides with objects above (inside a model: 8)
-                //{
-                //    continue;
-                //}
-                    var enemy = Instantiate(_enemy, spawnPos, Quaternion.identity);
+                if (Physics.CheckBox(spawnPos, Vector3.up * 5, Quaternion.identity, 1 << 8)) // check if it collides with objects above (inside a model: 8)
+                {
+                    continue;
+                }
+                var enemy = Instantiate(_enemy, spawnPos, Quaternion.identity);
                     enemy.GetComponent<EnemyAI>().SubmergeOutIce(hit.position.y + 0.8f); // O.8f = enemy offset to spawn on feet
                     break;
             }
