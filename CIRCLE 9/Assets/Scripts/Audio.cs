@@ -8,8 +8,12 @@ using UnityEngine.SceneManagement;
 public class Audio : MonoBehaviour
 {
     public AudioSource audioSource;
+    public AudioSource audioSourceAmbiance;
+    public AudioSource audioSourceAmbiance2;
     [SerializeField] private AudioClip _clipGame;
     [SerializeField] private AudioClip _clipMenu;
+    [SerializeField] private AudioClip _clipGameAmbiance1;
+    [SerializeField] private AudioClip _clipGameAmbiance2;
     [SerializeField] private Slider _volumeSlider;
     [SerializeField] private Slider _sfxSlider;
     public float _sfxVolume = 0.025f;
@@ -47,10 +51,14 @@ public class Audio : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             audioSource.clip = _clipMenu;
+            audioSourceAmbiance.Stop();
         }
         else
         {
             audioSource.clip = _clipGame;
+            audioSourceAmbiance.clip = _clipGameAmbiance1;
+            audioSourceAmbiance2.clip = _clipGameAmbiance2;
+            audioSourceAmbiance.Play();
         }
         audioSource.Play();
 
@@ -64,6 +72,8 @@ public class Audio : MonoBehaviour
     public void ChangeVolumeSFX()
     {
         _sfxVolume= _sfxSlider.value;
+        audioSourceAmbiance.volume = _sfxSlider.value;
+        audioSourceAmbiance2.volume = _sfxSlider.value;
         SaveSFX();
     }
     public void Load()
@@ -91,5 +101,9 @@ public class Audio : MonoBehaviour
     {
         audioSource.clip = _clipGame;
         audioSource.Play();
+        audioSourceAmbiance.clip = _clipGameAmbiance1;
+        audioSourceAmbiance.Play();
+        audioSourceAmbiance2.clip = _clipGameAmbiance2;
+        audioSourceAmbiance2.Play();
     }
 }
