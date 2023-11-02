@@ -47,16 +47,26 @@ public class EnemyWave : MonoBehaviour
 
             Vector3 spawnPos = new Vector3(randomX, -1, randomZ);
             NavMeshHit hit;
-            while (!NavMesh.SamplePosition(new Vector3(spawnPos.x, 0, spawnPos.z), out hit, 2f, NavMesh.AllAreas))  // find a position on the navmesh
+            for (int j = 0; j < 10; j++)
             {
-                randomX = Random.Range(LeftBottomX, RightBottomX);
-                randomZ = Random.Range(LeftTopZ, RightTopZ);
+                if (!NavMesh.SamplePosition(new Vector3(spawnPos.x, 0, spawnPos.z), out hit, 2f, NavMesh.AllAreas)) // find position
+                {
+                    randomX = Random.Range(LeftBottomX, RightBottomX);
+                    randomZ = Random.Range(LeftTopZ, RightTopZ);
 
-                spawnPos = new Vector3(randomX, -1, randomZ);
+                    spawnPos = new Vector3(randomX, -1, randomZ);
+                    continue;
+                }
+
+                spawnPos = new Vector3(hit.position.x, -1, hit.position.z);
+                if (Physics.CheckBox(spawnPos, Vector3.up * 5, Quaternion.identity, 1 << 8)) // check if it collides with objects above (inside a model: 8)
+                {
+                    continue;
+                }
+                var enemy = Instantiate(_enemy, spawnPos, Quaternion.identity);
+                    enemy.GetComponent<EnemyAI>().SubmergeOutIce(hit.position.y + 0.8f); // O.8f = enemy offset to spawn on feet
+                    break;
             }
-            spawnPos = new Vector3(hit.position.x, -1, hit.position.z);
-            var enemy = Instantiate(_enemy, spawnPos, Quaternion.identity);
-            enemy.GetComponent<EnemyAI>().SubmergeOutIce(hit.position.y + 0.8f); // O.8f = enemy offset to spawn on feet
         }
     }
 }

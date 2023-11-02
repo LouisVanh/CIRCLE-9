@@ -150,13 +150,25 @@ public class EnemyAI : MonoBehaviour
         NavMeshHit hit;
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        while (!NavMesh.SamplePosition(walkPoint, out hit, 2f, NavMesh.AllAreas))  // find a position on the navmesh
+        for (int i = 0; i < 10; i++)
         {
-            randomX = UnityEngine.Random.Range(-_patrolRange, _patrolRange);
-            randomZ = UnityEngine.Random.Range(-_patrolRange, _patrolRange);
-            walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-        }
-        walkPoint = hit.position;
+            if (!NavMesh.SamplePosition(walkPoint, out hit, 2f, NavMesh.AllAreas))
+            {
+                randomX = UnityEngine.Random.Range(-_patrolRange, _patrolRange);
+                randomZ = UnityEngine.Random.Range(-_patrolRange, _patrolRange);
+                walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+                continue;
+            }
+            NavMeshPath navpath = new NavMeshPath();
+            if (NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, navpath)) // if theres a path
+            {
+                if (navpath.status == NavMeshPathStatus.PathPartial || navpath.status == NavMeshPathStatus.PathInvalid) //if its fucked
+                    continue; // redo
+            }
+            
+            walkPoint = hit.position;
+            break;
+    }  // find a position on the navmesh
 
         if (Physics.Raycast(walkPoint + new Vector3(0, 0.1f, 0), -transform.up, 2f, whatIsGround))
             walkPointSet = true;
