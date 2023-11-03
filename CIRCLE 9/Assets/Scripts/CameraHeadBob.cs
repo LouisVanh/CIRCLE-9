@@ -25,8 +25,7 @@ public class CameraHeadBob : MonoBehaviour
         {
             timer += bobSpeed * Time.deltaTime;
 
-            Vector3 newPosition = new Vector3(Mathf.Cos(timer) * bobAmount,
-                _restPosition.y + Mathf.Abs((Mathf.Sin(timer) * bobAmount)), _restPosition.z);
+            Vector3 newPosition = new Vector3(Mathf.Cos(timer) * bobAmount, _restPosition.y + Mathf.Abs((Mathf.Sin(timer) * bobAmount)), _restPosition.z);
             _camera.localPosition = newPosition;
         }
         else

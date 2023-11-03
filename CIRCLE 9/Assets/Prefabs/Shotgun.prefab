@@ -444,7 +444,7 @@ MonoBehaviour:
   _gunShotSound: {fileID: 8300000, guid: 415c8b337fc2cda40afded650635dabb, type: 3}
   _shellIceSound: {fileID: 8300000, guid: f01dfaf1cbd852d44a2f0e25344684a5, type: 3}
   _shellRockSound: {fileID: 8300000, guid: 615dbbe25942b734eb2e8503d0695416, type: 3}
-  _player: {fileID: 0}
+  _reloadSound: {fileID: 8300000, guid: 4b60d730c6eed5241a308ffd8f2d3677, type: 3}
   _sfxSettings: {fileID: 0}
   _bulletKnockback: 6000
   _maxShootDistance: 15

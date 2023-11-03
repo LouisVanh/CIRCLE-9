@@ -10,10 +10,14 @@ public class Skull : MonoBehaviour
     private ParticleSystem _vfx;
     [SerializeField] private int _smashKnockBack = 100000;
     [SerializeField] private int _maxSmashDistance = 3;
+    private AudioSource _skullAudioSource;
+    [SerializeField] private AudioClip _skullBashSound;
+
     // Start is called before the first frame update
     void Start()
     {
         m_Animator = GetComponent<Animator>();
+        _skullAudioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,7 +25,6 @@ public class Skull : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && m_Animator.GetBool("Smash") == false)
         {
-            Debug.Log("smashing");
             m_Animator.SetBool("Smash", true);
         }
 
@@ -49,6 +52,7 @@ public class Skull : MonoBehaviour
             //Debug.DrawRay(Camera.main.transform.position, ray.direction, Color.red, 10);
             if (hit.transform.gameObject.layer == 7) // Enemy : 7
             {
+                _skullAudioSource.PlayOneShot(_skullBashSound);
                 PlayVFXAtPoint(hit);
 
                 if (hit.transform.gameObject.GetComponent<Animator>()) // turn off animations

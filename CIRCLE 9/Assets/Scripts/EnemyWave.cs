@@ -7,7 +7,8 @@ public class EnemyWave : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float _timeBetweenWaves = 30;
-    [SerializeField] private float _maxAmountOfWaves = 5;
+    [SerializeField] private int _amountZombiesPerWave = 50;
+    [SerializeField] private int _maxAmountOfWaves = 5;
 
     [Header("Debug")]
     [SerializeField] private float _timer;
@@ -32,7 +33,7 @@ public class EnemyWave : MonoBehaviour
         _timer += Time.deltaTime;
         if (_timer > _timeBetweenWaves && _waveCount < _maxAmountOfWaves)
         {
-            SpawnWave(_waveCount * 100);
+            SpawnWave(_waveCount * _amountZombiesPerWave);
             _waveCount++;
             _timer = 0;
         }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using CameraFading;
+using System;
 
 public class Boat : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class Boat : MonoBehaviour
 
     private float _timer;
     [SerializeField] private float _voiceLineLength;
-
+    private bool _canOnlySkipOnce = false;
+    private float cameraHeight;
 
     void Start()
     {
@@ -33,19 +35,35 @@ public class Boat : MonoBehaviour
         _playerControls.SetActive(false);
         _UI.SetActive(false);
         _acheronAudioSource.PlayOneShot(_voiceLines);
+        cameraHeight = _introPlayerCam.transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space) && _canOnlySkipOnce == false) SkipCutscene();
         _boat.position += new Vector3(_boatSpeed * Time.deltaTime, 0, 0);
         _boat.position = new Vector3(_boat.position.x, Mathf.Sin(Time.timeSinceLevelLoad) * _boatBobSpeed , _boat.position.z);
+        _introPlayerCam.position += new Vector3(_boatSpeed * Time.deltaTime, 0, 0);
+        _introPlayerCam.position = new Vector3(_introPlayerCam.position.x, 2 + Mathf.Sin(Time.timeSinceLevelLoad + 0.1f ) * _boatBobSpeed , _introPlayerCam.position.z);
         _timer += Time.deltaTime;
         if(_timer > _voiceLineLength)
         {
             _timer = 0;
             SwitchCameras();
         }
+    }
+
+    private void SkipCutscene()
+    {
+        _canOnlySkipOnce = true;
+        _introPlayerCam.gameObject.SetActive(false);
+        // code here to activate player
+        _playerControls.SetActive(true);
+        _enemyWaveSystem.SetActive(true);
+        _UI.SetActive(true);
+        _acheronAudioSource.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     private void SwitchCameras()
@@ -58,6 +76,8 @@ public class Boat : MonoBehaviour
             _enemyWaveSystem.SetActive(true);
             _UI.SetActive(true);
             _acheronAudioSource.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+
         }, 4f);
     }
 }

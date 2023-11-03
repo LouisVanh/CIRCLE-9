@@ -15,7 +15,8 @@ public class Shotgun : MonoBehaviour
     [SerializeField] private AudioClip _gunShotSound;
     [SerializeField] private AudioClip _shellIceSound;
     [SerializeField] private AudioClip _shellRockSound;
-    [SerializeField] private PlayerBehaviour _player;
+    [SerializeField] private AudioClip _reloadSound;
+    private PlayerBehaviour _player;
 
     public Audio _sfxSettings;   
     [Header("Settings")]
@@ -45,12 +46,7 @@ public class Shotgun : MonoBehaviour
             {
                 _amountOfBulletsShot++;
                 PlayAnimation();
-                Shoot();
-                //if (Physics.CheckSphere(transform.position, 50, 1 << 7))
-                //{
-                //        // performance heavy, skip for now
-                //}
-                
+                Shoot();                
             }
             if (_amountOfBulletsShot > _maxShots || Input.GetKeyDown(KeyCode.R) && _amountOfBulletsShot > 1)
             {
@@ -62,7 +58,7 @@ public class Shotgun : MonoBehaviour
 
     private void ReloadAnimationTrue()
     {
-        m_Animator.SetBool("Reload", true);
+            m_Animator.SetBool("Reload", true);
         //m_Animator.SetBool("Shoot", false);
         //TODO: check if ground is ice / rock and play according shell sound, but model has to be done first
     }
@@ -89,6 +85,10 @@ public class Shotgun : MonoBehaviour
     {
         _gunShotAudioSource.PlayOneShot(_shellIceSound);
 
+    }
+    private void PlayReloadSound()
+    {
+        _gunShotAudioSource.PlayOneShot(_reloadSound, 2);
     }
     private void ShootAnimationFalse()
     {
@@ -132,10 +132,13 @@ public class Shotgun : MonoBehaviour
             if (hit.transform.gameObject.layer == 7) // Enemy : 7
             {
                 PlayVFXAtPoint(hit);
-
-                if (hit.transform.gameObject.GetComponentInChildren<Animator>()) // turn off animations
+                if (hit.transform.gameObject.GetComponent<EnemyAI>().isDead == true)
                 {
-                    Debug.Log("Animator component detected");
+                    hit.transform.gameObject.GetComponent<Collider>().enabled = false;
+                    Debug.Log(hit.transform.gameObject.GetComponent<Collider>().enabled = false);
+                }
+                if (hit.transform.gameObject.GetComponentInChildren<EnemyAIAnimationHelper>().DeathAnimationEnd == true) // turn off animations
+                {
                     hit.transform.gameObject.GetComponentInChildren<Animator>().enabled = false;
                 }
 

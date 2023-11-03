@@ -21,6 +21,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _chaseSpeed, _patrolSpeed;
     [SerializeField] private float _patrolRange;
+    [SerializeField] private int _itemDropRate = 1;
 
     private bool _enabled;
     private bool _shouldEnable;
@@ -35,7 +36,11 @@ public class EnemyAI : MonoBehaviour
     //Patroling
     [SerializeField] private Vector3 walkPoint;
     [SerializeField] private bool walkPointSet;
-    private int _randomNumber;
+
+    [Header("Sounds")]
+    private AudioSource _enemyAudioSource;
+    [SerializeField] private AudioClip[] _deathSounds;
+    [SerializeField] private AudioClip[] _onSightSounds;
 
     //Lerp when starting
     private float lerpedValue;
@@ -46,6 +51,11 @@ public class EnemyAI : MonoBehaviour
     private float _timer;
     private bool _itemDropped = false;
     private Animator _animator;
+    private int _maxSkullSpawnRate;
+    private int _randomOnSightSound;
+    private int _randomDeathSound;
+    private bool _playOnSightOnce = false;
+    private Collider _collider;
 
     private void Start()
     {
@@ -54,8 +64,13 @@ public class EnemyAI : MonoBehaviour
         _enabled = false;
         agent.enabled = false;
         lerpedValue = this.transform.position.y;
-        _randomNumber = UnityEngine.Random.Range(0, 2);
+        _maxSkullSpawnRate = 1/*UnityEngine.Random.Range(0, _itemDropRate)*/;
+        _randomDeathSound = UnityEngine.Random.Range(0, 3);
+        _randomOnSightSound = UnityEngine.Random.Range(0, 6);
         _animator = GetComponentInChildren<Animator>();
+        _enemyAudioSource = GetComponent<AudioSource>();
+        _animator.SetInteger("AtackIndex", UnityEngine.Random.Range(0, 2));
+        _collider = GetComponentInChildren<Collider>();
     }
     IEnumerator LerpValue(float start, float end)
     {
@@ -98,17 +113,31 @@ public class EnemyAI : MonoBehaviour
         if (agent.enabled)
         {
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-            playerNotWayOutOfSightRange = Physics.CheckSphere(transform.position, sightRange*2, whatIsPlayer);
+            playerNotWayOutOfSightRange = Physics.CheckSphere(transform.position, sightRange * 2, whatIsPlayer);
 
             playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
             if (!playerInSightRange && !playerInAttackRange && playerNotWayOutOfSightRange) Patroling();
             if (agent.velocity.magnitude > 0 && !playerInSightRange && !isDead) _animator.SetBool("Walk", true);
             if (agent.velocity.magnitude == 0 && !playerInSightRange && !isDead) _animator.SetBool("Walk", false);
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-            if (playerInSightRange && !isDead) _animator.SetBool("Run", true);
-            if (!playerInSightRange && !isDead) _animator.SetBool("Run", false);
+            if (playerInSightRange && !isDead)
+            {
+                if (!_playOnSightOnce)
+                {
+                    _enemyAudioSource.PlayOneShot(_onSightSounds[_randomOnSightSound]);
+                    _playOnSightOnce = true;
+                }
+                _animator.SetBool("Run", true);
+            }
+            if (!playerInSightRange && !isDead)
+            {
+                _animator.SetBool("Run", false);
+                _playOnSightOnce = false;
+
+            }
 
             if (playerInAttackRange) AttackPlayer();
+            if (!playerInAttackRange) _animator.SetBool("Atack", false);
             //if (playerInAttackRange && !isDead) _animator.SetBool("Atack", true);
 
         }
@@ -123,6 +152,9 @@ public class EnemyAI : MonoBehaviour
             _animator.SetBool("Die", true);
             DropItem();
             DespawnAfterSeconds();
+            _collider.enabled = false;
+            //_enemyAudioSource.volume = Mathf.Lerp(_enemyAudioSource.volume, 0, 10 * Time.deltaTime); 
+            //TODO: Lerp volume down to 0 after kill
         }
     }
 
@@ -130,7 +162,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (_itemDropped == false)
         {
-            if (_randomNumber == 1)
+            if (_maxSkullSpawnRate == 1)
             {
                 GameObject pickup = Instantiate(_dropItem, this.transform.position, Quaternion.identity);
             }
@@ -177,10 +209,10 @@ public class EnemyAI : MonoBehaviour
                 if (navpath.status == NavMeshPathStatus.PathPartial || navpath.status == NavMeshPathStatus.PathInvalid) //if its fucked
                     continue; // redo
             }
-            
+
             walkPoint = hit.position;
             break;
-    }  // find a position on the navmesh
+        }  // find a position on the navmesh
 
         if (Physics.Raycast(walkPoint + new Vector3(0, 0.1f, 0), -transform.up, 2f, whatIsGround))
             walkPointSet = true;
@@ -196,6 +228,7 @@ public class EnemyAI : MonoBehaviour
     private void AttackPlayer()
     {
         //agent.isStopped = true;
+        _animator.SetBool("Atack", true);
         agent.velocity = Vector3.zero;
         //Debug.Log("attack animation");
     }
@@ -211,6 +244,14 @@ public class EnemyAI : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    public void PlayDeathSound()
+    {
+        _enemyAudioSource.PlayOneShot(_deathSounds[_randomDeathSound]);
+    }
+    public void PlayRandomAtackSound()
+    {
+        _enemyAudioSource.PlayOneShot(_onSightSounds[_randomOnSightSound]);
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -219,5 +260,6 @@ public class EnemyAI : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
+
 }
 
