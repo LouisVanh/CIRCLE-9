@@ -166,7 +166,7 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void Sprinting()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && _isMoving && Input.GetAxis("Vertical") > 0)
+        if (Input.GetKey(KeyCode.LeftShift) && _isMoving && Input.GetAxis("Vertical") > 0 && !_shotgun.gameObject.GetComponentInChildren<Animator>().GetBool("Shoot"))
         {
             _headBob.bobSpeed = 8;
             _headBob.bobAmount = 0.3f;

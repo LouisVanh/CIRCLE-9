@@ -8,6 +8,8 @@ public class Boat : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private Transform _boat;
     [SerializeField] private Transform _introPlayerCam;
+    [SerializeField] private GameObject _UI;
+
     private GameObject _enemyWaveSystem;
     private GameObject _playerControls;
     [SerializeField] private float _boatBobSpeed;
@@ -24,9 +26,12 @@ public class Boat : MonoBehaviour
     {
         _enemyWaveSystem = GameObject.Find("EnemyWaveSystem");
         _playerControls = GameObject.Find("PLAYER");
+        _UI = GameObject.Find("HealthCanvas");
+
 
         _enemyWaveSystem.SetActive(false);
         _playerControls.SetActive(false);
+        _UI.SetActive(false);
         _acheronAudioSource.PlayOneShot(_voiceLines);
     }
 
@@ -45,12 +50,14 @@ public class Boat : MonoBehaviour
 
     private void SwitchCameras()
     {
-        CameraFade.Out(() => // short notation for a callback after 2 seconds
+        CameraFade.Out(() => // short notation for a callback after 4f seconds
         {
             _introPlayerCam.gameObject.SetActive(false);
             // code here to activate player
             _playerControls.SetActive(true);
             _enemyWaveSystem.SetActive(true);
+            _UI.SetActive(true);
+            _acheronAudioSource.gameObject.SetActive(false);
         }, 4f);
     }
 }
