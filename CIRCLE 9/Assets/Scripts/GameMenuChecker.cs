@@ -40,7 +40,7 @@ public class GameMenuChecker : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
-        _player._hasDied= false;
+        _player.HasDied= false;
         _gameAudio._gameHasBegun= false;
         _gameAudio._playAudioSceneCounter= 0;
         _gameAudio._playAudioCounter= 0;

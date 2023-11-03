@@ -18,7 +18,7 @@ public class Audio : MonoBehaviour
     [SerializeField] private Slider _volumeSlider;
     [SerializeField] private Slider _sfxSlider;
     public float _sfxVolume = 0.025f;
-    public static Audio instance;
+    public static Audio Instance;
     public int _playAudioCounter = 0;
     public int _playAudioSceneCounter = 0;
     private bool _hasPressedPlay = false;   
@@ -26,9 +26,9 @@ public class Audio : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
