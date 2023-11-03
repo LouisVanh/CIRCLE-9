@@ -12,14 +12,17 @@ public class EnemyAIAnimationHelper : MonoBehaviour
     }
     private void DeathAnimationStopped()
     {
-       DeathAnimationEnd = true;
+        //called in animation
+        DeathAnimationEnd = true;
     }
     private void PlayDeathSound()
     {
+        //called in animation
         _enemyAI.PlayDeathSound();
     }
     private void PlayRandomGrowlSound()
     {
+        //called in animation
         _enemyAI.PlayRandomAtackSound();
     }
 }

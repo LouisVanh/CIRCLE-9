@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1561529410253457014}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.448, y: 1.16, z: 0.48}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8536469860565913910}
   - component: {fileID: 6319912417667269809}
   - component: {fileID: 8593701698973476067}
+  - component: {fileID: 1956251296448178117}
   m_Layer: 0
   m_Name: SkullPivot
   m_TagString: Untagged
@@ -102,8 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _smashKnockBack: 100000
   _maxSmashDistance: 3
-  _skullAudioSource: {fileID: 8593701698973476067}
   _skullBashSound: {fileID: 8300000, guid: 70b0ed1b911a2ed45a46ce52ca91f726, type: 3}
+  _skullWhooshSound: {fileID: 8300000, guid: 15b174f4876e2fa4592a20e0d56f06b7, type: 3}
 --- !u!82 &8593701698973476067
 AudioSource:
   m_ObjectHideFlags: 0
@@ -116,7 +117,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -126,7 +127,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: 0.05
+  Pan2D: 0.18
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -160,7 +161,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.204
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -200,6 +201,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!135 &1956251296448178117
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4402905584993712814}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.3
+  m_Center: {x: 0.03, y: 0.06, z: 0.01}
 --- !u!1001 &1251093950783246306
 PrefabInstance:
   m_ObjectHideFlags: 0

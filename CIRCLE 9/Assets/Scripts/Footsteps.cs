@@ -40,7 +40,7 @@ public class Footsteps : MonoBehaviour
     // Update is called once per frame
     public void PlayFootsteps()
     {
-        if (_player._isMoving && _player._Grounded)
+        if (_player.IsMoving && _player._Grounded)
         {
             var soundToBePlayed = _footsteps[UnityEngine.Random.Range(0, _footsteps.Count)];
             //Debug.Log(soundToBePlayed);
