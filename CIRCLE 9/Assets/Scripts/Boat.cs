@@ -18,6 +18,8 @@ public class Boat : MonoBehaviour
 
     [SerializeField] private AudioClip _voiceLines;
     [SerializeField] private AudioSource _acheronAudioSource;
+    [SerializeField] private AudioSource _musicSettings;
+    [SerializeField] private Audio _gameAudio;
 
     private float _timer;
     [SerializeField] private float _voiceLineLength;
@@ -36,6 +38,10 @@ public class Boat : MonoBehaviour
         _UI.SetActive(false);
         _acheronAudioSource.PlayOneShot(_voiceLines);
         cameraHeight = _introPlayerCam.transform.position.y;
+
+        _musicSettings = GameObject.Find("Music").GetComponent<AudioSource>();
+        _gameAudio = GameObject.Find("Music").GetComponent<Audio>();
+        _acheronAudioSource.volume = _musicSettings.volume;
     }
 
     // Update is called once per frame
@@ -54,9 +60,10 @@ public class Boat : MonoBehaviour
         }
     }
 
-    private void SkipCutscene()
+    public void SkipCutscene()
     {
         _canOnlySkipOnce = true;
+        _gameAudio._gameHasBegun= true;
         _introPlayerCam.gameObject.SetActive(false);
         // code here to activate player
         _playerControls.SetActive(true);
@@ -71,6 +78,7 @@ public class Boat : MonoBehaviour
         CameraFade.Out(() => // short notation for a callback after 4f seconds
         {
             _introPlayerCam.gameObject.SetActive(false);
+            _gameAudio._gameHasBegun = true;
             // code here to activate player
             _playerControls.SetActive(true);
             _enemyWaveSystem.SetActive(true);

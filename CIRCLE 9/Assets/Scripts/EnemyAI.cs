@@ -41,6 +41,7 @@ public class EnemyAI : MonoBehaviour
     private AudioSource _enemyAudioSource;
     [SerializeField] private AudioClip[] _deathSounds;
     [SerializeField] private AudioClip[] _onSightSounds;
+    [SerializeField] private Audio _soundEffects;
 
     //Lerp when starting
     private float lerpedValue;
@@ -71,6 +72,8 @@ public class EnemyAI : MonoBehaviour
         _enemyAudioSource = GetComponent<AudioSource>();
         _animator.SetInteger("AtackIndex", UnityEngine.Random.Range(0, 2));
         _collider = GetComponentInChildren<Collider>();
+        _soundEffects = GameObject.Find("Music").GetComponent<Audio>();
+        _enemyAudioSource.volume = _soundEffects._sfxVolume;
     }
     IEnumerator LerpValue(float start, float end)
     {

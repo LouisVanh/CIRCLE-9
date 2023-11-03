@@ -14,10 +14,15 @@ public class Audio : MonoBehaviour
     [SerializeField] private AudioClip _clipMenu;
     [SerializeField] private AudioClip _clipGameAmbiance1;
     [SerializeField] private AudioClip _clipGameAmbiance2;
+    [SerializeField] private AudioClip _clipStartCutscene;
     [SerializeField] private Slider _volumeSlider;
     [SerializeField] private Slider _sfxSlider;
     public float _sfxVolume = 0.025f;
     public static Audio instance;
+    public int _playAudioCounter = 0;
+    public int _playAudioSceneCounter = 0;
+    private bool _hasPressedPlay = false;   
+    public bool _gameHasBegun = false;
 
     private void Awake()
     {
@@ -56,6 +61,7 @@ public class Audio : MonoBehaviour
         }
         else
         {
+
             audioSource.clip = _clipGame;
             audioSourceAmbiance.clip = _clipGameAmbiance1;
             audioSourceAmbiance2.clip = _clipGameAmbiance2;
@@ -64,6 +70,26 @@ public class Audio : MonoBehaviour
         audioSource.Play();
 
         
+    }
+    private void Update()
+    {
+        Debug.Log($" HAS GAME BEGUN????{_gameHasBegun}");
+
+        if (SceneManager.GetActiveScene().buildIndex !=0 && _playAudioSceneCounter ==0)
+        {
+            audioSource.clip = _clipStartCutscene;
+            audioSource.Play();
+            audioSourceAmbiance.Stop();
+            audioSourceAmbiance2.Stop();
+            _playAudioSceneCounter = 1;
+           
+        }
+        if (_playAudioCounter == 0 && _gameHasBegun)
+        {           
+            StartPlayingGameMusic();
+            _playAudioCounter = 1;
+            Debug.Log("START GAME MUSIC");
+        }
     }
     public void ChangeVolume()
     {
@@ -99,12 +125,16 @@ public class Audio : MonoBehaviour
         PlayerPrefs.SetFloat("sfxVolume", _sfxSlider.value);
     }
     public void StartPlayingGameMusic()
-    {
+    {       
         audioSource.clip = _clipGame;
         audioSource.Play();
         audioSourceAmbiance.clip = _clipGameAmbiance1;
         audioSourceAmbiance.Play();
         audioSourceAmbiance2.clip = _clipGameAmbiance2;
         audioSourceAmbiance2.Play();
+    }
+    public void HasPressedPlay()
+    {
+        _hasPressedPlay= true;
     }
 }

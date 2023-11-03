@@ -144,7 +144,7 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 if (hit.transform.gameObject.GetComponent<EnemyAI>().isDead != true)
                 {
-                    AddHealth(0);
+                    AddHealth(-0.25f);
 
                 }
             }

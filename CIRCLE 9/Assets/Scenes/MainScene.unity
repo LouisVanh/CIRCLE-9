@@ -2000,6 +2000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 293125426}
   _deathMenu: {fileID: 326610898}
+  _boat: {fileID: 0}
 --- !u!4 &1283297575
 Transform:
   m_ObjectHideFlags: 0
@@ -2229,9 +2230,11 @@ MonoBehaviour:
   _clipMenu: {fileID: 8300000, guid: 810a6d3383c83df46b74196fd620cdc7, type: 3}
   _clipGameAmbiance1: {fileID: 8300000, guid: 0cd40f79c07062649b16d662cbd04222, type: 3}
   _clipGameAmbiance2: {fileID: 8300000, guid: 0f0caf774a0ea0c41ac67d6a7cb0ede4, type: 3}
+  _clipStartCutscene: {fileID: 0}
   _volumeSlider: {fileID: 0}
   _sfxSlider: {fileID: 0}
   _sfxVolume: 0.025
+  _gameHasBegun: 0
 --- !u!4 &1342467446
 Transform:
   m_ObjectHideFlags: 0
@@ -3213,6 +3216,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: environmentlevel1_secondblockout
       objectReference: {fileID: 0}
+    - target: {fileID: 2921052071171342258, guid: 8216fc3d5fbcc0045895e0fbfd94fc4c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3227,6 +3234,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 759027289853856052, guid: 47617d7bfcb2e854e884e3f0801febc5, type: 3}
+      propertyPath: _voiceLines
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 759027289853856052, guid: 47617d7bfcb2e854e884e3f0801febc5, type: 3}
       propertyPath: _introPlayerCam
       value: 
       objectReference: {fileID: 143198127}
@@ -3236,7 +3247,11 @@ PrefabInstance:
       objectReference: {fileID: 6855570508937914144}
     - target: {fileID: 4220891611740449499, guid: 47617d7bfcb2e854e884e3f0801febc5, type: 3}
       propertyPath: m_Name
-      value: Archeron + boat
+      value: BOAT
+      objectReference: {fileID: 0}
+    - target: {fileID: 4220891611740449499, guid: 47617d7bfcb2e854e884e3f0801febc5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5288742395977471925, guid: 47617d7bfcb2e854e884e3f0801febc5, type: 3}
       propertyPath: m_LocalPosition.x

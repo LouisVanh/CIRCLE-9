@@ -7,11 +7,14 @@ public class GameMenuChecker : MonoBehaviour
 {
     public PlayerBehaviour _player;
     [SerializeField] private GameObject _deathMenu;
+    [SerializeField] private Audio _gameAudio;
+    //[SerializeField] private Boat _boat;
     // Start is called before the first frame update
     void Start()
     {
         _deathMenu.SetActive(false);
         Time.timeScale= 1.0f;
+        _gameAudio = GameObject.Find("Music").GetComponent<Audio>();
     }
 
     // Update is called once per frame
@@ -38,6 +41,9 @@ public class GameMenuChecker : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
         _player._hasDied= false;
+        _gameAudio._gameHasBegun= false;
+        _gameAudio._playAudioSceneCounter= 0;
+        _gameAudio._playAudioCounter= 0;
     }
     public void ReturnToMainMenu()
     {
