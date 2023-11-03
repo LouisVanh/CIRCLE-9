@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -23,8 +24,6 @@ public class PlayerBehaviour : MonoBehaviour
     private CharacterController _controller;
     private float _speed = 10f;
     private Vector3 _moveDirection;
-    [NonSerialized] public bool _isMoving = false;
-    [NonSerialized] public bool _isSprinting = false;
     private float _horizontalInput;
     private float _verticalInput;
     private float? _lastGroundedTime;
@@ -38,11 +37,11 @@ public class PlayerBehaviour : MonoBehaviour
     private Transform _skull;
     private Transform _shotgun;
     private int _scrollIndex;
+    [NonSerialized] public bool IsMoving = false;
+    [NonSerialized] public bool IsSprinting = false;
     [NonSerialized] public int SkullAmount;
-
-    public bool _hasDied = false;
-
-    private float _slideSpeed;
+    [NonSerialized] public bool HasDied = false;
+    private int _bothWeaponsPickedUp = 2;
 
     void Start()
     {
@@ -57,7 +56,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
-        if (!_hasDied)
+        if (!HasDied)
         {
             CheckDeath(_health);
             Camera();
@@ -77,16 +76,30 @@ public class PlayerBehaviour : MonoBehaviour
             }
             Damage();
             WeaponCycle();
-
+            Debug.Log(_bothWeaponsPickedUp);
         }
     }
-    public void SkullCount()
+    public void SkullPickup()
     {
+        //TODO: why does this not work
+        if (SkullAmount < 1)
+        {
+            _skull.gameObject.SetActive(true);
+            _shotgun.gameObject.SetActive(false);
+            _bothWeaponsPickedUp++;
+        }
         SkullAmount++;
+    }
+    public void ShotgunPickup()
+    {
+        //TODO: why does this not work
+        _shotgun.gameObject.SetActive(true);
+        _skull.gameObject.SetActive(false);
+        _bothWeaponsPickedUp++;
     }
     private void WeaponCycle()
     {
-        if (_skull != null || _shotgun != null)
+        if (_skull != null && _shotgun != null && _bothWeaponsPickedUp == 2)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
@@ -154,7 +167,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (health <= 0)
         {
-            _hasDied = true;
+            HasDied = true;
         }
     }
 
@@ -166,13 +179,13 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void Sprinting()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && _isMoving && Input.GetAxis("Vertical") > 0 && !_shotgun.gameObject.GetComponentInChildren<Animator>().GetBool("Shoot"))
+        if (Input.GetKey(KeyCode.LeftShift) && IsMoving && Input.GetAxis("Vertical") > 0 /*&& !_shotgun.gameObject.GetComponentInChildren<Animator>().GetBool("Shoot")*/)
         {
             _headBob.bobSpeed = 8;
             _headBob.bobAmount = 0.3f;
 
             _speed = 20f;
-            _isSprinting = true;
+            IsSprinting = true;
             if (_camera.fieldOfView <= 90)
             {
                 _camera.fieldOfView += 40 * Time.deltaTime;
@@ -187,7 +200,7 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 _camera.fieldOfView -= 40 * Time.deltaTime;
             }
-            _isSprinting = false;
+            IsSprinting = false;
             _speed = 10f;
         }
     }
@@ -202,8 +215,8 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
 
-        if (_moveDirection.sqrMagnitude > 0.2f/* && _controller.isGrounded*/) _isMoving = true;
-        else { _isMoving = false; }
+        if (_moveDirection.sqrMagnitude > 0.2f/* && _controller.isGrounded*/) IsMoving = true;
+        else { IsMoving = false; }
     }
     private void Camera()
     {

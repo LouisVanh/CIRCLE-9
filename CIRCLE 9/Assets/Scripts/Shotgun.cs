@@ -18,7 +18,7 @@ public class Shotgun : MonoBehaviour
     [SerializeField] private AudioClip _reloadSound;
     private PlayerBehaviour _player;
 
-    public Audio _sfxSettings;   
+    public Audio _sfxSettings;
     [Header("Settings")]
     [SerializeField] private int _bulletKnockback = 100000;
     [SerializeField] private int _maxShootDistance = 15;
@@ -30,42 +30,43 @@ public class Shotgun : MonoBehaviour
     [SerializeField] private int _maxShots = 2;
     [SerializeField] private int _amountOfBulletsShot = 1;
 
+
     private void Start()
     {
         _player = GetComponentInParent<PlayerBehaviour>();
         m_Animator = GetComponent<Animator>();
         _sfxSettings = GameObject.Find("Music").GetComponent<Audio>();
         _gunShotAudioSource.volume = _sfxSettings._sfxVolume * _shotGunSoundAmplify;
+        //gameObject.transform.parent.gameObject.SetActive(false);
     }
     private void Update()
     {
-        if(!_player._hasDied) 
+        if (!_player.HasDied)
         {
             RunningAnimation();
             if (Input.GetMouseButtonDown(0) && m_Animator.GetBool("Shoot") == false && _amountOfBulletsShot <= _maxShots)
             {
                 _amountOfBulletsShot++;
                 PlayAnimation();
-                Shoot();                
+                Shoot();
             }
             if (_amountOfBulletsShot > _maxShots || Input.GetKeyDown(KeyCode.R) && _amountOfBulletsShot > 1)
             {
                 ReloadAnimationTrue();
             }
         }
-        
     }
 
     private void ReloadAnimationTrue()
     {
-            m_Animator.SetBool("Reload", true);
+        m_Animator.SetBool("Reload", true);
         //m_Animator.SetBool("Shoot", false);
         //TODO: check if ground is ice / rock and play according shell sound, but model has to be done first
     }
 
     private void RunningAnimation()
     {
-        if (_player._isSprinting)
+        if (_player.IsSprinting)
         {
             m_Animator.SetBool("Run", true);
 
@@ -78,20 +79,24 @@ public class Shotgun : MonoBehaviour
     }
     private void ReloadAnimationFalse()
     {
+        //called in animation
         _amountOfBulletsShot = 1;
         m_Animator.SetBool("Reload", false);
     }
     private void PlayShellSound()
     {
+        //called in animation
         _gunShotAudioSource.PlayOneShot(_shellIceSound);
 
     }
     private void PlayReloadSound()
     {
+        //called in animation
         _gunShotAudioSource.PlayOneShot(_reloadSound, 2);
     }
     private void ShootAnimationFalse()
     {
+        //called in animation
         m_Animator.SetBool("Shoot", false);
     }
 
@@ -107,8 +112,8 @@ public class Shotgun : MonoBehaviour
         Ray ray1 = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
         Ray ray2 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.75f * Camera.main.transform.right);
         Ray ray3 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - 0.75f * Camera.main.transform.right);
-        Ray ray4 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.5f* Camera.main.transform.right);
-        Ray ray5 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - 0.5f* Camera.main.transform.right);
+        Ray ray4 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.5f * Camera.main.transform.right);
+        Ray ray5 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - 0.5f * Camera.main.transform.right);
         Ray ray6 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.25f * Camera.main.transform.right);
         Ray ray7 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - 0.25f * Camera.main.transform.right);
         Ray ray8 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.125f * Camera.main.transform.right);
@@ -132,16 +137,7 @@ public class Shotgun : MonoBehaviour
             if (hit.transform.gameObject.layer == 7) // Enemy : 7
             {
                 PlayVFXAtPoint(hit);
-                if (hit.transform.gameObject.GetComponent<EnemyAI>().isDead == true)
-                {
-                    hit.transform.gameObject.GetComponent<Collider>().enabled = false;
-                    Debug.Log(hit.transform.gameObject.GetComponent<Collider>().enabled = false);
-                }
-                if (hit.transform.gameObject.GetComponentInChildren<EnemyAIAnimationHelper>().DeathAnimationEnd == true) // turn off animations
-                {
-                    hit.transform.gameObject.GetComponentInChildren<Animator>().enabled = false;
-                }
-
+                hit = TurnOffAnimations(hit);
                 if (hit.transform.gameObject.GetComponent<Rigidbody>() == null) // add ragdoll
                 {
                     var rb = hit.transform.gameObject.AddComponent<Rigidbody>();
@@ -156,6 +152,16 @@ public class Shotgun : MonoBehaviour
 
             }
         }
+    }
+
+    private static RaycastHit TurnOffAnimations(RaycastHit hit)
+    {
+        if (hit.transform.gameObject.GetComponentInChildren<EnemyAIAnimationHelper>().DeathAnimationEnd == true) // turn off animations
+        {
+            hit.transform.gameObject.GetComponentInChildren<Animator>().enabled = false;
+        }
+
+        return hit;
     }
 
     private void PlayVFXAtPoint(RaycastHit hit)

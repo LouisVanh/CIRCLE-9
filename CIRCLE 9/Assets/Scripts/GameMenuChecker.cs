@@ -21,7 +21,7 @@ public class GameMenuChecker : MonoBehaviour
     }
     private void CheckPlayerDeath()
     {
-        if(_player._hasDied)
+        if(_player.HasDied)
         {
             GameOver();
         }
@@ -37,12 +37,12 @@ public class GameMenuChecker : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Time.timeScale = 1f;
-        _player._hasDied= false;
+        _player.HasDied= false;
     }
     public void ReturnToMainMenu()
     {
         Time.timeScale = 1f;
-        _player._hasDied= false;
+        _player.HasDied= false;
         Destroy(GameObject.Find("Music"));
         SceneManager.LoadScene(0);
     }

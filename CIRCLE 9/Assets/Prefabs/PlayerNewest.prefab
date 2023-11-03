@@ -313,6 +313,7 @@ MonoBehaviour:
   _jumpGraceperiod: 0.2
   _health: 100
   _maxHealth: 100
+  _hasDied: 0
 --- !u!143 &527878090908419380
 CharacterController:
   m_ObjectHideFlags: 0
@@ -618,7 +619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1561529410253457014, guid: 46af32809db600742a8ff1358b753e55, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7454592027576811827, guid: 46af32809db600742a8ff1358b753e55, type: 3}
       propertyPath: m_LocalPosition.x
