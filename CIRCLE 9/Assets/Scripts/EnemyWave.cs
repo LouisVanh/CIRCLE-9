@@ -63,7 +63,9 @@ public class EnemyWave : MonoBehaviour
                 {
                     continue;
                 }
-                var enemy = Instantiate(_enemy, spawnPos, Quaternion.identity);
+
+                Vector3 randomRot = new(Random.Range(-30, 30), Random.Range(-30, 30), Random.Range(-30, 30));
+                var enemy = Instantiate(_enemy, spawnPos, Quaternion.Euler(randomRot));
                     enemy.GetComponent<EnemyAI>().SubmergeOutIce(hit.position.y + 0.8f); // O.8f = enemy offset to spawn on feet
                     break;
             }
