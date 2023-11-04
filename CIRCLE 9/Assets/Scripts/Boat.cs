@@ -42,6 +42,8 @@ public class Boat : MonoBehaviour
         _musicSettings = GameObject.Find("Music").GetComponent<AudioSource>();
         _gameAudio = GameObject.Find("Music").GetComponent<Audio>();
         _acheronAudioSource.volume = _musicSettings.volume;
+
+        CameraFade.In(5f);
     }
 
     // Update is called once per frame
@@ -85,7 +87,6 @@ public class Boat : MonoBehaviour
             _UI.SetActive(true);
             _acheronAudioSource.gameObject.SetActive(false);
             gameObject.SetActive(false);
-
         }, 4f);
     }
 }
