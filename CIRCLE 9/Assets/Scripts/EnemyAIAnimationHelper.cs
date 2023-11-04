@@ -25,4 +25,8 @@ public class EnemyAIAnimationHelper : MonoBehaviour
         //called in animation
         _enemyAI.PlayRandomAtackSound();
     }
+    private void DamagePlayer()
+    {
+        _enemyAI.DamagePlayer();
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Skull : MonoBehaviour
 {
@@ -13,11 +14,12 @@ public class Skull : MonoBehaviour
     private AudioSource _skullAudioSource;
     [SerializeField] private AudioClip _skullBashSound;
     [SerializeField] private AudioClip _skullWhooshSound;
-    private bool _pickedUp;
+    private PlayerBehaviour _player;
 
     // Start is called before the first frame update
     void Start()
     {
+        _player = GetComponentInParent<PlayerBehaviour>();
         m_Animator = GetComponent<Animator>();
         _skullAudioSource = GetComponent<AudioSource>();
         //gameObject.transform.parent.gameObject.SetActive(false);
@@ -27,12 +29,11 @@ public class Skull : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            if (Input.GetMouseButtonDown(0) && m_Animator.GetBool("Smash") == false)
-            {
-                m_Animator.SetBool("Smash", true);
-                _skullAudioSource.PlayOneShot(_skullWhooshSound, 0.4f);
-            }   
-
+        if (Input.GetMouseButtonDown(0) && m_Animator.GetBool("Smash") == false)
+        {
+            m_Animator.SetBool("Smash", true);
+            _skullAudioSource.PlayOneShot(_skullWhooshSound, 0.4f);
+        }   
     }
     private void AnimationFalse()
     {
@@ -59,6 +60,7 @@ public class Skull : MonoBehaviour
             //Debug.DrawRay(Camera.main.transform.position, ray.direction, Color.red, 10);
             if (hit.transform.gameObject.layer == 7) // Enemy : 7
             {
+                _player.AmountOfKills++;
                 _skullAudioSource.PlayOneShot(_skullBashSound);
                 PlayVFXAtPoint(hit);
                 hit = TurnOffAnimation(hit);

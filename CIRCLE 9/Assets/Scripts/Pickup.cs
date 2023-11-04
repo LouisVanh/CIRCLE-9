@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Pickup : MonoBehaviour
 {
-    [SerializeField] private PlayerBehaviour _player;
-    [SerializeField] private SkullCountUI _skullCountUI;
+    private PlayerBehaviour _player;
 
     private void Start()
     {
@@ -16,8 +15,8 @@ public class Pickup : MonoBehaviour
     {
         if (other.gameObject.layer == 6)
         {
+            _player = GameObject.Find("PLAYER").GetComponent<PlayerBehaviour>();
             _player.SkullPickup();
-            _skullCountUI.ShouldGrow = true;
             Destroy(gameObject);
         }
     }

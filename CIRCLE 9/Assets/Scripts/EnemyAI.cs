@@ -6,8 +6,9 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    private NavMeshAgent agent;
-    private Transform player;
+    private NavMeshAgent _agent;
+    private Transform _player;
+    private PlayerBehaviour _playerBehaviour;
 
     [Header("Prefab")]
     [SerializeField] private GameObject _dropItem;
@@ -21,7 +22,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _chaseSpeed, _patrolSpeed;
     [SerializeField] private float _patrolRange;
-    [SerializeField] private int _itemDropRate = 100;
+    [SerializeField] private int _itemDropRate = 2;
 
     private bool _enabled;
     private bool _shouldEnable;
@@ -60,12 +61,13 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("PLAYER").transform;
-        agent = GetComponent<NavMeshAgent>();
+        _player = GameObject.Find("PLAYER").transform;
+        _playerBehaviour = GameObject.Find("PLAYER").GetComponent<PlayerBehaviour>();
+        _agent = GetComponent<NavMeshAgent>();
         _enabled = false;
-        agent.enabled = false;
+        _agent.enabled = false;
         lerpedValue = this.transform.position.y;
-        _maxSkullSpawnRate = UnityEngine.Random.Range(0, _itemDropRate);
+        _maxSkullSpawnRate = UnityEngine.Random.Range(1, _itemDropRate);
         _randomDeathSound = UnityEngine.Random.Range(0, 3);
         _randomOnSightSound = UnityEngine.Random.Range(0, 6);
         _animator = GetComponentInChildren<Animator>();
@@ -113,7 +115,7 @@ public class EnemyAI : MonoBehaviour
     {
         EnableWhenNeeded();
         //Check for sight and attack range
-        if (agent.enabled)
+        if (_agent.enabled)
         {
             playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
             playerNotWayOutOfSightRange = Physics.CheckSphere(transform.position, sightRange * 2, whatIsPlayer);
@@ -124,7 +126,7 @@ public class EnemyAI : MonoBehaviour
             if (playerInAttackRange) AttackPlayer();
             Animations();
         }
-        else if (!agent.enabled & isLerping)
+        else if (!_agent.enabled & isLerping)
         {
             //lerp above the ice
             this.transform.position = new Vector3(this.transform.position.x, lerpedValue, this.transform.position.z);
@@ -148,8 +150,8 @@ public class EnemyAI : MonoBehaviour
 
     private void Animations()
     {
-        if (agent.velocity.magnitude > 0 && !playerInSightRange && !isDead) _animator.SetBool("Walk", true);
-        if (agent.velocity.magnitude == 0 && !playerInSightRange && !isDead) _animator.SetBool("Walk", false);
+        if (_agent.velocity.magnitude > 0 && !playerInSightRange && !isDead) _animator.SetBool("Walk", true);
+        if (_agent.velocity.magnitude == 0 && !playerInSightRange && !isDead) _animator.SetBool("Walk", false);
         if (playerInSightRange && !isDead)
         {
             if (!_playOnSightOnce)
@@ -186,8 +188,8 @@ public class EnemyAI : MonoBehaviour
 
         if (walkPointSet)
         {
-            agent.speed = _patrolSpeed;
-            agent.SetDestination(walkPoint);
+            _agent.speed = _patrolSpeed;
+            _agent.SetDestination(walkPoint);
         }
         Vector2 distanceToWalkPoint = new(transform.position.x - walkPoint.x, transform.position.z - walkPoint.z);
 
@@ -230,16 +232,16 @@ public class EnemyAI : MonoBehaviour
 
     private void ChasePlayer()
     {
-        agent.speed = _chaseSpeed;
-        agent.SetDestination(player.position);
-        agent.isStopped = false;
+        _agent.speed = _chaseSpeed;
+        _agent.SetDestination(_player.position);
+        _agent.isStopped = false;
     }
 
     private void AttackPlayer()
     {
         //agent.isStopped = true;
         _animator.SetBool("Atack", true);
-        agent.velocity = Vector3.zero;
+        _agent.velocity = Vector3.zero;
         //Debug.Log("attack animation");
     }
 
@@ -270,6 +272,12 @@ public class EnemyAI : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
     }
-
+    public void DamagePlayer()
+    {
+        if (playerInAttackRange)
+        {
+            _playerBehaviour.AddHealth(-5);
+        }
+    }
 }
 
