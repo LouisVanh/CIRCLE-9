@@ -2137,9 +2137,9 @@ MonoBehaviour:
   _chaseSpeed: 10
   _patrolSpeed: 3
   _patrolRange: 10
-  _itemDropRate: 1
+  _itemDropRate: 2
   sightRange: 20
-  attackRange: 2
+  attackRange: 1
   _ragDollTime: 10
   playerInSightRange: 0
   playerInAttackRange: 0
@@ -2156,6 +2156,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: e9c48152bb620864fb778d80876bd70a, type: 3}
   - {fileID: 8300000, guid: fbe949f926d3bfa4a85e98003ce7e6bc, type: 3}
   - {fileID: 8300000, guid: f227b8716f4f593489bc391f153ae592, type: 3}
+  _soundEffects: {fileID: 0}
 --- !u!82 &4670686095534828286
 AudioSource:
   m_ObjectHideFlags: 0
