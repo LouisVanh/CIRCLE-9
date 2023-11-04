@@ -92,7 +92,7 @@ public class Shotgun : MonoBehaviour
     private void PlayReloadSound()
     {
         //called in animation
-        _gunShotAudioSource.PlayOneShot(_reloadSound, 2);
+        _gunShotAudioSource.PlayOneShot(_reloadSound, 0.5f);
     }
     private void ShootAnimationFalse()
     {

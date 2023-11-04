@@ -31,7 +31,7 @@ public class Skull : MonoBehaviour
             {
                 m_Animator.SetBool("Smash", true);
                 _skullAudioSource.PlayOneShot(_skullWhooshSound, 0.4f);
-        }   
+            }   
 
     }
     private void AnimationFalse()

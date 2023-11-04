@@ -137,7 +137,9 @@ MonoBehaviour:
   _boatSpeed: 5
   _voiceLines: {fileID: 8300000, guid: 0546ed62b12f5784a824e09206951a0e, type: 3}
   _acheronAudioSource: {fileID: 0}
-  _voiceLineLength: 10
+  _musicSettings: {fileID: 0}
+  _gameAudio: {fileID: 0}
+  _voiceLineLength: 20
 --- !u!1 &6656479474976370201
 GameObject:
   m_ObjectHideFlags: 0

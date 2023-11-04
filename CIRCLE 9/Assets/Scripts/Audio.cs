@@ -15,13 +15,14 @@ public class Audio : MonoBehaviour
     [SerializeField] private AudioClip _clipGameAmbiance1;
     [SerializeField] private AudioClip _clipGameAmbiance2;
     [SerializeField] private AudioClip _clipStartCutscene;
+    [SerializeField] private AudioClip _clipCutsceneAmbiance;
+    [SerializeField] private AudioClip _clipDeathAmbiance;
     [SerializeField] private Slider _volumeSlider;
     [SerializeField] private Slider _sfxSlider;
     public float _sfxVolume = 0.025f;
     public static Audio Instance;
     public int _playAudioCounter = 0;
-    public int _playAudioSceneCounter = 0;
-    private bool _hasPressedPlay = false;   
+    public int _playAudioSceneCounter = 0; 
     public bool _gameHasBegun = false;
 
     private void Awake()
@@ -73,13 +74,14 @@ public class Audio : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log($" HAS GAME BEGUN????{_gameHasBegun}");
 
         if (SceneManager.GetActiveScene().buildIndex !=0 && _playAudioSceneCounter ==0)
         {
             audioSource.clip = _clipStartCutscene;
             audioSource.Play();
             audioSourceAmbiance.Stop();
+            audioSourceAmbiance.clip = _clipCutsceneAmbiance;
+            audioSourceAmbiance.Play();
             audioSourceAmbiance2.Stop();
             _playAudioSceneCounter = 1;
            
@@ -88,7 +90,6 @@ public class Audio : MonoBehaviour
         {           
             StartPlayingGameMusic();
             _playAudioCounter = 1;
-            Debug.Log("START GAME MUSIC");
         }
     }
     public void ChangeVolume()
@@ -133,8 +134,17 @@ public class Audio : MonoBehaviour
         audioSourceAmbiance2.clip = _clipGameAmbiance2;
         audioSourceAmbiance2.Play();
     }
-    public void HasPressedPlay()
+    public void PlayerDied()
     {
-        _hasPressedPlay= true;
+        if(_playAudioCounter ==1)
+        {
+            audioSource.Stop();
+            audioSourceAmbiance2.Stop();
+            audioSourceAmbiance.Stop();
+            audioSourceAmbiance.clip = _clipDeathAmbiance;
+            audioSourceAmbiance.Play();
+            _playAudioCounter = 2;
+        }
+        
     }
 }
