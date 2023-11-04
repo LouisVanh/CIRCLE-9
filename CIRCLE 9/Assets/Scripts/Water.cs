@@ -14,6 +14,6 @@ public class Water : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        _waterTexture.mainTextureOffset += new Vector2(0, 0.2f) * Time.deltaTime;
     }
 }

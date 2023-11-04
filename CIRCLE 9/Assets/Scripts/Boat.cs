@@ -18,7 +18,6 @@ public class Boat : MonoBehaviour
 
     [SerializeField] private AudioClip _voiceLines;
     [SerializeField] private AudioSource _acheronAudioSource;
-    [SerializeField] private AudioSource _musicSettings;
     [SerializeField] private Audio _gameAudio;
 
     private float _timer;
@@ -36,12 +35,13 @@ public class Boat : MonoBehaviour
         _enemyWaveSystem.SetActive(false);
         if(_playerControls)_playerControls.SetActive(false);
         _UI.SetActive(false);
-        _acheronAudioSource.PlayOneShot(_voiceLines);
+        //_acheronAudioSource.PlayOneShot(_voiceLines);
         cameraHeight = _introPlayerCam.transform.position.y;
 
-        _musicSettings = GameObject.Find("Music").GetComponent<AudioSource>();
         _gameAudio = GameObject.Find("Music").GetComponent<Audio>();
-        _acheronAudioSource.volume = _musicSettings.volume;
+        _acheronAudioSource.volume = _gameAudio._sfxVolume;
+        _acheronAudioSource.clip = _voiceLines;
+        _acheronAudioSource.Play();
 
         CameraFade.In(5f);
     }
