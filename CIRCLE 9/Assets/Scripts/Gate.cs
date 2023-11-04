@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Gate : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private PlayerBehaviour _player;
+    [SerializeField] private int _amountOfSkulls = 5;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("PLAYER AT GATE");
+            
+        }
     }
 }
