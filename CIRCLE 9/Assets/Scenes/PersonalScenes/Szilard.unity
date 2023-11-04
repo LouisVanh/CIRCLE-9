@@ -357,6 +357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeBetweenWaves: 30
+  _amountZombiesPerWave: 50
   _maxAmountOfWaves: 5
   _timer: 25
   _waveCount: 0
@@ -1100,9 +1101,13 @@ MonoBehaviour:
   _clipMenu: {fileID: 8300000, guid: 810a6d3383c83df46b74196fd620cdc7, type: 3}
   _clipGameAmbiance1: {fileID: 0}
   _clipGameAmbiance2: {fileID: 0}
+  _clipStartCutscene: {fileID: 0}
   _volumeSlider: {fileID: 0}
   _sfxSlider: {fileID: 0}
   _sfxVolume: 0.025
+  _playAudioCounter: 0
+  _playAudioSceneCounter: 0
+  _gameHasBegun: 0
 --- !u!4 &1342467446
 Transform:
   m_ObjectHideFlags: 0

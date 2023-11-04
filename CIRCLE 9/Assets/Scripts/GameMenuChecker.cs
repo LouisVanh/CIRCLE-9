@@ -7,12 +7,14 @@ public class GameMenuChecker : MonoBehaviour
 {
     [SerializeField] private PlayerBehaviour _player;
     [SerializeField] private GameObject _deathMenu;
+    [SerializeField] private GameObject _cutsceneMenu;
     [SerializeField] private Audio _gameAudio;
     //[SerializeField] private Boat _boat;
     // Start is called before the first frame update
     void Start()
     {
         _deathMenu.SetActive(false);
+        _cutsceneMenu.SetActive(true); 
         Time.timeScale= 1.0f;
         _gameAudio = GameObject.Find("Music").GetComponent<Audio>();
         //_player = GameObject.Find("PLAYER").GetComponent<PlayerBehaviour>() ;
@@ -23,12 +25,21 @@ public class GameMenuChecker : MonoBehaviour
     void Update()
     {
         CheckPlayerDeath();
+        if(_player.isActiveAndEnabled)
+        {
+            _cutsceneMenu.SetActive(false);
+        }
+        else
+        {
+            _cutsceneMenu.SetActive(true);
+        }
     }
     private void CheckPlayerDeath()
     {
         if(_player.HasDied)
         {
             GameOver();
+            _gameAudio.PlayerDied();
         }
     }
     private void GameOver()
