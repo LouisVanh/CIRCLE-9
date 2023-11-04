@@ -1383,6 +1383,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cutsceneScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 1307143250789492165, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
+      propertyPath: m_fontSize
+      value: 35.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7755817325240727792, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 447.98624
