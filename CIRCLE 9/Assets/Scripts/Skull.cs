@@ -15,6 +15,7 @@ public class Skull : MonoBehaviour
     [SerializeField] private AudioClip _skullBashSound;
     [SerializeField] private AudioClip _skullWhooshSound;
     private PlayerBehaviour _player;
+    private Audio _sfxSettings;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,8 @@ public class Skull : MonoBehaviour
         _player = GetComponentInParent<PlayerBehaviour>();
         m_Animator = GetComponent<Animator>();
         _skullAudioSource = GetComponent<AudioSource>();
+        _sfxSettings = GameObject.Find("Music").GetComponent<Audio>();
+        _skullAudioSource.volume = _sfxSettings._sfxVolume * 4;
         //gameObject.transform.parent.gameObject.SetActive(false);
 
     }
