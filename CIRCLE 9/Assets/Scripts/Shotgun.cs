@@ -152,7 +152,12 @@ public class Shotgun : MonoBehaviour
                     rb.AddTorque(transform.up * 10, ForceMode.Impulse);
                     _player.AddHealth(10);
                 }
+            }
 
+            if (hit.transform.gameObject.layer == 9) // Satan : 7
+            {
+                Satan SatanScript = hit.transform.gameObject.GetComponent<Satan>();
+                SatanScript.AddHealth(-1);
             }
         }
     }

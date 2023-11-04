@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static UnityEditor.Experimental.GraphView.GraphView;
+using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -60,6 +61,12 @@ public class PlayerBehaviour : MonoBehaviour
         //_shotgun = this.transform.Find("Main Camera/ShotgunFinal").transform;
         SkullAmount = 0;
         HasSkull = false;
+        if (SceneManager.GetActiveScene() == (SceneManager.GetSceneByBuildIndex(2)))
+        {
+            HasShotgun = true;
+            HasSkull = true;
+            _scrollIndex = 0;
+        }
     }
 
     void Update()

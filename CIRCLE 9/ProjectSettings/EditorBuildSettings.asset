@@ -10,7 +10,10 @@ EditorBuildSettings:
     guid: e94e2b5fbdbaa514895140767250bc43
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
-    guid: c4803621382a00046aa7c7eef2a0f1b2
+    guid: ef3eece504732854fa50a6667514dbd4
+  - enabled: 1
+    path: Assets/Scenes/SatanScene.unity
+    guid: 8ea09abd99d57134cb697c864d1e2963
   - enabled: 0
     path: Assets/Scenes/backup scene.unity
     guid: 07fc70acd8a998d479168b9966672f0c
