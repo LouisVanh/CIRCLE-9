@@ -2012,7 +2012,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.53, y: 1.53, z: 1.53}
+  m_LocalScale: {x: 1.42, y: 1.42, z: 1.42}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2806582615573369320}
@@ -2137,7 +2137,7 @@ MonoBehaviour:
   _chaseSpeed: 10
   _patrolSpeed: 3
   _patrolRange: 10
-  _itemDropRate: 30
+  _itemDropRate: 40
   sightRange: 20
   attackRange: 1
   _ragDollTime: 10

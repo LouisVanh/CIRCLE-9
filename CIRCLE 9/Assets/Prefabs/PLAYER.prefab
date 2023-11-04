@@ -111,6 +111,7 @@ MonoBehaviour:
   _maxHealth: 100
   _skull: {fileID: 6947353303560255339}
   _shotgun: {fileID: 8425727343818053397}
+  IsShooting: 0
 --- !u!143 &8656124713287181742
 CharacterController:
   m_ObjectHideFlags: 0
@@ -654,10 +655,6 @@ PrefabInstance:
     - target: {fileID: 1561529410253457014, guid: 46af32809db600742a8ff1358b753e55, type: 3}
       propertyPath: m_TagString
       value: EditorOnly
-      objectReference: {fileID: 0}
-    - target: {fileID: 6319912417667269809, guid: 46af32809db600742a8ff1358b753e55, type: 3}
-      propertyPath: _smashKnockBack
-      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 7454592027576811827, guid: 46af32809db600742a8ff1358b753e55, type: 3}
       propertyPath: m_LocalPosition.x

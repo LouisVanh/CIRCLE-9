@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a2a7b63c431ebd4e9064f720afb5b34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smashKnockBack: 100000
-  _maxSmashDistance: 3
+  _smashKnockBack: 500
+  _maxSmashDistance: 4
   _skullBashSound: {fileID: 8300000, guid: 70b0ed1b911a2ed45a46ce52ca91f726, type: 3}
   _skullWhooshSound: {fileID: 8300000, guid: 15b174f4876e2fa4592a20e0d56f06b7, type: 3}
 --- !u!82 &8593701698973476067
