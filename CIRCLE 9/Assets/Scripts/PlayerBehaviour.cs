@@ -43,6 +43,9 @@ public class PlayerBehaviour : MonoBehaviour
     [NonSerialized] public bool HasDied = false;
     [NonSerialized] public bool HasSkull = false;
     [NonSerialized] public bool HasShotgun = false;
+    [NonSerialized] public int AmountOfKills;
+    public bool IsShooting;
+
 
     void Start()
     {
@@ -80,29 +83,25 @@ public class PlayerBehaviour : MonoBehaviour
             }
             Damage();
             WeaponCycle();
-            //Debug.Log(_bothWeaponsPickedUp);
         }
     }
     public void SkullPickup()
     {
-        //TODO: why does this not work
         if (SkullAmount < 1)
         {
             _scrollIndex = 1;
             HasSkull = true;
-            SkullAmount++;
         }
         SkullAmount++;
     }
     public void ShotgunPickup()
     {
-        //TODO: why does this not work
         _scrollIndex = 0;
         HasShotgun = true;
     }
     private void WeaponCycle() // make sure that the playerbehaviour is correctly assigned in the pickup script, and DONT FUCKING CHANGE ANY OF THIS OR I WILL DO STUFF TO YOUR ENTIRE FAMILY. INCLUDING THE DOG.
     {
-        if ((_skull != null && HasSkull) || (_shotgun != null &&  HasSkull) /*&& HasShotgun*/)
+        if ((_skull != null && HasSkull) || (_shotgun != null && HasSkull) /*&& HasShotgun*/)
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) && HasShotgun)
             {
@@ -150,21 +149,21 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Damage()
     {
-        RaycastHit hit;
-        Vector3 p1 = transform.position - Vector3.up * 0.5f;
-        Vector3 p2 = p1 + Vector3.up * _controller.height;
-        for (int i = 0; i < 360; i += 36)
-        {
-            Debug.DrawRay(p1, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)));
-            if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, 1, 1 << 7))
-            {
-                if (hit.transform.gameObject.GetComponent<EnemyAI>().isDead != true)
-                {
-                    AddHealth(-0.25f);
+        //RaycastHit hit;
+        //Vector3 p1 = transform.position - Vector3.up * 0.5f;
+        //Vector3 p2 = p1 + Vector3.up * _controller.height;
+        //for (int i = 0; i < 360; i += 36)
+        //{
+        //    Debug.DrawRay(p1, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)));
+        //    if (Physics.CapsuleCast(p1, p2, 0, new Vector3(Mathf.Cos(i), 0, Mathf.Sin(i)), out hit, 1, 1 << 7))
+        //    {
+        //        if (hit.transform.gameObject.GetComponent<EnemyAI>().isDead != true)
+        //        {
+        //            AddHealth(-0.25f);
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
     }
     private void CheckDeath(float health)
     {
@@ -182,7 +181,8 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void Sprinting()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && IsMoving && Input.GetAxis("Vertical") > 0 /*&& !_shotgun.gameObject.GetComponentInChildren<Animator>().GetBool("Shoot")*/)
+        if (Input.GetKey(KeyCode.LeftShift) && IsMoving && Input.GetAxis("Vertical") > 0 && !IsShooting)
+        //IsPressing LMB                  PlayerIsMoving  IsNotSprintingVertical          ShotgunIsnotShooting
         {
             _headBob.bobSpeed = 8;
             _headBob.bobAmount = 0.3f;
@@ -211,12 +211,12 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Movement();
         ApplyGravity();
+
         if (_hasJumped == true && _controller.isGrounded)
         {
             Jumping();
             _hasJumped = false;
         }
-
 
         if (_moveDirection.sqrMagnitude > 0.2f/* && _controller.isGrounded*/) IsMoving = true;
         else { IsMoving = false; }
@@ -264,12 +264,4 @@ public class PlayerBehaviour : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 7)
-        {
-            AddHealth(-1);
-        }
-    }
-
 }

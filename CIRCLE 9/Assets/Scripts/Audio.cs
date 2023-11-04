@@ -73,7 +73,7 @@ public class Audio : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log($" HAS GAME BEGUN????{_gameHasBegun}");
+        //Debug.Log($" HAS GAME BEGUN????{_gameHasBegun}");
 
         if (SceneManager.GetActiveScene().buildIndex !=0 && _playAudioSceneCounter ==0)
         {
@@ -88,7 +88,6 @@ public class Audio : MonoBehaviour
         {           
             StartPlayingGameMusic();
             _playAudioCounter = 1;
-            Debug.Log("START GAME MUSIC");
         }
     }
     public void ChangeVolume()
