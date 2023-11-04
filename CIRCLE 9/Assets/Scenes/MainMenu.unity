@@ -5644,7 +5644,7 @@ MonoBehaviour:
   _clipMenu: {fileID: 8300000, guid: f8c07f13a432a8c43b8ba874e6bbe274, type: 3}
   _clipGameAmbiance1: {fileID: 8300000, guid: 0cd40f79c07062649b16d662cbd04222, type: 3}
   _clipGameAmbiance2: {fileID: 8300000, guid: 0f0caf774a0ea0c41ac67d6a7cb0ede4, type: 3}
-  _clipStartCutscene: {fileID: 8300000, guid: 0f0caf774a0ea0c41ac67d6a7cb0ede4, type: 3}
+  _clipStartCutscene: {fileID: 8300000, guid: d9a9eafe6e68b0e4b875e313875bbabb, type: 3}
   _clipCutsceneAmbiance: {fileID: 8300000, guid: b4db09ec415ae514aa2a03878eeb7d41, type: 3}
   _clipDeathAmbiance: {fileID: 8300000, guid: d9a9eafe6e68b0e4b875e313875bbabb, type: 3}
   _volumeSlider: {fileID: 238252375}
