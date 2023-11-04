@@ -154,9 +154,10 @@ public class Shotgun : MonoBehaviour
                 }
             }
 
-            if (hit.transform.gameObject.layer == 9) // Satan : 7
+            if (hit.transform.gameObject.layer == 9) // Satan : 9
             {
-                Satan SatanScript = hit.transform.gameObject.GetComponent<Satan>();
+                Debug.Log("hit satan");
+                Satan SatanScript = hit.transform.gameObject.GetComponentInParent<Satan>();
                 SatanScript.AddHealth(-1);
             }
         }

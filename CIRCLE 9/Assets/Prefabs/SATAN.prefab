@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d80e26a7c297e3c4e8bc1f321e2139b1, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 6.8374166
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d80e26a7c297e3c4e8bc1f321e2139b1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 0}
-  _health: 50
-  _maxHealth: 50
+  _health: 500
+  _maxHealth: 500
   _gate: {fileID: 0}
   IsSpewingFire: 0
