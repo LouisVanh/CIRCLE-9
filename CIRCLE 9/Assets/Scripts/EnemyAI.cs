@@ -22,7 +22,7 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private float _maxHealth;
     [SerializeField] private float _chaseSpeed, _patrolSpeed;
     [SerializeField] private float _patrolRange;
-    [SerializeField] private int _itemDropRate = 2;
+    [SerializeField] private int _itemDropRate;
 
     private bool _enabled;
     private bool _shouldEnable;

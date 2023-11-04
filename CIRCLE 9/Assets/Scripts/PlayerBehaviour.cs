@@ -19,6 +19,7 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField] private float _jumpGraceperiod;
     [SerializeField] private float _health;
     [SerializeField] private float _maxHealth;
+    [SerializeField] private Gate _gate;
     public bool _Grounded => _controller.isGrounded;
 
     private CharacterController _controller;
@@ -85,6 +86,11 @@ public class PlayerBehaviour : MonoBehaviour
             WeaponCycle();
         }
     }
+
+    public void GateSpawnSkull()
+    {
+        _gate.SpawnSkullOnGatePosition(SkullAmount);
+    }
     public void SkullPickup()
     {
         if (SkullAmount < 1)
@@ -93,6 +99,8 @@ public class PlayerBehaviour : MonoBehaviour
             HasSkull = true;
         }
         SkullAmount++;
+        if(SkullAmount<=6)
+            GateSpawnSkull();
     }
     public void ShotgunPickup()
     {
