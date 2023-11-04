@@ -100,7 +100,7 @@ public class PlayerBehaviour : MonoBehaviour
         _scrollIndex = 0;
         HasShotgun = true;
     }
-    private void WeaponCycle()
+    private void WeaponCycle() // make sure that the playerbehaviour is correctly assigned in the pickup script, and DONT FUCKING CHANGE ANY OF THIS OR I WILL DO STUFF TO YOUR ENTIRE FAMILY. INCLUDING THE DOG.
     {
         if ((_skull != null && HasSkull) || (_shotgun != null &&  HasSkull) /*&& HasShotgun*/)
         {
