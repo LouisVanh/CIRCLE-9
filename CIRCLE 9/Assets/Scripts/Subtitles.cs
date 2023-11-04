@@ -19,19 +19,22 @@ public class Subtitles : MonoBehaviour
         subtitlesQueue.Enqueue("Where shadows devour all that remains.");
         subtitlesQueue.Enqueue("You've come far from the world you once knew.");
         subtitlesQueue.Enqueue("Your journey has brought you to the darkest depths");
-        subtitlesQueue.Enqueue("Where your past sins have earned you a place");
-        subtitlesQueue.Enqueue("among the most wretched of souls. Prepare yourself,");
-        subtitlesQueue.Enqueue("for the ninth circle is ravenous, and its hunger knows no end.");
-        subtitlesQueue.Enqueue("Redemption is but a distant dream");
-        subtitlesQueue.Enqueue("in this malevolent void.This is the final destination");
-        subtitlesQueue.Enqueue("for those who committed treacherous deeds, betraying the trust of those closest to them.");
-        subtitlesQueue.Enqueue("Here, they are denied the warmth of the living world");
-        subtitlesQueue.Enqueue("forever buried in the ice, to bear witness to their own wickedness.");
-        subtitlesQueue.Enqueue("There are your fellow travelers, the forsaken, the forsakers.");
-        subtitlesQueue.Enqueue("Their agony is your prelude, condemned to eternity in the icy tomb.");
+        subtitlesQueue.Enqueue("Where your past sins have earned you a place among the most wretched of souls.");
+        subtitlesQueue.Enqueue("Prepare yourself, for the ninth circle is ravenous,");
+        subtitlesQueue.Enqueue("and its hunger knows no end.");
+        subtitlesQueue.Enqueue("Redemption is but a distant dream in this malevolent void.");
+        subtitlesQueue.Enqueue("This is the final destination");
+        subtitlesQueue.Enqueue("for those who committed treacherous deeds,");
+        subtitlesQueue.Enqueue("betraying the trust of those closest to them.");
+        subtitlesQueue.Enqueue("Here, they are denied the warmth of the living world forever buried in the ice,");
+        subtitlesQueue.Enqueue("to bear witness to their own wickedness.");
+        subtitlesQueue.Enqueue("There are ofcourse your fellow travelers, the forsaken, the forsakers.");
+        subtitlesQueue.Enqueue("Their agony is your prelude,");
+        subtitlesQueue.Enqueue("condemned to eternity in the icy tomb.");
         subtitlesQueue.Enqueue("The frozen lake, where the damned linger in perpetual torment,");
         subtitlesQueue.Enqueue("cursed to feed on human brains for all eternity.");
-        subtitlesQueue.Enqueue("Perhaps, lost one, you'll find your way through the shadows.");
+        subtitlesQueue.Enqueue("Perhaps, lost one,");
+        subtitlesQueue.Enqueue("you'll find your way through the shadows.");
 
         StartCoroutine(DisplaySubtitles());
     }
