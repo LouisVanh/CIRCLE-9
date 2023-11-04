@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameMenuChecker : MonoBehaviour
 {
-    public PlayerBehaviour _player;
+    [SerializeField] private PlayerBehaviour _player;
     [SerializeField] private GameObject _deathMenu;
     [SerializeField] private Audio _gameAudio;
     //[SerializeField] private Boat _boat;
@@ -15,6 +15,8 @@ public class GameMenuChecker : MonoBehaviour
         _deathMenu.SetActive(false);
         Time.timeScale= 1.0f;
         _gameAudio = GameObject.Find("Music").GetComponent<Audio>();
+        //_player = GameObject.Find("PLAYER").GetComponent<PlayerBehaviour>() ;
+
     }
 
     // Update is called once per frame

@@ -34,24 +34,28 @@ public class PlayerBehaviour : MonoBehaviour
     private float _horizontalSpeedMultiplier = 0.8f;
     private CameraHeadBob _headBob;
     private bool _hasJumped;
-    private Transform _skull;
-    private Transform _shotgun;
+    [SerializeField] private GameObject _skull;
+    [SerializeField] private GameObject _shotgun;
     private int _scrollIndex;
     [NonSerialized] public bool IsMoving = false;
     [NonSerialized] public bool IsSprinting = false;
     [NonSerialized] public int SkullAmount;
     [NonSerialized] public bool HasDied = false;
-    private int _bothWeaponsPickedUp = 2;
+    [NonSerialized] public bool HasSkull = false;
+    [NonSerialized] public bool HasShotgun = false;
 
     void Start()
     {
+        _healthBar = GameObject.Find("HealthBar").GetComponent<HealthBarUI>();
         _healthBar.SetMaxHealth(_maxHealth);
         _headBob = GetComponentInChildren<CameraHeadBob>();
         _controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        _skull = this.transform.Find("Main Camera/SkullHolder").transform;
-        _shotgun = this.transform.Find("Main Camera/ShotgunFinal").transform;
+        //_skull = this.transform.Find("Main Camera/SkullHolder").transform;
+        //_shotgun = this.transform.Find("Main Camera/ShotgunFinal").transform;
+        SkullAmount = 0;
+        HasSkull = false;
     }
 
     void Update()
@@ -76,7 +80,7 @@ public class PlayerBehaviour : MonoBehaviour
             }
             Damage();
             WeaponCycle();
-            Debug.Log(_bothWeaponsPickedUp);
+            //Debug.Log(_bothWeaponsPickedUp);
         }
     }
     public void SkullPickup()
@@ -84,24 +88,23 @@ public class PlayerBehaviour : MonoBehaviour
         //TODO: why does this not work
         if (SkullAmount < 1)
         {
-            _skull.gameObject.SetActive(true);
-            _shotgun.gameObject.SetActive(false);
-            _bothWeaponsPickedUp++;
+            _scrollIndex = 1;
+            HasSkull = true;
+            SkullAmount++;
         }
         SkullAmount++;
     }
     public void ShotgunPickup()
     {
         //TODO: why does this not work
-        _shotgun.gameObject.SetActive(true);
-        _skull.gameObject.SetActive(false);
-        _bothWeaponsPickedUp++;
+        _scrollIndex = 0;
+        HasShotgun = true;
     }
     private void WeaponCycle()
     {
-        if (_skull != null && _shotgun != null && _bothWeaponsPickedUp == 2)
+        if ((_skull != null && HasSkull) || (_shotgun != null &&  HasSkull) /*&& HasShotgun*/)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1) && HasShotgun)
             {
                 _scrollIndex = 0;
             }
@@ -119,11 +122,11 @@ public class PlayerBehaviour : MonoBehaviour
                 _skull.gameObject.SetActive(true);
                 _shotgun.gameObject.SetActive(false);
             }
-            if (Input.mouseScrollDelta.y > 0)
+            if (Input.mouseScrollDelta.y > 0 && HasShotgun)
             {
                 _scrollIndex++;
             }
-            if (Input.mouseScrollDelta.y < 0)
+            if (Input.mouseScrollDelta.y < 0 && HasShotgun)
             {
                 _scrollIndex--;
             }

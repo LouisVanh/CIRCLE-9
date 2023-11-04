@@ -5,6 +5,7 @@ using UnityEngine;
 public class Pickup : MonoBehaviour
 {
     [SerializeField] private PlayerBehaviour _player;
+    bool _shouldPickup;
     private void Start()
     {
         //_player = GameObject.Find("PLAYER").GetComponent<PlayerBehaviour>();
@@ -18,4 +19,12 @@ public class Pickup : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    //private void LateUpdate()
+    //{
+    //    if (_shouldPickup)
+    //    {
+    //        _player.SkullPickup();
+    //        Destroy(gameObject);
+    //    }
+    //}
 }

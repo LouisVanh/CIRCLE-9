@@ -221,7 +221,7 @@ GameObject:
   - component: {fileID: 1779556508368785520}
   - component: {fileID: 1625896591780392515}
   m_Layer: 6
-  m_Name: PlayerNewest
+  m_Name: PLAYER_OLD
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -313,8 +313,6 @@ MonoBehaviour:
   _jumpGraceperiod: 0.2
   _health: 100
   _maxHealth: 100
-  _skull: {fileID: 944157786434621065}
-  _shotgun: {fileID: 8827385140915749794}
 --- !u!143 &527878090908419380
 CharacterController:
   m_ObjectHideFlags: 0
@@ -534,17 +532,37 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3159978908576717318, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.532
+      objectReference: {fileID: 0}
+    - target: {fileID: 3159978908576717318, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206898012562200646, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9049293
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206898012562200646, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9049293
+      objectReference: {fileID: 0}
+    - target: {fileID: 5206898012562200646, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9049293
+      objectReference: {fileID: 0}
     - target: {fileID: 5206898012562200646, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.52
+      value: 0.903
       objectReference: {fileID: 0}
     - target: {fileID: 5206898012562200646, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.51
+      value: -0.87
       objectReference: {fileID: 0}
     - target: {fileID: 5206898012562200646, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.9
+      value: 1.382
       objectReference: {fileID: 0}
     - target: {fileID: 5206898012562200646, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -578,10 +596,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShotgunFinal
       objectReference: {fileID: 0}
-    - target: {fileID: 7756051842224776768, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8665696998107396517, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
       propertyPath: _gunShotAudioSource
       value: 
@@ -608,11 +622,6 @@ AudioSource:
 --- !u!4 &6440352170465246628 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5206898012562200646, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
-  m_PrefabInstance: {fileID: 1234588875377747426}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8827385140915749794 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7756051842224776768, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
   m_PrefabInstance: {fileID: 1234588875377747426}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1779476249540905215
@@ -676,11 +685,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46af32809db600742a8ff1358b753e55, type: 3}
---- !u!1 &944157786434621065 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1561529410253457014, guid: 46af32809db600742a8ff1358b753e55, type: 3}
-  m_PrefabInstance: {fileID: 1779476249540905215}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9207046262603221452 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7454592027576811827, guid: 46af32809db600742a8ff1358b753e55, type: 3}

@@ -34,7 +34,7 @@ public class Boat : MonoBehaviour
 
 
         _enemyWaveSystem.SetActive(false);
-        _playerControls.SetActive(false);
+        if(_playerControls)_playerControls.SetActive(false);
         _UI.SetActive(false);
         _acheronAudioSource.PlayOneShot(_voiceLines);
         cameraHeight = _introPlayerCam.transform.position.y;
@@ -84,7 +84,7 @@ public class Boat : MonoBehaviour
             _enemyWaveSystem.SetActive(true);
             _UI.SetActive(true);
             _acheronAudioSource.gameObject.SetActive(false);
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
 
         }, 4f);
     }

@@ -14,22 +14,30 @@ public class SkullCountUI : MonoBehaviour
     private int _currentAmount = 0;
     private float size = 1;
     private bool _scale = false;
+    public bool ShouldGrow;
 
     public void Update()
     {
         _currentAmount = _playerBehaviour.SkullAmount;
-
-        if (_previousAmount < _currentAmount && _scale == false) {
-            size = Mathf.Lerp(1, 5, 5*Time.deltaTime);
-            if (size == 5) _scale = true;
-        }
-        if (_scale == true)
+        if (ShouldGrow)
         {
-            _previousAmount = _currentAmount;
-            size = Mathf.Lerp(5, 1, 5 * Time.deltaTime);
-            if (size == 1) _scale = false;
+            if (_previousAmount < _currentAmount && _scale == false)
+            {
+                size = Mathf.Lerp(1, 5, 5 * Time.deltaTime);
+                if (size == 5) _scale = true;
+            }
+            if (_scale == true)
+            {
+                _previousAmount = _currentAmount;
+                size = Mathf.Lerp(5, 1, 5 * Time.deltaTime);
+                if (size == 1)
+                {
+                    _scale = false;
+                    ShouldGrow = false;
+                }
+            }
+            _image.gameObject.transform.localScale = new Vector3(size, size, size);
         }
-        _image.gameObject.transform.localScale = new Vector3(size, size, size);
         //TODO: WHY IS THIS NOT WORKING IM GONNA KILL MYSELF
         //picture needs to row in size and shrink again after a skull has been picked up
 
