@@ -276,7 +276,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (playerInAttackRange)
         {
-            _playerBehaviour.AddHealth(-5);
+            _playerBehaviour.AddHealth(-15);
         }
     }
 }
