@@ -19,7 +19,7 @@ public class SkullCountUI : MonoBehaviour
     public void Update()
     {
         _currentAmount = _playerBehaviour.SkullAmount;
-        if (ShouldGrow)
+        if (ShouldGrow) // set to true in script
         {
             if (_previousAmount < _currentAmount && _scale == false)
             {

@@ -1117,9 +1117,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b2306960de1664c9649ff8621c78ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeBetweenWaves: 1
-  _amountZombiesPerWave: 10
-  _maxAmountOfWaves: 5
+  _timeBetweenWaves: 30
+  _amountZombiesPerWave: 50
+  _maxAmountOfWaves: 10
   _timer: 0
   _waveCount: 0
   LeftBottomX: -90
@@ -1765,9 +1765,13 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1758808352}
+    - target: {fileID: 1303097910096189402, guid: d9c147e828c35a545a78bb72f06b6b57, type: 3}
+      propertyPath: _skullCountUI
+      value: 
+      objectReference: {fileID: 1382658274}
     - target: {fileID: 8352981002819338100, guid: d9c147e828c35a545a78bb72f06b6b57, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.14
+      value: -84.5
       objectReference: {fileID: 0}
     - target: {fileID: 8352981002819338100, guid: d9c147e828c35a545a78bb72f06b6b57, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2565,7 +2569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5736213306872914185, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.62
+      value: -92.77
       objectReference: {fileID: 0}
     - target: {fileID: 5736213306872914185, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2573,7 +2577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5736213306872914185, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.28
+      value: 7.33
       objectReference: {fileID: 0}
     - target: {fileID: 5736213306872914185, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3316,6 +3320,10 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1758808352}
+    - target: {fileID: 7158125410505977391, guid: fb68898a0d8725e4faab2db6da67b929, type: 3}
+      propertyPath: _skullCountUI
+      value: 
+      objectReference: {fileID: 1382658274}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
