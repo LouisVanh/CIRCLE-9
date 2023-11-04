@@ -84,7 +84,7 @@ public class Boat : MonoBehaviour
             _enemyWaveSystem.SetActive(true);
             _UI.SetActive(true);
             _acheronAudioSource.gameObject.SetActive(false);
-            //gameObject.SetActive(false);
+            gameObject.SetActive(false);
 
         }, 4f);
     }
