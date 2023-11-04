@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1725,49 +1725,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: cutsceneScreen
       objectReference: {fileID: 0}
-    - target: {fileID: 804391674537880843, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1307143250789492165, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
       propertyPath: m_fontSize
       value: 35.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1307143250789492165, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4505146880674261996, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
-      propertyPath: m_UiScaleMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4505146880674261996, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
-      propertyPath: m_ReferenceResolution.x
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 4505146880674261996, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
-      propertyPath: m_ReferenceResolution.y
-      value: 1080
-      objectReference: {fileID: 0}
-    - target: {fileID: 4928101396730464202, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4928101396730464202, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4928101396730464202, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 36.841095
-      objectReference: {fileID: 0}
-    - target: {fileID: 4928101396730464202, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 2.1100277e-10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4928101396730464202, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 56
       objectReference: {fileID: 0}
     - target: {fileID: 7755817325240727792, guid: 5cafe2dabb4e1aa4f8eb8b84b7b9fbb1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2708,7 +2668,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7541617234375508343, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7965660999487787482, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
       propertyPath: m_LocalScale.x
