@@ -14,7 +14,7 @@ public class Gate : MonoBehaviour
     [SerializeField] private Transform _pos5;
     [SerializeField] private Transform _pos6;
     [SerializeField] private List<Transform> _positions;
-
+    [SerializeField] private Transform _gateBlockage;
 
 
     void Start()
@@ -30,11 +30,12 @@ public class Gate : MonoBehaviour
 
     public void SpawnSkullOnGatePosition(int i)
     {
-        Instantiate(_skull, _positions[i].position, Quaternion.identity);
+        Instantiate(_skull, _positions[i-1].position, Quaternion.identity);
     }
-    void Update()
+
+    public void OpenGate()
     {
-        
+        Destroy(_gateBlockage.gameObject);   
     }
     private void OnTriggerEnter(Collider other)
     {

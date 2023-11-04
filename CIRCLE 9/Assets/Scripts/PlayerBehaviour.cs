@@ -92,7 +92,7 @@ public class PlayerBehaviour : MonoBehaviour
     }
     public void SkullPickup()
     {
-        if (SkullAmount < 1)
+        if (!HasSkull)
         {
             _scrollIndex = 1;
             HasSkull = true;
@@ -102,6 +102,10 @@ public class PlayerBehaviour : MonoBehaviour
             SkullAmount++;
             if (SkullAmount <= 6)
                 GateSpawnSkull();
+            else if (SkullAmount == 7)
+            {
+                _gate.OpenGate();
+            }
         }
     }
     public void ShotgunPickup()
