@@ -315,6 +315,7 @@ MonoBehaviour:
   _maxHealth: 100
   _skull: {fileID: 944157786434621065}
   _shotgun: {fileID: 8827385140915749794}
+  IsShooting: 0
 --- !u!143 &527878090908419380
 CharacterController:
   m_ObjectHideFlags: 0
@@ -544,7 +545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5206898012562200646, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.9
+      value: 0.812
       objectReference: {fileID: 0}
     - target: {fileID: 5206898012562200646, guid: 44c89a20be58c9b408a1c3a456086da2, type: 3}
       propertyPath: m_LocalRotation.w
