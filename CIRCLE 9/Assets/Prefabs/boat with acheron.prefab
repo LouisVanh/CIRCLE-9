@@ -509,6 +509,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d038ed3fe19ed04428190d6be74708da, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ffeeb1de8c981624cb022646782e2d85, type: 2}
     - target: {fileID: 919132149155446097, guid: d038ed3fe19ed04428190d6be74708da, type: 3}
       propertyPath: m_Name
       value: boat with acheron
@@ -546,10 +550,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _boat: {fileID: 9166148547123773503}
   _introPlayerCam: {fileID: 2390991927818576860}
+  _UI: {fileID: 0}
   _boatBobSpeed: 1.95
   _boatSpeed: 5
   _voiceLines: {fileID: 8300000, guid: 0546ed62b12f5784a824e09206951a0e, type: 3}
   _acheronAudioSource: {fileID: 1318370319956864184}
+  _gameAudio: {fileID: 0}
   _voiceLineLength: 10
 --- !u!4 &9166148547123773503 stripped
 Transform:
