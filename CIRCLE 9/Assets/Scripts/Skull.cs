@@ -63,7 +63,7 @@ public class Skull : MonoBehaviour
             //Debug.DrawRay(Camera.main.transform.position, ray.direction, Color.red, 10);
             if (hit.transform.gameObject.layer == 7) // Enemy : 7
             {
-                _player.AmountOfKills++;
+                //_player.AmountOfKills++;
                 _skullAudioSource.PlayOneShot(_skullBashSound);
                 PlayVFXAtPoint(hit);
                 hit = TurnOffAnimation(hit);
