@@ -119,7 +119,6 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        //EnableWhenNeeded();
         //Check for sight and attack range
         if (_agent.enabled)
         {
@@ -137,8 +136,7 @@ public class EnemyAI : MonoBehaviour
             //lerp above the ice
             this.transform.position = new Vector3(this.transform.position.x, lerpedValue, this.transform.position.z);
         }
-        //OnDeath();
-
+        DespawnAfterSeconds();
     }
 
     public void OnDeath()
@@ -164,7 +162,6 @@ public class EnemyAI : MonoBehaviour
         if(_playerBehaviour.AmountOfKills == 10) 
         {
             GameObject shotgun = Instantiate(_dropShotgun, this.transform.position, Quaternion.identity);
-            
         }
     }
 
@@ -259,18 +256,19 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackPlayer()
     {
-        //agent.isStopped = true;
         _animator.SetBool("Atack", true);
         _agent.velocity = Vector3.zero;
-        //Debug.Log("attack animation");
     }
 
     public void DespawnAfterSeconds()
     {
-        if (_timer <= _ragDollTime)
-            _timer += Time.deltaTime;
+        if (isDead)
+        {
+            if (_timer <= _ragDollTime)
+                _timer += Time.deltaTime;
 
-        if (_timer > _ragDollTime) Invoke(nameof(DestroyEnemy), 0.5f);
+            if (_timer > _ragDollTime) Invoke(nameof(DestroyEnemy), 0.5f);
+        }
     }
     private void DestroyEnemy()
     {

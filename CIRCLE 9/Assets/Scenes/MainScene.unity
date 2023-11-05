@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.745283, g: 0.41834283, b: 0.41834283, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.001
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -25,9 +25,9 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1.42
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.40009844, g: 1, b: 0, a: 1}
+  m_SubtractiveShadowColor: {r: 0.3962264, g: 0.15884373, b: 0.12522249, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 54fe2f000ad8f424fb63cc3ea0ae2bb2, type: 2}
-  m_HaloStrength: 0.5
+  m_HaloStrength: 0.506
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
@@ -473,9 +473,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -741,9 +741,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.6320754, g: 0.13416697, b: 0.13416697, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -924,9 +924,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b2306960de1664c9649ff8621c78ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeBetweenWaves: 30
-  _amountZombiesPerWave: 50
-  _maxAmountOfWaves: 5
+  _timeBetweenWaves: 20
+  _amountZombiesPerWave: 15
+  _maxAmountOfWaves: 15
   _timer: 0
   _waveCount: 0
   LeftBottomX: -90
@@ -1312,17 +1312,17 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 0.79869485, b: 0.759434, a: 1}
   m_Intensity: 1.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 0.09
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.659
     m_Bias: 1.25
     m_NormalBias: 0.4
     m_NearPlane: 0.1
@@ -1350,7 +1350,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 921
   m_RenderingLayerMask: 1
   m_Lightmapping: 1
   m_LightShadowCasterMode: 0
@@ -1786,9 +1786,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2348,9 +2348,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2863,9 +2863,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2976,7 +2976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5736213306872914185, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -92.77
+      value: -103
       objectReference: {fileID: 0}
     - target: {fileID: 5736213306872914185, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2988,7 +2988,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5736213306872914185, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.75298923
+      value: 0.7161802
       objectReference: {fileID: 0}
     - target: {fileID: 5736213306872914185, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2996,7 +2996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5736213306872914185, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.65803283
+      value: 0.69791543
       objectReference: {fileID: 0}
     - target: {fileID: 5736213306872914185, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
       propertyPath: m_LocalRotation.z
@@ -3008,7 +3008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5736213306872914185, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 88.52
       objectReference: {fileID: 0}
     - target: {fileID: 5736213306872914185, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -3095,9 +3095,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3915,7 +3915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 54152971920550547, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 16
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 273969311317608639, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4043,7 +4043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3197248789440429982, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 16
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 3376531944269355566, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4123,7 +4123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3950495467029460355, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 109
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3998162227078702995, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_Layer
@@ -4223,7 +4223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5366743440273583583, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 16
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 5408242145029959293, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_Layer
@@ -4307,7 +4307,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6898585913615424814, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 16
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 6937557063172812001, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_Layer
@@ -4335,7 +4335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7604256912124730701, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 16
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7803256606831620872, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -4363,7 +4363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8782438304419905884, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 16
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 8923230530569205944, guid: ce127ed8d49c3c74f8b52e59aab644a6, type: 3}
       propertyPath: m_Layer

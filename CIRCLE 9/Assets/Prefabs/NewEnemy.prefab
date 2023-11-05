@@ -2138,7 +2138,7 @@ MonoBehaviour:
   _chaseSpeed: 10
   _patrolSpeed: 3
   _patrolRange: 10
-  _itemDropRate: 25
+  _itemDropRate: 20
   sightRange: 20
   attackRange: 1
   _ragDollTime: 10
