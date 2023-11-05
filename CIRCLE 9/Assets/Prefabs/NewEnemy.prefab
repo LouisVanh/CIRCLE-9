@@ -2127,6 +2127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dropItem: {fileID: 411106111980856062, guid: d9c147e828c35a545a78bb72f06b6b57, type: 3}
+  _dropShotgun: {fileID: 3551782635974011820, guid: fb68898a0d8725e4faab2db6da67b929, type: 3}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
@@ -2137,7 +2138,7 @@ MonoBehaviour:
   _chaseSpeed: 10
   _patrolSpeed: 3
   _patrolRange: 10
-  _itemDropRate: 3
+  _itemDropRate: 30
   sightRange: 20
   attackRange: 1
   _ragDollTime: 10

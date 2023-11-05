@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour
 
     [Header("Prefab")]
     [SerializeField] private GameObject _dropItem;
+    [SerializeField] private GameObject _dropShotgun;
 
     [Header("Layers")]
 
@@ -59,6 +60,7 @@ public class EnemyAI : MonoBehaviour
     private bool _playOnSightOnce = false;
     private Collider _collider;
     private int _deathCounter =0;
+    
 
     private void Start()
     {
@@ -142,8 +144,11 @@ public class EnemyAI : MonoBehaviour
         {
             if(_deathCounter ==0)
             {
-                _playerBehaviour.AmountOfKills += 1;
+                _playerBehaviour.AmountOfKills++;
                 _deathCounter= 1;
+                Debug.Log("DROP SHOTGUn");
+                Debug.Log(_playerBehaviour.AmountOfKills);
+                DropShotGun();
             }          
             _animator.SetBool("Die", true);
             DropItem();
@@ -151,6 +156,14 @@ public class EnemyAI : MonoBehaviour
             _collider.enabled = false;
             //_enemyAudioSource.volume = Mathf.Lerp(_enemyAudioSource.volume, 0, 10 * Time.deltaTime); 
             //TODO: Lerp volume down to 0 after kill
+        }
+    }
+    private void DropShotGun()
+    {
+        if(_playerBehaviour.AmountOfKills == 10) 
+        {
+            GameObject shotgun = Instantiate(_dropShotgun, this.transform.position, Quaternion.identity);
+            
         }
     }
 
@@ -181,7 +194,7 @@ public class EnemyAI : MonoBehaviour
         if (_itemDropped == false)
         {
             if (_maxSkullSpawnRate == 1)
-            {
+            {              
                 GameObject pickup = Instantiate(_dropItem, this.transform.position, Quaternion.identity);
             }
             _itemDropped = true;
