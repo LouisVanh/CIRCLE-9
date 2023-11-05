@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -63,17 +64,10 @@ public class EnemyAI : MonoBehaviour
     private int _deathCounter =0;
 
     private bool _outOfCamera; // MAKE SURE THE SCENE CAMERA IS NOT POINTING AT THE SCENE!!!!!!!!!!!!
-    //[SerializeField] private Material _skin1;
-    //[SerializeField] private Material _skin2;
-    //[SerializeField] private Material _skin3;
-    //[SerializeField] private Renderer _renderer;
 
 
     private void Start()
     {
-        //if(_randomSkin == 1) _renderer.sharedMaterial = _skin1;
-        //if (_randomSkin == 2) _renderer.sharedMaterial = _skin2;
-        //if (_randomSkin == 3) _renderer.sharedMaterial = _skin3;
 
         _player = GameObject.Find("PLAYER").transform;
         _playerBehaviour = GameObject.Find("PLAYER").GetComponent<PlayerBehaviour>();
@@ -170,9 +164,13 @@ public class EnemyAI : MonoBehaviour
     }
     private void DropShotGun()
     {
-        if(_playerBehaviour.AmountOfKills == 10) 
-        {
-            GameObject shotgun = Instantiate(_dropShotgun, this.transform.position, Quaternion.identity);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+        {// main scene 
+
+            if (_playerBehaviour.AmountOfKills == 10)
+            {
+                GameObject shotgun = Instantiate(_dropShotgun, this.transform.position, Quaternion.identity);
+            }
         }
     }
 
@@ -200,13 +198,17 @@ public class EnemyAI : MonoBehaviour
 
     private void DropItem()
     {
-        if (_itemDropped == false)
-        {
-            if (_maxSkullSpawnRate == 1)
-            {              
-                GameObject pickup = Instantiate(_dropItem, this.transform.position, Quaternion.identity);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(1))
+        {// main scene (else only spawn after the animation with satan
+
+            if (_itemDropped == false)
+            {
+                if (_maxSkullSpawnRate == 1)
+                {
+                    GameObject pickup = Instantiate(_dropItem, this.transform.position, Quaternion.identity);
+                }
+                _itemDropped = true;
             }
-            _itemDropped = true;
         }
     }
 
