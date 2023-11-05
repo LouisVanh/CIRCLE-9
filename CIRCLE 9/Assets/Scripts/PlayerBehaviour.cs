@@ -41,6 +41,7 @@ public class PlayerBehaviour : MonoBehaviour
     [NonSerialized] public bool HasShotgun = false;
     [NonSerialized] public int AmountOfKills;
     public bool IsShooting;
+    private float _timeSinceHit; 
 
 
     void Start()
@@ -51,8 +52,6 @@ public class PlayerBehaviour : MonoBehaviour
         _controller = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        //_skull = this.transform.Find("Main Camera/SkullHolder").transform;
-        //_shotgun = this.transform.Find("Main Camera/ShotgunFinal").transform;
         SkullAmount = 0;
         HasSkull = false;
         if (SceneManager.GetActiveScene() == (SceneManager.GetSceneByBuildIndex(2)))
@@ -65,6 +64,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     void Update()
     {
+        _timeSinceHit += Time.deltaTime;
         if (!HasDied)
         {
             CheckDeath(_health);
@@ -85,6 +85,7 @@ public class PlayerBehaviour : MonoBehaviour
             }
             WeaponCycle();
         }
+        PassiveHealing();
     }
 
     public void GateSpawnSkull()
@@ -172,6 +173,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void AddHealth(float healthChange)
     {
+        if (healthChange < 0) _timeSinceHit = 0;
         _health += healthChange;
         _health = Mathf.Clamp(_health, 0, _maxHealth);
         _healthBar.SetHealth(_health);
@@ -258,5 +260,12 @@ public class PlayerBehaviour : MonoBehaviour
                 _lastGroundedTime = null;
             }
         }
+    }
+    private void PassiveHealing()
+    {
+        if (_timeSinceHit > 3)
+        {
+            AddHealth(Time.deltaTime * 2);
+        } 
     }
 }

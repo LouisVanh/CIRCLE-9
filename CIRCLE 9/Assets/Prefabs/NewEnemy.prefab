@@ -2105,7 +2105,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 250
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
@@ -2138,7 +2138,7 @@ MonoBehaviour:
   _chaseSpeed: 10
   _patrolSpeed: 3
   _patrolRange: 10
-  _itemDropRate: 30
+  _itemDropRate: 10
   sightRange: 20
   attackRange: 1
   _ragDollTime: 10
