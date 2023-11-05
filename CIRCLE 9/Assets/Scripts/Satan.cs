@@ -41,7 +41,7 @@ public class Satan : MonoBehaviour
         _fireBallTimer += Time.deltaTime;
         if (_fireBallTimer >= 10)
         {
-            GameObject fireball = Instantiate(_fireBall, transform);
+            GameObject fireball = Instantiate(_fireBall, _fireSpewPos);
             _fireBallTimer = 0;
         }
 
