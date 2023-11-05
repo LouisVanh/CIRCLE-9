@@ -10,6 +10,7 @@ public class GameMenuChecker : MonoBehaviour
     [SerializeField] private Satan _satan;
     [SerializeField] private GameObject _deathMenu;
     [SerializeField] private GameObject _cutsceneMenu;
+    [SerializeField] private GameObject _winMenu;
     [SerializeField] private Audio _gameAudio;
     //[SerializeField] private Boat _boat;
     // Start is called before the first frame update
@@ -30,7 +31,10 @@ public class GameMenuChecker : MonoBehaviour
     void Update()
     {
         CheckPlayerDeath();
-        CheckSatanDeath();
+        if (_satan != null)
+        {
+            CheckSatanDeath();
+        }
         if (_cutsceneMenu != null)
         {
             if (_player.isActiveAndEnabled)
@@ -58,7 +62,10 @@ public class GameMenuChecker : MonoBehaviour
 
     private void Win()
     {
-        throw new NotImplementedException();
+        _winMenu.SetActive(true);
+        Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void CheckPlayerDeath()
@@ -79,9 +86,7 @@ public class GameMenuChecker : MonoBehaviour
     }
     public void RestartGame()
     {
-        int restart = SceneManager.GetActiveScene().buildIndex;
-        if (restart == 2) restart = 1;
-        SceneManager.LoadScene(restart);
+        SceneManager.LoadScene(1);
         Time.timeScale = 1f;
         _player.HasDied= false;
         _gameAudio._gameHasBegun= false;
