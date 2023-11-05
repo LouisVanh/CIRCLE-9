@@ -14,7 +14,10 @@ public class GameMenuChecker : MonoBehaviour
     void Start()
     {
         _deathMenu.SetActive(false);
-        _cutsceneMenu.SetActive(true); 
+        if (_cutsceneMenu != null)
+        {
+            _cutsceneMenu.SetActive(true);
+        }
         Time.timeScale= 1.0f;
         _gameAudio = GameObject.Find("Music").GetComponent<Audio>();
         //_player = GameObject.Find("PLAYER").GetComponent<PlayerBehaviour>() ;
@@ -25,14 +28,18 @@ public class GameMenuChecker : MonoBehaviour
     void Update()
     {
         CheckPlayerDeath();
-        if(_player.isActiveAndEnabled)
+        if (_cutsceneMenu != null)
         {
-            _cutsceneMenu.SetActive(false);
+            if (_player.isActiveAndEnabled)
+            {
+                _cutsceneMenu.SetActive(false);
+            }
+            else
+            {
+                _cutsceneMenu.SetActive(true);
+            }
         }
-        else
-        {
-            _cutsceneMenu.SetActive(true);
-        }
+        
     }
     private void CheckPlayerDeath()
     {
@@ -51,7 +58,9 @@ public class GameMenuChecker : MonoBehaviour
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        int restart = SceneManager.GetActiveScene().buildIndex;
+        if (restart == 2) restart = 1;
+        SceneManager.LoadScene(restart);
         Time.timeScale = 1f;
         _player.HasDied= false;
         _gameAudio._gameHasBegun= false;

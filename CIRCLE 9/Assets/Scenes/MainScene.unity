@@ -1616,7 +1616,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1758808352}
-  _amountOfSkulls: 6
   _skull: {fileID: 5361040715605967612, guid: 9099574cbea016142b56f74b06d6519e, type: 3}
   _pos1: {fileID: 1966470051}
   _pos2: {fileID: 1126956176}
@@ -3191,10 +3190,10 @@ PrefabInstance:
     - target: {fileID: 4070601870942762900, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1283297574}
+      objectReference: {fileID: 1283297573}
     - target: {fileID: 4070601870942762900, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RestartGame
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5221815038657001156, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
       propertyPath: m_Interactable
