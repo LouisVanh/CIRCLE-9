@@ -109,7 +109,7 @@ public class PlayerBehaviour : MonoBehaviour
             SkullAmount++;
             if (SkullAmount <= 6)
                 GateSpawnSkull();
-            else if (SkullAmount == 7)
+            if (SkullAmount == 6)
             {
                 _gate.OpenGate();
             }
