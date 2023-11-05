@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    private int _score;
+    public int gameScore;
     [SerializeField] private PlayerBehaviour _playerBehaviour;
     [SerializeField] private TextMeshProUGUI _textMeshPro;
     private void Start()
@@ -14,8 +14,8 @@ public class Score : MonoBehaviour
     }
     void Update()
     {
-        _score = _playerBehaviour.AmountOfKills * 100;
-        _textMeshPro.SetText("Score:" + _score.ToString());
+        gameScore = _playerBehaviour.AmountOfKills * 100;
+        _textMeshPro.SetText("Score:" + gameScore.ToString());
 
     }
 }
