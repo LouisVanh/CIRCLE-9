@@ -9,9 +9,6 @@ public class GameSettings : MonoBehaviour
     public bool IsMoving;
     public Transform Player;
     
-
-
-
     void Awake()
     {
         if (Instance == null)

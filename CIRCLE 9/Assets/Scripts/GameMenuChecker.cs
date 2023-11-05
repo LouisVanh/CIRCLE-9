@@ -51,12 +51,9 @@ public class GameMenuChecker : MonoBehaviour
 
     private void CheckSatanDeath()
     {
-        if(_satan!= null)
+        if (_satan.HasDied)
         {
-            if (_satan.HasDied)
-            {
-                Win();
-            }
+            Win();
         }
     }
 
