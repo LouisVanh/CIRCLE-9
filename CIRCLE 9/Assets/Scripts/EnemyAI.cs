@@ -60,6 +60,8 @@ public class EnemyAI : MonoBehaviour
     private bool _playOnSightOnce = false;
     private Collider _collider;
     private int _deathCounter =0;
+
+    private bool _outOfCamera; // MAKE SURE THE SCENE CAMERA IS NOT POINTING AT THE SCENE!!!!!!!!!!!!
     
 
     private void Start()
@@ -202,7 +204,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Patroling()
     {
-        if (!walkPointSet) SearchWalkPoint();
+        if (!walkPointSet && !_outOfCamera) SearchWalkPoint();
 
         if (walkPointSet)
         {
@@ -296,6 +298,15 @@ public class EnemyAI : MonoBehaviour
         {
             _playerBehaviour.AddHealth(-15);
         }
+    }
+
+    public void OnBecameInvisible()
+    {
+        _outOfCamera = true;
+    }
+    public void OnBecameVisible()
+    {
+        _outOfCamera = false;
     }
 }
 
