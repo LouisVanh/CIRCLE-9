@@ -934,6 +934,8 @@ MonoBehaviour:
   LeftTopZ: -50
   RightTopZ: 50
   _enemy: {fileID: 3214064777616132777, guid: 8cd0d4650db4ded45b65ded60bdac8ed, type: 3}
+  _enemy1: {fileID: 3214064777616132777, guid: 6c53b61b37ea59e499752d3196899d2a, type: 3}
+  _enemy2: {fileID: 3214064777616132777, guid: 56d04f8cdc18249499cba10cf7f50429, type: 3}
 --- !u!4 &482231489
 Transform:
   m_ObjectHideFlags: 0

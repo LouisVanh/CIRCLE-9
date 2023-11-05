@@ -56,16 +56,25 @@ public class EnemyAI : MonoBehaviour
     private Animator _animator;
     private int _maxSkullSpawnRate;
     private int _randomOnSightSound;
+    private int _randomSkin;
     private int _randomDeathSound;
     private bool _playOnSightOnce = false;
     private Collider _collider;
     private int _deathCounter =0;
 
     private bool _outOfCamera; // MAKE SURE THE SCENE CAMERA IS NOT POINTING AT THE SCENE!!!!!!!!!!!!
-    
+    //[SerializeField] private Material _skin1;
+    //[SerializeField] private Material _skin2;
+    //[SerializeField] private Material _skin3;
+    //[SerializeField] private Renderer _renderer;
+
 
     private void Start()
     {
+        //if(_randomSkin == 1) _renderer.sharedMaterial = _skin1;
+        //if (_randomSkin == 2) _renderer.sharedMaterial = _skin2;
+        //if (_randomSkin == 3) _renderer.sharedMaterial = _skin3;
+
         _player = GameObject.Find("PLAYER").transform;
         _playerBehaviour = GameObject.Find("PLAYER").GetComponent<PlayerBehaviour>();
         _agent = GetComponent<NavMeshAgent>();
@@ -75,6 +84,8 @@ public class EnemyAI : MonoBehaviour
         _maxSkullSpawnRate = UnityEngine.Random.Range(1, _itemDropRate);
         _randomDeathSound = UnityEngine.Random.Range(0, 3);
         _randomOnSightSound = UnityEngine.Random.Range(0, 6);
+        _randomSkin = UnityEngine.Random.Range(0, 3);
+
         _animator = GetComponentInChildren<Animator>();
         _enemyAudioSource = GetComponent<AudioSource>();
         _animator.SetInteger("AtackIndex", UnityEngine.Random.Range(0, 2));
@@ -151,8 +162,8 @@ public class EnemyAI : MonoBehaviour
             }          
             _animator.SetBool("Die", true);
             DropItem();
-            DespawnAfterSeconds();
-            _collider.enabled = false;
+            //DespawnAfterSeconds();
+            //_collider.enabled = false;
             //_enemyAudioSource.volume = Mathf.Lerp(_enemyAudioSource.volume, 0, 10 * Time.deltaTime); 
             //TODO: Lerp volume down to 0 after kill
         }
@@ -267,6 +278,7 @@ public class EnemyAI : MonoBehaviour
             if (_timer <= _ragDollTime)
                 _timer += Time.deltaTime;
 
+            if(_timer > _ragDollTime - 1) _collider.enabled = false; // fall thru floor
             if (_timer > _ragDollTime) Invoke(nameof(DestroyEnemy), 0.5f);
         }
     }

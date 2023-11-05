@@ -22,6 +22,9 @@ public class EnemyWave : MonoBehaviour
 
     [Header("EnemyPrefab")]
     [SerializeField] private GameObject _enemy;
+    [SerializeField] private GameObject _enemy1;
+    [SerializeField] private GameObject _enemy2;
+
 
     private void Start()
     {
@@ -66,9 +69,27 @@ public class EnemyWave : MonoBehaviour
                 }
 
                 Vector3 randomRot = new(Random.Range(-30, 30), Random.Range(-30, 30), Random.Range(-30, 30));
-                var enemy = Instantiate(_enemy, spawnPos, Quaternion.Euler(randomRot));
+                var randomSkin = Random.Range(0, 3);
+                if (randomSkin == 1)
+                {
+                    var enemy = Instantiate(_enemy, spawnPos, Quaternion.Euler(randomRot));
                     enemy.GetComponent<EnemyAI>().SubmergeOutIce(hit.position.y + 0.8f); // O.8f = enemy offset to spawn on feet
-                    break;
+                }
+
+
+                if (randomSkin == 2)
+                {
+                    var enemy = Instantiate(_enemy1, spawnPos, Quaternion.Euler(randomRot));
+                    enemy.GetComponent<EnemyAI>().SubmergeOutIce(hit.position.y + 0.8f); // O.8f = enemy offset to spawn on feet
+                }
+
+                if (randomSkin == 3)
+                {
+                    var enemy = Instantiate(_enemy2, spawnPos, Quaternion.Euler(randomRot));
+                    enemy.GetComponent<EnemyAI>().SubmergeOutIce(hit.position.y + 0.8f); // O.8f = enemy offset to spawn on feet
+                }
+
+                break;
             }
         }
     }

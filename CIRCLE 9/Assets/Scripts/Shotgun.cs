@@ -112,8 +112,8 @@ public class Shotgun : MonoBehaviour
     {
         _gunShotAudioSource.PlayOneShot(_gunShotSound);
         Ray ray1 = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
-        Ray ray2 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.75f * Camera.main.transform.right);
-        Ray ray3 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - 0.75f * Camera.main.transform.right);
+        //Ray ray2 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.75f * Camera.main.transform.right);
+        //Ray ray3 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - 0.75f * Camera.main.transform.right);
         Ray ray4 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.5f * Camera.main.transform.right);
         Ray ray5 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - 0.5f * Camera.main.transform.right);
         Ray ray6 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.25f * Camera.main.transform.right);
@@ -121,8 +121,8 @@ public class Shotgun : MonoBehaviour
         Ray ray8 = new Ray(Camera.main.transform.position, Camera.main.transform.forward + 0.125f * Camera.main.transform.right);
         Ray ray9 = new Ray(Camera.main.transform.position, Camera.main.transform.forward - 0.125f * Camera.main.transform.right);
         ShootAlongThisRay(ray1);
-        ShootAlongThisRay(ray2);
-        ShootAlongThisRay(ray3);
+        //ShootAlongThisRay(ray2);
+        //ShootAlongThisRay(ray3);
         ShootAlongThisRay(ray4);
         ShootAlongThisRay(ray5);
         ShootAlongThisRay(ray6);
