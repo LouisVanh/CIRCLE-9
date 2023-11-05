@@ -15,6 +15,7 @@ public class Audio : MonoBehaviour
     [SerializeField] private AudioClip _clipGameAmbiance1;
     [SerializeField] private AudioClip _clipGameAmbiance2;
     [SerializeField] private AudioClip _clipStartCutscene;
+    [SerializeField] private AudioClip _clipSatanScene;
     [SerializeField] private AudioClip _clipCutsceneAmbiance;
     [SerializeField] private AudioClip _clipDeathAmbiance;
     [SerializeField] private Slider _volumeSlider;
@@ -84,6 +85,16 @@ public class Audio : MonoBehaviour
             audioSourceAmbiance2.Stop();
             _playAudioSceneCounter = 1;
            
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 2 && _playAudioSceneCounter == 1 && _gameHasBegun)
+        {
+            audioSource.Stop();
+            audioSource.clip = _clipSatanScene;
+            audioSource.Play();
+            _playAudioSceneCounter = 2;
+            Debug.Log("PLAY SATAN THEME");
+            
+
         }
         if (_playAudioCounter == 0 && _gameHasBegun)
         {           

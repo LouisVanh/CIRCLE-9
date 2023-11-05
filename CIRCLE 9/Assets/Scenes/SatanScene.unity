@@ -1969,8 +1969,9 @@ MonoBehaviour:
   _clipGameAmbiance1: {fileID: 8300000, guid: 0cd40f79c07062649b16d662cbd04222, type: 3}
   _clipGameAmbiance2: {fileID: 8300000, guid: 0f0caf774a0ea0c41ac67d6a7cb0ede4, type: 3}
   _clipStartCutscene: {fileID: 0}
+  _clipSatanScene: {fileID: 8300000, guid: 0546ed62b12f5784a824e09206951a0e, type: 3}
   _clipCutsceneAmbiance: {fileID: 0}
-  _clipDeathAmbiance: {fileID: 0}
+  _clipDeathAmbiance: {fileID: 8300000, guid: d9a9eafe6e68b0e4b875e313875bbabb, type: 3}
   _volumeSlider: {fileID: 0}
   _sfxSlider: {fileID: 0}
   _sfxVolume: 0.025
@@ -3768,7 +3769,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtitleText: {fileID: 1340883527}
-  displayTime: 3
 --- !u!114 &1340883527
 MonoBehaviour:
   m_ObjectHideFlags: 0

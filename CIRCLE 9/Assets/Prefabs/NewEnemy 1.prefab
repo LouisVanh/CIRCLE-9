@@ -2138,7 +2138,7 @@ MonoBehaviour:
   _chaseSpeed: 10
   _patrolSpeed: 3
   _patrolRange: 10
-  _itemDropRate: 20
+  _itemDropRate: 2
   sightRange: 20
   attackRange: 1
   _ragDollTime: 10
@@ -2158,10 +2158,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fbe949f926d3bfa4a85e98003ce7e6bc, type: 3}
   - {fileID: 8300000, guid: f227b8716f4f593489bc391f153ae592, type: 3}
   _soundEffects: {fileID: 0}
-  _skin1: {fileID: 2100000, guid: 126dff33fe5f4cf4c81fd40ad7f42589, type: 2}
-  _skin2: {fileID: 2100000, guid: 1fee2c4d9bf3fbe4eb08abd4946bd8cc, type: 2}
-  _skin3: {fileID: 2100000, guid: 1d3501905821ac947917320a7a495b37, type: 2}
-  _renderer: {fileID: 4961733806779958784}
 --- !u!82 &4670686095534828286
 AudioSource:
   m_ObjectHideFlags: 0
