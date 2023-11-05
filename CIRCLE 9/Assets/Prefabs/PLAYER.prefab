@@ -109,6 +109,7 @@ MonoBehaviour:
   _jumpGraceperiod: 0.2
   _health: 100
   _maxHealth: 100
+  _gate: {fileID: 0}
   _skull: {fileID: 6947353303560255339}
   _shotgun: {fileID: 8425727343818053397}
   IsShooting: 0
