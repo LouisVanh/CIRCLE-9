@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Subtitles : MonoBehaviour
 {
     public TextMeshProUGUI subtitleText;
-    public float displayTime = 3f;
+    private float displayTime = 3.5f;
 
     private Queue<string> subtitlesQueue = new Queue<string>();
 
@@ -47,7 +47,7 @@ public class Subtitles : MonoBehaviour
             subtitleText.text = subtitle;
             yield return new WaitForSeconds(displayTime);
             subtitleText.text = ""; // Clear the text
-            yield return new WaitForSeconds(1f); // Add a brief pause between subtitles
+            yield return new WaitForSeconds(0.5f); // Add a brief pause between subtitles
         }
     }
 }
