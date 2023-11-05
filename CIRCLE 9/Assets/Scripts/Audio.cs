@@ -15,6 +15,8 @@ public class Audio : MonoBehaviour
     [SerializeField] private AudioClip _clipGameAmbiance1;
     [SerializeField] private AudioClip _clipGameAmbiance2;
     [SerializeField] private AudioClip _clipStartCutscene;
+    [SerializeField] private AudioClip _clipSatanScene;
+    [SerializeField] private AudioClip _clipWonGame;
     [SerializeField] private AudioClip _clipCutsceneAmbiance;
     [SerializeField] private AudioClip _clipDeathAmbiance;
     [SerializeField] private Slider _volumeSlider;
@@ -24,6 +26,8 @@ public class Audio : MonoBehaviour
     public int _playAudioCounter = 0;
     public int _playAudioSceneCounter = 0; 
     public bool _gameHasBegun = false;
+    public bool WonGame = false;
+    public bool PlayingWonTheme = false;
 
     private void Awake()
     {
@@ -73,6 +77,11 @@ public class Audio : MonoBehaviour
     }
     private void Update()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Time.timeScale = 1f;
+
+        }
 
         if (SceneManager.GetActiveScene().buildIndex !=0 && _playAudioSceneCounter ==0)
         {
@@ -85,10 +94,28 @@ public class Audio : MonoBehaviour
             _playAudioSceneCounter = 1;
            
         }
+        if (SceneManager.GetActiveScene().buildIndex == 2 && _playAudioSceneCounter == 1 && _gameHasBegun)
+        {
+            audioSource.Stop();
+            audioSource.clip = _clipSatanScene;
+            audioSource.Play();
+            _playAudioSceneCounter = 2;
+            Debug.Log("PLAY SATAN THEME");
+
+        }
         if (_playAudioCounter == 0 && _gameHasBegun)
         {           
             StartPlayingGameMusic();
             _playAudioCounter = 1;
+        }
+
+        if(SceneManager.GetActiveScene().buildIndex == 2 && _gameHasBegun && WonGame && !PlayingWonTheme)
+        {
+            audioSource.Stop();
+            audioSource.clip = _clipWonGame;
+            audioSource.Play();           
+            Debug.Log("PLAY WON THEME");
+            PlayingWonTheme= true;
         }
     }
     public void ChangeVolume()

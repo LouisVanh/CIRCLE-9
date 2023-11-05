@@ -16,6 +16,10 @@ public class GameMenuChecker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(_winMenu!= null)
+        {
+            _winMenu.SetActive(false);
+        }
         _deathMenu.SetActive(false);
         if (_cutsceneMenu != null)
         {
@@ -51,15 +55,21 @@ public class GameMenuChecker : MonoBehaviour
 
     private void CheckSatanDeath()
     {
-        if (_satan.HasDied)
+        if(_satan!= null)
         {
-            Win();
+            if (_satan.HasDied)
+            {
+                Win();
+                
+            }
         }
     }
 
     private void Win()
     {
         _winMenu.SetActive(true);
+        _gameAudio.WonGame = true;
+        _player.WonGame = true;
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -89,6 +99,8 @@ public class GameMenuChecker : MonoBehaviour
         _gameAudio._gameHasBegun= false;
         _gameAudio._playAudioSceneCounter= 0;
         _gameAudio._playAudioCounter= 0;
+        _gameAudio.PlayingWonTheme= false;
+        _gameAudio.WonGame = false;
     }
     public void ReturnToMainMenu()
     {
@@ -96,6 +108,9 @@ public class GameMenuChecker : MonoBehaviour
         _player.HasDied= false;
         Destroy(GameObject.Find("Music"));
         SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
+        _gameAudio.PlayingWonTheme= false;
+        _gameAudio.WonGame = false;
     }
     public void QuitGame()
     {
