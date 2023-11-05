@@ -1407,6 +1407,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 710198913}
   m_CullTransparentMesh: 1
+--- !u!1 &789232210 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8653523445255116830, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
+  m_PrefabInstance: {fileID: 1412112319}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &823467274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,7 +1466,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8561740160431696261, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
   m_PrefabInstance: {fileID: 1412112319}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
 --- !u!114 &837244280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1476,8 +1480,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 0, g: 0, b: 0, a: 0}
   alpha: 0
-=======
->>>>>>> Stashed changes
 --- !u!1 &898366110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,7 +1603,7 @@ Transform:
   m_GameObject: {fileID: 898366110}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 129.9, y: 34.98, z: -0.48}
+  m_LocalPosition: {x: 129.9, y: 34.98, z: -1.08}
   m_LocalScale: {x: 11.762053, y: 21.058037, z: 1.8677526}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2930,7 +2932,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8653523445255116830, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 837244280}
   m_SourcePrefab: {fileID: 100100000, guid: 8c6c8d66a2722624ab63002e3bdab332, type: 3}
 --- !u!1 &1446129366
 GameObject:
