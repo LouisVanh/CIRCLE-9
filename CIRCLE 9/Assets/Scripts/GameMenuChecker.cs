@@ -108,6 +108,7 @@ public class GameMenuChecker : MonoBehaviour
         _player.HasDied= false;
         Destroy(GameObject.Find("Music"));
         SceneManager.LoadScene(0);
+        Time.timeScale = 1f;
         _gameAudio.PlayingWonTheme= false;
         _gameAudio.WonGame = false;
     }

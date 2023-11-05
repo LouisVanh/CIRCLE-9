@@ -77,6 +77,11 @@ public class Audio : MonoBehaviour
     }
     private void Update()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Time.timeScale = 1f;
+
+        }
 
         if (SceneManager.GetActiveScene().buildIndex !=0 && _playAudioSceneCounter ==0)
         {
