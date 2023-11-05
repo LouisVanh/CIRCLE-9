@@ -15,12 +15,16 @@ public class SatanMinions : MonoBehaviour
     [Header("Debug")]
     [SerializeField] private float _timer;
     [SerializeField] private float _timeBetweenWaves;
-    [SerializeField] private float radius;
+    [SerializeField] private float _minRadius;
+    [SerializeField] private float _maxRadius;
+    [SerializeField] private int _amountOfMinions;
+    private float _radius;
     private float posY;
 
     void Start()
     {
         Satan = this.gameObject;
+        
     }
 
     // Update is called once per frame
@@ -29,7 +33,7 @@ public class SatanMinions : MonoBehaviour
         _timer += Time.deltaTime;
         if(_timer > _timeBetweenWaves)
         {
-            SpawnMinionsAroundHim(10);
+            SpawnMinionsAroundHim(_amountOfMinions);
             _timer = 0;
         }
     }
@@ -39,13 +43,14 @@ public class SatanMinions : MonoBehaviour
         Vector3 center = Satan.transform.position;
         for (int i = 0; i < n; i++)
         {
+            _radius = Random.Range(_minRadius, _maxRadius);
             //var fullCircle = 2 * Mathf.PI;
             var fullCircle = 360;
             float angle = (i * (fullCircle / (n)) );
             float rx = Mathf.Cos(angle);
             float rz = Mathf.Sin(angle);
 
-            Vector3 spawnPos = new Vector3(center.x + radius * rx, -20, center.z + radius * rz);
+            Vector3 spawnPos = new Vector3(center.x + _radius * rx, -1, center.z + _radius * rz);
 
             //NavMeshHit hit;
             //if (!NavMesh.SamplePosition(new Vector3(spawnPos.x, 0, spawnPos.z), out hit, 2f, NavMesh.AllAreas)) // find position
@@ -60,11 +65,11 @@ public class SatanMinions : MonoBehaviour
 
 
             Ray ray = new Ray(spawnPos, Vector3.up);
-            if(Physics.Raycast(ray, out RaycastHit hit, 50))
+            if(Physics.Raycast(ray, out RaycastHit hit, 50, 1 >> 3|8))
             {
                 Debug.Log("RAYCASTING");
                 posY = hit.point.y;
-                spawnPos = new Vector3(hit.point.x, -5, hit.point.z);
+                spawnPos = new Vector3(hit.point.x, -1, hit.point.z);
             }
 
             var randomSkin = Random.Range(0, 3);
