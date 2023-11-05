@@ -160,7 +160,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void DropShotGun()
     {
-        if(_playerBehaviour.AmountOfKills == 10) 
+        if(_playerBehaviour.AmountOfKills == 1) 
         {
             GameObject shotgun = Instantiate(_dropShotgun, this.transform.position, Quaternion.identity);
             
