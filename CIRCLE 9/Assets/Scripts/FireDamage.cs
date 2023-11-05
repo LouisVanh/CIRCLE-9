@@ -11,12 +11,11 @@ public class FireDamage : MonoBehaviour
         _player = GameObject.Find("PLAYER").GetComponent<PlayerBehaviour>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (_isOnFire)
         {
-            _player.AddHealth(-10 * Time.deltaTime);
+            _player.AddHealth(-20 * Time.deltaTime);
         }
     }
     private void OnTriggerEnter(Collider other)
