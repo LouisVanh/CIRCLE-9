@@ -62,7 +62,6 @@ public class Audio : MonoBehaviour
         }
         else
         {
-
             audioSource.clip = _clipGame;
             audioSourceAmbiance.clip = _clipGameAmbiance1;
             audioSourceAmbiance2.clip = _clipGameAmbiance2;

@@ -67,7 +67,6 @@ public class PlayerBehaviour : MonoBehaviour
         _timeSinceHit += Time.deltaTime;
         if (!HasDied)
         {
-            CheckDeath(_health);
             Camera();
             _horizontalInput = (Input.GetAxis("Horizontal") * _horizontalSpeedMultiplier);
             _verticalInput = Input.GetAxis("Vertical");
@@ -163,9 +162,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     }
 
-    private void CheckDeath(float health)
+    private void CheckDeath()
     {
-        if (health <= 0)
+        if (_health <= 0)
         {
             HasDied = true;
         }
@@ -173,7 +172,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void AddHealth(float healthChange)
     {
-        if (healthChange < 0) _timeSinceHit = 0;
+        if (healthChange < 0)
+        {
+            _timeSinceHit = 0;
+            CheckDeath();
+        }
         _health += healthChange;
         _health = Mathf.Clamp(_health, 0, _maxHealth);
         _healthBar.SetHealth(_health);

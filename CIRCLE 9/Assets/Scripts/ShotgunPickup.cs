@@ -7,8 +7,7 @@ public class ShotgunPickup : MonoBehaviour
     private PlayerBehaviour _player;
     [SerializeField] private Collider _collider;
     private float _timer = 0;
-    private bool _dropped = false;
-    //[SerializeField] private SkullCountUI _skullCountUI;
+
     private void Start()
     {
         _collider.isTrigger = false;
@@ -27,7 +26,7 @@ public class ShotgunPickup : MonoBehaviour
         {
             _player = GameObject.Find("PLAYER").GetComponent<PlayerBehaviour>();
             _player.ShotgunPickup();
-            //_skullCountUI.ShouldGrow = true;
+
             Destroy(gameObject);
         }
     }
