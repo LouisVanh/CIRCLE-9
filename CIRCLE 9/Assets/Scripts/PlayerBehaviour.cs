@@ -265,7 +265,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (_timeSinceHit > 3)
         {
-            AddHealth(Time.deltaTime * 2);
+            AddHealth(Time.deltaTime * 5);
         } 
     }
 }

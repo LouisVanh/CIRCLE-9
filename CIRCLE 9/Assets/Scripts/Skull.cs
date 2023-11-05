@@ -36,12 +36,12 @@ public class Skull : MonoBehaviour
         {
             m_Animator.SetBool("Smash", true);
             _skullAudioSource.PlayOneShot(_skullWhooshSound, 0.4f);
-        }   
+        }
     }
     private void AnimationFalse()
     {
         //called in animation
-        m_Animator.SetBool("Smash", false );
+        m_Animator.SetBool("Smash", false);
     }
 
     private void Smash()
@@ -73,10 +73,18 @@ public class Skull : MonoBehaviour
                     rb.freezeRotation = true;
                     hit.transform.gameObject.GetComponent<NavMeshAgent>().enabled = false;
                     hit.transform.gameObject.GetComponent<EnemyAI>().isDead = true;
+                    hit.transform.gameObject.GetComponent<EnemyAI>().OnDeath();
                     var distanceBetweenEnemyAndPlayer = Vector3.Distance(Camera.main.transform.position, hit.point);
                     rb.AddForce((Camera.main.transform.forward - Camera.main.transform.right).normalized * _smashKnockBack / distanceBetweenEnemyAndPlayer);
+                    _player.AddHealth(10);
                 }
 
+                if (hit.transform.gameObject.layer == 9) // Satan : 9
+                {
+                    Debug.Log("hit satan");
+                    Satan SatanScript = hit.transform.gameObject.GetComponentInParent<Satan>();
+                    SatanScript.AddHealth(-1);
+                }
             }
         }
     }

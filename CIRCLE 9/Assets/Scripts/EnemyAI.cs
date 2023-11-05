@@ -99,6 +99,7 @@ public class EnemyAI : MonoBehaviour
         lerpedValue = end;
         isLerping = false;
         _shouldEnable = true;
+        EnableWhenNeeded();
     }
     private void EnableWhenNeeded()
     {
@@ -116,7 +117,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        EnableWhenNeeded();
+        //EnableWhenNeeded();
         //Check for sight and attack range
         if (_agent.enabled)
         {
@@ -134,11 +135,11 @@ public class EnemyAI : MonoBehaviour
             //lerp above the ice
             this.transform.position = new Vector3(this.transform.position.x, lerpedValue, this.transform.position.z);
         }
-        OnDeath();
+        //OnDeath();
 
     }
 
-    private void OnDeath()
+    public void OnDeath()
     {
         if (isDead)
         {
@@ -146,8 +147,6 @@ public class EnemyAI : MonoBehaviour
             {
                 _playerBehaviour.AmountOfKills++;
                 _deathCounter= 1;
-                Debug.Log("DROP SHOTGUn");
-                Debug.Log(_playerBehaviour.AmountOfKills);
                 DropShotGun();
             }          
             _animator.SetBool("Die", true);

@@ -135,10 +135,8 @@ public class Shotgun : MonoBehaviour
     {
         if (Physics.Raycast(ray, out RaycastHit hit, _maxShootDistance))
         {
-            //Debug.DrawRay(Camera.main.transform.position, ray.direction, Color.red, 10);
             if (hit.transform.gameObject.layer == 7) // Enemy : 7
             {
-                //_player.AmountOfKills++;
                 PlayVFXAtPoint(hit);
                 hit = TurnOffAnimations(hit);
                 if (hit.transform.gameObject.GetComponent<Rigidbody>() == null) // add ragdoll
@@ -147,6 +145,7 @@ public class Shotgun : MonoBehaviour
                     rb.freezeRotation = true;
                     hit.transform.gameObject.GetComponent<NavMeshAgent>().enabled = false;
                     hit.transform.gameObject.GetComponent<EnemyAI>().isDead = true;
+                    hit.transform.gameObject.GetComponent<EnemyAI>().OnDeath();
                     var distanceBetweenEnemyAndPlayer = Vector3.Distance(Camera.main.transform.position, hit.point);
                     rb.AddForce(Camera.main.transform.forward.normalized * _bulletKnockback / distanceBetweenEnemyAndPlayer);
                     rb.AddTorque(transform.up * 10, ForceMode.Impulse);
