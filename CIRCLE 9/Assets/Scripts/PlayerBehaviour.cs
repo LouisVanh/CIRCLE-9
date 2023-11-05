@@ -1,11 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
@@ -185,7 +179,6 @@ public class PlayerBehaviour : MonoBehaviour
     private void Sprinting()
     {
         if (Input.GetKey(KeyCode.LeftShift) && IsMoving && Input.GetAxis("Vertical") > 0 && !IsShooting)
-        //IsPressing LMB                  PlayerIsMoving  IsNotSprintingVertical          ShotgunIsnotShooting
         {
             _headBob.bobSpeed = 8;
             _headBob.bobAmount = 0.3f;
@@ -248,7 +241,6 @@ public class PlayerBehaviour : MonoBehaviour
     }
     private void Movement()
     {
-
         _moveDirection = transform.forward * _verticalInput + transform.right * _horizontalInput;
         Vector3 generalMovement = _moveDirection * _speed * Time.fixedDeltaTime;
         generalMovement.y = _velocity;
