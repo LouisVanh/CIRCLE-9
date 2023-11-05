@@ -80,7 +80,6 @@ public class EnemyWave : MonoBehaviour
                     enemy.GetComponent<EnemyAI>().SubmergeOutIce(hit.position.y + 0.8f); // O.8f = enemy offset to spawn on feet
                 }
 
-
                 if (randomSkin == 2)
                 {
                     var enemy = Instantiate(_enemy1, spawnPos, Quaternion.Euler(randomRot));

@@ -90,6 +90,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d80e26a7c297e3c4e8bc1f321e2139b1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7781690976726121949}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d80e26a7c297e3c4e8bc1f321e2139b1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 38953902212518826}
     - targetCorrespondingSourceObject: {fileID: 4957817425219884111, guid: d80e26a7c297e3c4e8bc1f321e2139b1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5024296482758769084}
@@ -179,3 +182,21 @@ MonoBehaviour:
   _maxHealth: 500
   _gate: {fileID: 0}
   IsSpewingFire: 0
+--- !u!114 &38953902212518826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4748942258217390767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60ea725b1f20cb7409f7fcfafbe2e358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemy: {fileID: 3214064777616132777, guid: 8cd0d4650db4ded45b65ded60bdac8ed, type: 3}
+  _enemy1: {fileID: 3214064777616132777, guid: 6c53b61b37ea59e499752d3196899d2a, type: 3}
+  _enemy2: {fileID: 3214064777616132777, guid: 56d04f8cdc18249499cba10cf7f50429, type: 3}
+  _timer: 25
+  _timeBetweenWaves: 30
+  radius: 10
