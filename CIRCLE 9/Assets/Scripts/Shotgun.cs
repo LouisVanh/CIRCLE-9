@@ -143,6 +143,7 @@ public class Shotgun : MonoBehaviour
                 {
                     var rb = hit.transform.gameObject.AddComponent<Rigidbody>();
                     rb.freezeRotation = true;
+                    hit.transform.gameObject.GetComponent<Collider>().isTrigger = true;
                     hit.transform.gameObject.GetComponent<NavMeshAgent>().enabled = false;
                     hit.transform.gameObject.GetComponent<EnemyAI>().isDead = true;
                     hit.transform.gameObject.GetComponent<EnemyAI>().OnDeath();

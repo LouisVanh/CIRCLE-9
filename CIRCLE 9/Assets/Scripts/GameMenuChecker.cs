@@ -51,9 +51,12 @@ public class GameMenuChecker : MonoBehaviour
 
     private void CheckSatanDeath()
     {
-        if (_satan.HasDied)
+        if(_satan!= null)
         {
-            Win();
+            if (_satan.HasDied)
+            {
+                Win();
+            }
         }
     }
 
@@ -76,6 +79,7 @@ public class GameMenuChecker : MonoBehaviour
     private void GameOver()
     {
         _deathMenu.SetActive(true);
+        
         Time.timeScale = 0f;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
