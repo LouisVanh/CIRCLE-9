@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameMenuChecker : MonoBehaviour
 {
     [SerializeField] private PlayerBehaviour _player;
+    [SerializeField] private Satan _satan;
     [SerializeField] private GameObject _deathMenu;
     [SerializeField] private GameObject _cutsceneMenu;
     [SerializeField] private Audio _gameAudio;
@@ -28,6 +30,7 @@ public class GameMenuChecker : MonoBehaviour
     void Update()
     {
         CheckPlayerDeath();
+        CheckSatanDeath();
         if (_cutsceneMenu != null)
         {
             if (_player.isActiveAndEnabled)
@@ -41,6 +44,20 @@ public class GameMenuChecker : MonoBehaviour
         }
         
     }
+
+    private void CheckSatanDeath()
+    {
+        if (_satan.HasDied)
+        {
+            Win();
+        }
+    }
+
+    private void Win()
+    {
+        throw new NotImplementedException();
+    }
+
     private void CheckPlayerDeath()
     {
         if(_player.HasDied)
