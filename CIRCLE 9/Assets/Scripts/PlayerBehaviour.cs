@@ -67,7 +67,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F12))
         {
-            ScreenCapture.CaptureScreenshot("Screenshot.png", 1);
+            ScreenCapture.CaptureScreenshot("NEW.png", 1);
         }
         _timeSinceHit += Time.deltaTime;
         if (!HasDied && !WonGame)
