@@ -14,7 +14,7 @@ public class Score : MonoBehaviour
     }
     void Update()
     {
-        _score = (int)(Time.time * 10) + (_playerBehaviour.AmountOfKills * 100) ;
+        _score = _playerBehaviour.AmountOfKills * 100;
         _textMeshPro.SetText("Score:" + _score.ToString());
 
     }

@@ -58,6 +58,7 @@ public class EnemyAI : MonoBehaviour
     private int _randomDeathSound;
     private bool _playOnSightOnce = false;
     private Collider _collider;
+    private int _deathCounter =0;
 
     private void Start()
     {
@@ -139,6 +140,11 @@ public class EnemyAI : MonoBehaviour
     {
         if (isDead)
         {
+            if(_deathCounter ==0)
+            {
+                _playerBehaviour.AmountOfKills += 1;
+                _deathCounter= 1;
+            }          
             _animator.SetBool("Die", true);
             DropItem();
             DespawnAfterSeconds();

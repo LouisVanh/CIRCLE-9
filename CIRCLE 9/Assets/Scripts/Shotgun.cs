@@ -138,7 +138,7 @@ public class Shotgun : MonoBehaviour
             //Debug.DrawRay(Camera.main.transform.position, ray.direction, Color.red, 10);
             if (hit.transform.gameObject.layer == 7) // Enemy : 7
             {
-                _player.AmountOfKills++;
+                //_player.AmountOfKills++;
                 PlayVFXAtPoint(hit);
                 hit = TurnOffAnimations(hit);
                 if (hit.transform.gameObject.GetComponent<Rigidbody>() == null) // add ragdoll
