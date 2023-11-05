@@ -40,6 +40,7 @@ public class PlayerBehaviour : MonoBehaviour
     [NonSerialized] public bool HasSkull = false;
     [NonSerialized] public bool HasShotgun = false;
     [NonSerialized] public int AmountOfKills;
+    [NonSerialized] public bool WonGame = false;
     public bool IsShooting;
     private float _timeSinceHit; 
 
@@ -69,7 +70,7 @@ public class PlayerBehaviour : MonoBehaviour
             ScreenCapture.CaptureScreenshot("Screenshot.png", 1);
         }
         _timeSinceHit += Time.deltaTime;
-        if (!HasDied)
+        if (!HasDied && !WonGame)
         {
             Camera();
             _horizontalInput = (Input.GetAxis("Horizontal") * _horizontalSpeedMultiplier);

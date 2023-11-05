@@ -6459,6 +6459,7 @@ MonoBehaviour:
   _clipGameAmbiance2: {fileID: 8300000, guid: 0f0caf774a0ea0c41ac67d6a7cb0ede4, type: 3}
   _clipStartCutscene: {fileID: 8300000, guid: d9a9eafe6e68b0e4b875e313875bbabb, type: 3}
   _clipSatanScene: {fileID: 8300000, guid: 0546ed62b12f5784a824e09206951a0e, type: 3}
+  _clipWonGame: {fileID: 8300000, guid: 2b84d61e28b2d114fa53fbd774717dfe, type: 3}
   _clipCutsceneAmbiance: {fileID: 8300000, guid: b4db09ec415ae514aa2a03878eeb7d41, type: 3}
   _clipDeathAmbiance: {fileID: 8300000, guid: d9a9eafe6e68b0e4b875e313875bbabb, type: 3}
   _volumeSlider: {fileID: 238252375}

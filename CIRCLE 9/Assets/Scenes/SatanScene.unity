@@ -1500,6 +1500,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 7781690976726121949, guid: a6c76e8b65698f84caad4f3f10217433, type: 3}
+      propertyPath: _health
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7781690976726121949, guid: a6c76e8b65698f84caad4f3f10217433, type: 3}
+      propertyPath: _maxHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8285124593254474692, guid: a6c76e8b65698f84caad4f3f10217433, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -1933,7 +1941,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.043
+  m_Volume: 0.055
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2037,6 +2045,8 @@ MonoBehaviour:
   _clipGameAmbiance1: {fileID: 8300000, guid: 0cd40f79c07062649b16d662cbd04222, type: 3}
   _clipGameAmbiance2: {fileID: 8300000, guid: 0f0caf774a0ea0c41ac67d6a7cb0ede4, type: 3}
   _clipStartCutscene: {fileID: 0}
+  _clipSatanScene: {fileID: 8300000, guid: 0546ed62b12f5784a824e09206951a0e, type: 3}
+  _clipWonGame: {fileID: 8300000, guid: 2b84d61e28b2d114fa53fbd774717dfe, type: 3}
   _clipCutsceneAmbiance: {fileID: 0}
   _clipDeathAmbiance: {fileID: 0}
   _volumeSlider: {fileID: 0}
@@ -2045,6 +2055,8 @@ MonoBehaviour:
   _playAudioCounter: 0
   _playAudioSceneCounter: 0
   _gameHasBegun: 0
+  WonGame: 0
+  PlayingWonTheme: 0
 --- !u!4 &328154188
 Transform:
   m_ObjectHideFlags: 0
@@ -3095,6 +3107,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3764755953152628237, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
   m_PrefabInstance: {fileID: 712519169}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &832870128 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7781690976726121949, guid: a6c76e8b65698f84caad4f3f10217433, type: 3}
+  m_PrefabInstance: {fileID: 301513366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a129b0072132e94cade96b87d30eb20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &854309109 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4018167444763176, guid: 86f883933a872f542994368197c83b5b, type: 3}
@@ -4440,6 +4463,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485308320}
   m_CullTransparentMesh: 1
+--- !u!1 &1528110711 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7541617234375508343, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
+  m_PrefabInstance: {fileID: 1729576794}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1572728080
 GameObject:
   m_ObjectHideFlags: 0
@@ -4624,10 +4652,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 2013519262}
-  _satan: {fileID: 0}
+  _satan: {fileID: 832870128}
   _deathMenu: {fileID: 431503534}
   _cutsceneMenu: {fileID: 0}
-  _winMenu: {fileID: 0}
+  _winMenu: {fileID: 1528110711}
   _gameAudio: {fileID: 328154187}
 --- !u!4 &1636430649
 Transform:
@@ -4774,6 +4802,18 @@ PrefabInstance:
     - target: {fileID: 2900444469536369530, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3086424362745284275, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.764151
+      objectReference: {fileID: 0}
+    - target: {fileID: 3086424362745284275, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6722096
+      objectReference: {fileID: 0}
+    - target: {fileID: 3086424362745284275, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5298594
       objectReference: {fileID: 0}
     - target: {fileID: 4070601870942762900, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
       propertyPath: m_Colors.m_NormalColor.b
@@ -4973,7 +5013,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7541617234375508343, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7965660999487787482, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
       propertyPath: m_LocalScale.x
@@ -4991,9 +5031,17 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8247104340681610683, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
+      propertyPath: m_Name
+      value: PlayAgainButton
+      objectReference: {fileID: 0}
     - target: {fileID: 8703334007806465392, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718445891364615202, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
+      propertyPath: m_text
+      value: Play Again
       objectReference: {fileID: 0}
     - target: {fileID: 8718445891364615202, guid: 29a783aa897ac69469447dbf4efe046f, type: 3}
       propertyPath: m_fontAsset
