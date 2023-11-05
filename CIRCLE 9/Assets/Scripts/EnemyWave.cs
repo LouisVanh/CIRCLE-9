@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class EnemyWave : MonoBehaviour
 {
@@ -29,7 +30,9 @@ public class EnemyWave : MonoBehaviour
     private void Start()
     {
         _waveCount = 1;
+        if(SceneManager.GetActiveScene()==SceneManager.GetSceneByBuildIndex(1)) // main scene (else only spawn after the animation with satan
         _timer = 25;
+        else { _timer = 15; }
     }
     private void Update()
     {
