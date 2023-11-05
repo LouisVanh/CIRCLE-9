@@ -8,6 +8,8 @@ public class GoToSatanTrigger : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        Camera.main.gameObject.AddComponent<CameraFade>();
+        CameraFade.Alpha = 0;
         if (other.gameObject.layer == 6)
         {
             CameraFade.Out(() =>
@@ -15,7 +17,6 @@ public class GoToSatanTrigger : MonoBehaviour
                 SceneManager.LoadScene(2); // satan scene
             }
             , 1f);
-            
         }
     }
 }
