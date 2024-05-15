@@ -248,7 +248,7 @@ public class EnemyAI : MonoBehaviour
             NavMeshPath navpath = new NavMeshPath();
             if (NavMesh.CalculatePath(transform.position, hit.position, NavMesh.AllAreas, navpath)) // if theres a path
             {
-                if (navpath.status == NavMeshPathStatus.PathPartial || navpath.status == NavMeshPathStatus.PathInvalid) //if its fucked
+                if (navpath.status == NavMeshPathStatus.PathPartial || navpath.status == NavMeshPathStatus.PathInvalid) //if there's no valid path
                     continue; // redo
             }
 
